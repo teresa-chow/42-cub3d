@@ -1,0 +1,16 @@
+*.md
+
+.vscode/
+.DS_Store
+*/.DS_Store
+Dockerfile
+
+.build/
+*/*/.build/
+
+cub3D
+*/*/*.a
+*/*.swp
+*/*.swo
+
+en.subject.pdf
