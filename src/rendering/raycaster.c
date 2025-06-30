@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:31:02 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/06/30 16:32:46 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:52:50 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int raycaster(int argc, char **argv)
 - field of vision (fov)
 if the camera plane vector and the direction vector are the same legth:
     fov 90 degrees
+
+- fps count
 
 - rotation matrix:
 [ cos(a) -sin(a) ]
