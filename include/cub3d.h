@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/06/30 17:12:41 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:38:17 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,36 +47,29 @@ typedef struct s_img
 	/* data */
 }	t_img;
 
-typedef struct s_config
-{
-	char	*tex_n; //path to textures: north
-	char	*tex_s; //south
-	char	*tex_w; //west
-	char	*tex_e; //east
-	int		ground; //ground color
-	int		sky; //ceiling color
-	char	**map; //map is a 2D-array
-}	t_config;
-
 typedef struct s_player
 {
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			cam_x; //leave 0 at parsing
+	double			cam_y; //leave 0 at parsing
 }	t_player;
-
-typedef struct	s_plane
-{
-	double  x;
-    double  y;
-}	t_plane;
 
 typedef struct s_world
 {
-	struct s_config	config;
-	struct s_player	player;
-	struct s_plane	camera;
+	char			*tex_n; //path to textures: north
+	char			*tex_s; //south
+	char			*tex_w; //west
+	char			*tex_e; //east
+	int				ground; //ground color
+	int				sky; //ceiling color
+	char			**map; //map is a 2D-array
+	struct s_player	*player; //define player start position and direction
+	double			time_curr; //leave 0 at parsing
+	double			time_prev; //leave 0 at parsing
+	//fps
 }	t_world;
 
 /* ============================== VALIDATION =============================== */

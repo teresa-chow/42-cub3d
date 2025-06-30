@@ -6,12 +6,17 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:31:02 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/06/30 16:52:50 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:43:13 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
+/* This is just a draft:
+- Raycaster works in a loop -- see mlx loop hook
+-1 0 1 coordinates of the screen
+direction of the ray: sum of direction vector + part of plane vector (add x and add y)
+*/
 int raycaster(int argc, char **argv)
 {
     // x and y start position
