@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/06/30 17:38:17 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:52:56 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,20 @@ typedef struct s_player
 	double			cam_y; //leave 0 at parsing
 }	t_player;
 
+typedef struct s_raycaster
+{
+	double			time_curr;
+	double			time_prev;
+	//fps
+	//map_x
+	//map_y
+	//side_dist_x
+	//side_dist_y
+	//delta_dist_x
+	//delta_dist_y
+} t_raycaster;
+
+
 typedef struct s_world
 {
 	char			*tex_n; //path to textures: north
@@ -67,9 +81,6 @@ typedef struct s_world
 	int				sky; //ceiling color
 	char			**map; //map is a 2D-array
 	struct s_player	*player; //define player start position and direction
-	double			time_curr; //leave 0 at parsing
-	double			time_prev; //leave 0 at parsing
-	//fps
 }	t_world;
 
 /* ============================== VALIDATION =============================== */
