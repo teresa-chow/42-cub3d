@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/06/30 17:52:56 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/06/30 18:00:16 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ typedef struct s_raycaster
 	//side_dist_y
 	//delta_dist_x
 	//delta_dist_y
+	//bool	hit;
+	//int	wall;
 } t_raycaster;
 
 
