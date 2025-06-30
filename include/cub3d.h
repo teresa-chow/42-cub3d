@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/06/30 16:29:53 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:00:11 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_img
 	/* data */
 }	t_img;
 
-typedef struct s_map
+typedef struct s_config
 {
 	char	*tex_n; //path to textures: north
 	char	*tex_s; //south
@@ -55,7 +55,8 @@ typedef struct s_map
 	char	*tex_e; //east
 	int		ground; //ground color
 	int		sky; //ceiling color
-}	t_map;
+	char	**map; //map is a 2D-array
+}	t_config;
 
 typedef struct s_player
 {
@@ -73,6 +74,7 @@ typedef struct	s_plane
 
 typedef struct s_game
 {
+	struct s_config	config;
 	struct s_player	player;
 	struct s_plane	camera;
 }	t_game;
