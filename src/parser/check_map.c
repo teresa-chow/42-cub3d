@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event_handlers.c                                   :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 16:00:07 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/06/27 16:00:25 by tchow-so         ###   ########.fr       */
+/*   Created: 2025/06/30 11:59:32 by tchow-so          #+#    #+#             */
+/*   Updated: 2025/06/30 12:01:40 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+/* This file handles map configuration errors */
 
-int	handle_keypress(int keycode, t_data *img)
-{
-	if (keycode == XK_Escape)
-		close_quit(img);
-	return (0);
-}
+#include "../../include/cub3d.h"
 
-int	close_quit(t_data *img)
-{
-	mlx_destroy_image(img->mlx, img->img);
-	mlx_destroy_window(img->mlx, img->window);
-	mlx_destroy_display(img->mlx);
-	free(img->mlx);
-    //free what's missing
-	exit(EXIT_SUCCESS);
-	return (0);
-}
+/* If any misconfiguration of any kind is encountered in the file, the program
+must exit properly and return "Error\n" followed by an explicit error message
+of your choice.
+
+printerr_exit("Error\n"); */

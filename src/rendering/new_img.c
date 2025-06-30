@@ -6,11 +6,11 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:56:00 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/06/27 15:59:30 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:02:41 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 static void	init_mlx(t_data *img);
 
@@ -28,7 +28,7 @@ static void	init_mlx(t_data *img)
 	img->mlx = mlx_init();
 	if (img->mlx == NULL)
 		printerr_exit("Failed to initialize MLX\n");
-	img->window = mlx_new_window(img->mlx, WIN_W, WIN_H, "FDF");
+	img->window = mlx_new_window(img->mlx, WIN_W, WIN_H, "cub3D");
 	if (img->window == NULL)
 	{
 		free(img->mlx);
