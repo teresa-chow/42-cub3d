@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/06/30 17:00:11 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:12:41 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ typedef struct	s_plane
     double  y;
 }	t_plane;
 
-typedef struct s_game
+typedef struct s_world
 {
 	struct s_config	config;
 	struct s_player	player;
 	struct s_plane	camera;
-}	t_game;
+}	t_world;
 
 /* ============================== VALIDATION =============================== */
 void	printerr_exit(char *str);
