@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/06/30 18:00:16 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/01 15:09:31 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,44 +34,20 @@ typedef struct s_data
 	void			*mlx;
 	void			*window;
 	void			*img;
-	int				map_len;
-	int				map_wid;
 	char			*addr;
 	int				bits_pxl;
 	int				line_len;
 	int				endian;
 }	t_data;
 
-typedef struct s_img
-{
-	/* data */
-}	t_img;
-
-typedef struct s_player
+/* Camera - player viewpoint */
+typedef struct s_camera
 {
 	double			pos_x;
 	double			pos_y;
 	double			dir_x;
 	double			dir_y;
-	double			cam_x; //leave 0 at parsing
-	double			cam_y; //leave 0 at parsing
-}	t_player;
-
-typedef struct s_raycaster
-{
-	double			time_curr;
-	double			time_prev;
-	//fps
-	//map_x
-	//map_y
-	//side_dist_x
-	//side_dist_y
-	//delta_dist_x
-	//delta_dist_y
-	//bool	hit;
-	//int	wall;
-} t_raycaster;
-
+}	t_camera;
 
 typedef struct s_world
 {
@@ -82,17 +58,47 @@ typedef struct s_world
 	int				ground; //ground color
 	int				sky; //ceiling color
 	char			**map; //map is a 2D-array
-	struct s_player	*player; //define player start position and direction
+	t_camera		*cam; //define player start position and direction
 }	t_world;
+
+typedef enum e_wall
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+}	t_wall;
+
+typedef struct s_raycaster
+{
+	double			time_curr; //time of current frame
+	double			time_prev; //time of previous frame
+	int				fps;
+	t_camera		*cam;
+	double			cam_x; //x-coordinate in camera space
+	double			plane_x; //camera plane
+	double			plane_y;
+	double			ray_dir_x; //ray direction
+	double			ray_dir_y;
+	int				map_x; //current map cell
+	int				map_y;
+	double			side_dist_x; //ray length from curr pos to next x/y-side
+	double			side_dist_y;
+	double			delta_dist_x; //ray length from x/y-side to next x/y-side
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				step; //direction to step in (+1 or -1)
+	bool			hit; //wall hit control
+	t_wall			wall; //which wall was hit
+}	t_raycaster;
 
 /* ============================== VALIDATION =============================== */
 void	printerr_exit(char *str);
-bool	check_input(int argc, char *argv);
+bool	check_input(int argc, char *map);
 // Utils
 int		ft_isspace(int c);
 
 /* =============================== MAP DATA ================================ */
-
 
 /* ============================== RENDERING ================================ */
 // MLX
@@ -101,6 +107,6 @@ void	new_img(t_data *img);
 int		handle_keypress(int keycode, t_data *img);
 
 /* =========================== MEMORY MANAGEMENT =========================== */
-int	    close_quit(t_data *img);
+int		close_quit(t_data *img);
 
 #endif

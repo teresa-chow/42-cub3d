@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:56:00 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/06/30 12:02:41 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/01 15:11:20 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static void	init_mlx(t_data *img);
 void	new_img(t_data *img)
 {
 	init_mlx(img);
-	render_img(img);
+	//rendering
 	mlx_hook(img->window, 2, 1L << 0, handle_keypress, img);
 	mlx_hook(img->window, 17, 0L, close_quit, img);
-	mlx_loop(img->mlx);
+	//mlx_loop(img->mlx);
 }
 
 static void	init_mlx(t_data *img)
