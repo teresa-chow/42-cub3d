@@ -6,7 +6,7 @@
 #    By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 16:14:09 by tchow-so          #+#    #+#              #
-#    Updated: 2025/06/30 13:29:56 by tchow-so         ###   ########.fr        #
+#    Updated: 2025/07/01 14:29:12 by tchow-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ OBJS_RENDERING	= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_RENDERING:.c=.o)))
 
 LIBFT_ARC	= $(LIBFT_DIR)/libft.a
 
+
 # ============================================================================ #
 # PATHS                                                                        #
 # ============================================================================ #
@@ -40,6 +41,22 @@ LIB_DIR		= lib
 
 # Libraries
 LIBFT_DIR	= $(LIB_DIR)/libft
+
+
+# ============================================================================ #
+# OS-SPECIFIC VARIABLES                                                        #
+# ============================================================================ #
+
+ifeq ($(shell uname), Darwin)
+	MLX_DIR		= $(LIB_DIR)/minilibx_macos
+	MLX_ARC	= $(MLX_DIR)/libmlx.a
+	MLX_FLAGS = -framework OpenGL -framework AppKit
+else
+	MLX_DIR		= $(LIB_DIR)/minilibx-linux
+	MLX_ARC		= $(MLX_DIR)/libmlx_Linux.a
+	MLX_FLAGS = -L$(MLX_DIR) -lXext -lX11 -lm -lz -no-pie
+endif
+
 
 # ============================================================================ #
 # COMPILER, FLAGS & COMMANDS                                                   #
@@ -64,9 +81,11 @@ MKDIR	= mkdir -p
 
 all: $(NAME)	## Compile cub3D
 
-$(NAME): $(LIBFT_ARC) $(MLX_ARC) $(BUILD_DIR) $(OBJS)
+$(NAME): $(LIBFT_ARC) $(MLX_ARC) $(BUILD_DIR) $(OBJS) $(OBJS_PARSER) \
+	$(OBJS_RENDERING)
 	@printf "$(GRN)>> Generated object files$(NC)\n\n"
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_ARC) -o $(NAME)
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(OBJS_PARSER) $(OBJS_RENDERING) \
+	$(LIBFT_ARC) $(MLX_ARC) -o $(NAME)
 	@printf "$(GRN)>> Compiled cub3D$(NC)\n\n"
 
 
@@ -75,20 +94,23 @@ $(BUILD_DIR):
 	@printf "$(GRN)>> Created .build/ directory for object files$(NC)\n\n"
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(MLX_FLAGS) -c $< -o $@
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(BUILD_DIR)/%.o: $(PARSER_DIR)/%.c
+	$(CC) $(CFLAGS) $(MLX_FLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(RENDERING_DIR)/%.c
+	$(CC) $(CFLAGS) $(MLX_FLAGS) -c $< -o $@
 
 
 # Library directories
 $(MLX_DIR):
 	@if [ "$(shell uname)" = "Darwin" ]; then \
-	    git clone https://github.com/World42/minilibx_macos.git libs/minilibx_macos; \
+	    git clone https://github.com/World42/minilibx_macos.git lib/minilibx_macos; \
 	else \
-	    git clone https://github.com/42Paris/minilibx-linux.git libs/minilibx-linux; \
+	    git clone https://github.com/42Paris/minilibx-linux.git lib/minilibx-linux; \
 	fi
-	@printf "$(GRN)>> Cloned MiniLibX$(RES)\n\n"
+	@printf "$(GRN)>> Cloned MiniLibX$(NC)\n\n"
 
 # Library archives
 $(LIBFT_ARC): $(LIBFT_DIR)
@@ -97,7 +119,7 @@ $(LIBFT_ARC): $(LIBFT_DIR)
 
 $(MLX_ARC): $(MLX_DIR)
 	$(MAKE) $(MLX_DIR)
-	@printf "$(GRN)>> Created MiniLibX archive$(RES)\n\n"
+	@printf "$(GRN)>> Created MiniLibX archive$(NC)\n\n"
 
 
 ##@ CLEAN-UP RULES
@@ -109,12 +131,12 @@ clean:	## Remove object files
 	@printf "$(GRN)>> Removed object files$(NC)\n\n"
 
 fclean: clean	## Remove executable files
-	$(RM) $(NAME) $(BONUS)
+	$(RM) $(NAME)
 	@printf "$(GRN)>> Removed executable files$(NC)\n\n"
 	$(MAKE) $(LIBFT_DIR) fclean
 	@printf "$(GRN)>> Removed Libft archive$(NC)\n\n"
 	$(MAKE) $(MLX_DIR) clean
-	@printf "$(GRN)>> Removed MiniLibX archive$(RES)\n\n"
+	@printf "$(GRN)>> Removed MiniLibX archive$(NC)\n\n"
 
 re: fclean all	## Purge and recompile
 

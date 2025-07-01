@@ -6,55 +6,15 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:31:02 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/06/30 17:43:13 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:25:23 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-/* This is just a draft:
-- Raycaster works in a loop -- see mlx loop hook
--1 0 1 coordinates of the screen
-direction of the ray: sum of direction vector + part of plane vector (add x and add y)
-*/
-int raycaster(int argc, char **argv)
-{
-    // x and y start position
-    double  pos_x = 22;
-    double  pos_y = 12;
-    // initial direction vector (direction player is facing)
-    double  dir_x = -1;
-    double  dir_y = 0;
-    // camera plane
-    double  plane_x = 0;
-    double  plane_y = 0.66;
-
-    //time of current and previous frames
-    double  time_curr = 0;
-    double  time_prev = 0;
-
-    //init_mlx
-    while (1) // while(active)
-    {
-        int x = 0;
-        while (x < w)
-        {
-            double camera_x = 2 * x / (double)w - 1; //x-coordinate in camera space (?)
-            x++;
-        }
-    }
-}
-
 /*
-- camera plane vector
-- direction vector
-- field of vision (fov)
-if the camera plane vector and the direction vector are the same legth:
-    fov 90 degrees
-
-- fps count
-
-- rotation matrix:
-[ cos(a) -sin(a) ]
-[ sin(a)  cos(a) ]
+int	raycaster(int argc, char **argv)
+{
+	;
+}
 */
