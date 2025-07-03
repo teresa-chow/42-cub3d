@@ -6,7 +6,7 @@
 #    By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 16:14:09 by tchow-so          #+#    #+#              #
-#    Updated: 2025/07/01 14:29:12 by tchow-so         ###   ########.fr        #
+#    Updated: 2025/07/03 17:50:47 by tchow-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,13 +94,13 @@ $(BUILD_DIR):
 	@printf "$(GRN)>> Created .build/ directory for object files$(NC)\n\n"
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) $(MLX_FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/%.o: $(PARSER_DIR)/%.c
-	$(CC) $(CFLAGS) $(MLX_FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/%.o: $(RENDERING_DIR)/%.c
-	$(CC) $(CFLAGS) $(MLX_FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 
 # Library directories
