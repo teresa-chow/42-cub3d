@@ -9,6 +9,8 @@ Dockerfile
 .build/
 */*/.build/
 
+lib/minilibx-*
+
 cub3D
 */*/*.a
 */*.swp
