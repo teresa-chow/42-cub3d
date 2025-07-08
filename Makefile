@@ -3,37 +3,60 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tchow-so <tchow-so@student.42.fr>          +#+  +:+       +#+         #
+#    By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 16:14:09 by tchow-so          #+#    #+#              #
-#    Updated: 2025/06/13 16:14:24 by tchow-so         ###   ########.fr        #
+#    Updated: 2025/07/03 17:50:47 by tchow-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
-# BONUS	= cub3D_bonus
 
 # ============================================================================ #
 # FILES                                                                        #
 # ============================================================================ #
 
-SRC		= $(addprefix $(SRC_DIR)/, main.c)
-OBJS	= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC:.c=.o)))
+SRC				= $(addprefix $(SRC_DIR)/, main.c)
+SRC_PARSER		= $(addprefix $(PARSER_DIR)/, check_input.c)
+SRC_RENDERING	= $(addprefix $(RENDERING_DIR)/, event_handlers.c new_img.c)
+
+OBJS			= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC:.c=.o)))
+OBJS_PARSER		= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_PARSER:.c=.o)))
+OBJS_RENDERING	= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_RENDERING:.c=.o)))
 
 LIBFT_ARC	= $(LIBFT_DIR)/libft.a
+
 
 # ============================================================================ #
 # PATHS                                                                        #
 # ============================================================================ #
 
-INC_DIR		= include
-SRC_DIR 	= src
+INC_DIR			= include
+SRC_DIR 		= src
+PARSER_DIR		= $(SRC_DIR)/parser
+RENDERING_DIR	= $(SRC_DIR)/rendering
 
 BUILD_DIR	= .build
 LIB_DIR		= lib
 
 # Libraries
 LIBFT_DIR	= $(LIB_DIR)/libft
+
+
+# ============================================================================ #
+# OS-SPECIFIC VARIABLES                                                        #
+# ============================================================================ #
+
+ifeq ($(shell uname), Darwin)
+	MLX_DIR		= $(LIB_DIR)/minilibx_macos
+	MLX_ARC	= $(MLX_DIR)/libmlx.a
+	MLX_FLAGS = -framework OpenGL -framework AppKit
+else
+	MLX_DIR		= $(LIB_DIR)/minilibx-linux
+	MLX_ARC		= $(MLX_DIR)/libmlx_Linux.a
+	MLX_FLAGS = -L$(MLX_DIR) -lXext -lX11 -lm -lz -no-pie
+endif
+
 
 # ============================================================================ #
 # COMPILER, FLAGS & COMMANDS                                                   #
@@ -58,14 +81,12 @@ MKDIR	= mkdir -p
 
 all: $(NAME)	## Compile cub3D
 
-# bonus: $(BONUS)
-
-$(NAME): $(LIBFT_ARC) $(BUILD_DIR) $(OBJS)
+$(NAME): $(LIBFT_ARC) $(MLX_ARC) $(BUILD_DIR) $(OBJS) $(OBJS_PARSER) \
+	$(OBJS_RENDERING)
 	@printf "$(GRN)>> Generated object files$(NC)\n\n"
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_ARC) -o $(NAME)
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(OBJS_PARSER) $(OBJS_RENDERING) \
+	$(LIBFT_ARC) $(MLX_ARC) -o $(NAME)
 	@printf "$(GRN)>> Compiled cub3D$(NC)\n\n"
-
-# $(BONUS):
 
 
 $(BUILD_DIR):
@@ -75,11 +96,30 @@ $(BUILD_DIR):
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(BUILD_DIR)/%.o: $(PARSER_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(RENDERING_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+
+# Library directories
+$(MLX_DIR):
+	@if [ "$(shell uname)" = "Darwin" ]; then \
+	    git clone https://github.com/World42/minilibx_macos.git lib/minilibx_macos; \
+	else \
+	    git clone https://github.com/42Paris/minilibx-linux.git lib/minilibx-linux; \
+	fi
+	@printf "$(GRN)>> Cloned MiniLibX$(NC)\n\n"
 
 # Library archives
 $(LIBFT_ARC): $(LIBFT_DIR)
 	$(MAKE) $(LIBFT_DIR)
 	@printf "$(GRN)>> Created Libft archive$(NC)\n\n"
+
+$(MLX_ARC): $(MLX_DIR)
+	$(MAKE) $(MLX_DIR)
+	@printf "$(GRN)>> Created MiniLibX archive$(NC)\n\n"
 
 
 ##@ CLEAN-UP RULES
@@ -87,26 +127,29 @@ $(LIBFT_ARC): $(LIBFT_DIR)
 clean:	## Remove object files
 	$(RM) $(BUILD_DIR)
 	$(MAKE) $(LIBFT_DIR) clean
+	$(MAKE) $(MLX_DIR) clean
 	@printf "$(GRN)>> Removed object files$(NC)\n\n"
 
 fclean: clean	## Remove executable files
-	$(RM) $(NAME) $(BONUS)
+	$(RM) $(NAME)
 	@printf "$(GRN)>> Removed executable files$(NC)\n\n"
 	$(MAKE) $(LIBFT_DIR) fclean
 	@printf "$(GRN)>> Removed Libft archive$(NC)\n\n"
+	$(MAKE) $(MLX_DIR) clean
+	@printf "$(GRN)>> Removed MiniLibX archive$(NC)\n\n"
 
 re: fclean all	## Purge and recompile
 
 
 ##@ STANDARD COMPLIANCE CHECK
 
-norm:	## Execute norminette
-	norminette $(INC_DIR) $(LIB_DIR) $(SRC_DIR)
+norm: all	## Execute norminette
+	norminette $(INC_DIR) $(LIBFT_DIR) $(SRC_DIR)
 
 
 ##@ MEMORY MANAGEMENT & THREADING DEBUG
 
-vg: all ## Run valgrind
+vg: all	## Run valgrind
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
 
 
@@ -131,7 +174,7 @@ help:	## Display this help info
 		substr($$0, 5) } ' Makefile
 	@printf "\n"
 
-.PHONY: all clean fclean re norm helgrind drd install help
+.PHONY: all clean fclean re norm vg install help
 
 
 # ============================================================================ #
