@@ -6,7 +6,7 @@
 #    By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 16:14:09 by tchow-so          #+#    #+#              #
-#    Updated: 2025/07/03 17:50:47 by tchow-so         ###   ########.fr        #
+#    Updated: 2025/07/09 13:47:02 by tchow-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ NAME	= cub3D
 
 SRC				= $(addprefix $(SRC_DIR)/, main.c)
 SRC_PARSER		= $(addprefix $(PARSER_DIR)/, check_input.c)
-SRC_RENDERING	= $(addprefix $(RENDERING_DIR)/, event_handlers.c new_img.c)
+SRC_RENDERING	= $(addprefix $(RENDERING_DIR)/, event_handlers.c raycaster.c \
+	render_init.c)
 
 OBJS			= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC:.c=.o)))
 OBJS_PARSER		= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_PARSER:.c=.o)))
