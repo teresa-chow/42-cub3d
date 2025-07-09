@@ -3,34 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:41:55 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/03 18:07:42 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/09 14:48:52 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../include/render.h"
+
+static void	init_vars(t_world *world, t_data *img, t_raycaster *raycaster);
 
 int	main(int argc, char **argv)
 {
-	t_data	img; //mlx info
+	t_world	world;
+	t_data	img;
+	t_raycaster	raycaster;
 
 	check_input(argc, argv[1]);
-	ft_bzero(&img, sizeof(img));
+	init_vars(&world, &img, &raycaster);
 	//validate map
-	new_img(&img);
-	//rendering loop
-	//free map
+	//fill t_world world; create and fill t_camera *cam
+	render(&world, &img, &raycaster);
+	//free world
 	return (0);
 }
-=======
-/*   By: tchow-so <tchow-so@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/13 16:41:55 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/06/13 16:41:57 by tchow-so         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
->>>>>>> 786ac01cafdab1fab14a32ef479091e09d5262a6
+static void	init_vars(t_world *world, t_data *img, t_raycaster *raycaster)
+{
+	ft_bzero(world, sizeof(t_world));
+	ft_bzero(img, sizeof(t_data));
+	ft_bzero(raycaster, sizeof(t_raycaster));
+}
