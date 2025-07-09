@@ -6,7 +6,7 @@
 #    By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 16:14:09 by tchow-so          #+#    #+#              #
-#    Updated: 2025/07/09 13:47:02 by tchow-so         ###   ########.fr        #
+#    Updated: 2025/07/09 14:55:40 by tchow-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,12 @@ NAME	= cub3D
 
 SRC				= $(addprefix $(SRC_DIR)/, main.c)
 SRC_PARSER		= $(addprefix $(PARSER_DIR)/, check_input.c)
-SRC_RENDERING	= $(addprefix $(RENDERING_DIR)/, event_handlers.c raycaster.c \
+SRC_RENDERER	= $(addprefix $(RENDERER_DIR)/, event_handlers.c raycaster.c \
 	render_init.c)
 
 OBJS			= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC:.c=.o)))
 OBJS_PARSER		= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_PARSER:.c=.o)))
-OBJS_RENDERING	= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_RENDERING:.c=.o)))
+OBJS_RENDERER	= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_RENDERER:.c=.o)))
 
 LIBFT_ARC	= $(LIBFT_DIR)/libft.a
 
@@ -35,7 +35,7 @@ LIBFT_ARC	= $(LIBFT_DIR)/libft.a
 INC_DIR			= include
 SRC_DIR 		= src
 PARSER_DIR		= $(SRC_DIR)/parser
-RENDERING_DIR	= $(SRC_DIR)/rendering
+RENDERER_DIR	= $(SRC_DIR)/renderer
 
 BUILD_DIR	= .build
 LIB_DIR		= lib
@@ -83,9 +83,9 @@ MKDIR	= mkdir -p
 all: $(NAME)	## Compile cub3D
 
 $(NAME): $(LIBFT_ARC) $(MLX_ARC) $(BUILD_DIR) $(OBJS) $(OBJS_PARSER) \
-	$(OBJS_RENDERING)
+	$(OBJS_RENDERER)
 	@printf "$(GRN)>> Generated object files$(NC)\n\n"
-	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(OBJS_PARSER) $(OBJS_RENDERING) \
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(OBJS_PARSER) $(OBJS_RENDERER) \
 	$(LIBFT_ARC) $(MLX_ARC) -o $(NAME)
 	@printf "$(GRN)>> Compiled cub3D$(NC)\n\n"
 
@@ -100,7 +100,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 $(BUILD_DIR)/%.o: $(PARSER_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BUILD_DIR)/%.o: $(RENDERING_DIR)/%.c
+$(BUILD_DIR)/%.o: $(RENDERER_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 
