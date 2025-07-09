@@ -1,0 +1,31 @@
+Parsing:
+validate map configuration:
+  1. map section:
+  [ ] must be at the bottom (last piece of information)
+  [ ] only six possible characters*: 0 1 N S E W
+  [ ] *spaces are also valid: decide how to handle (accept only in boarders -- see subject example)
+  [ ] map must be closed: surrounded by walls (1)
+  [ ] map cannot contain empty new line
+  [ ] check edge cases and test several maps / make test maps: assets/maps/
+  [ ] minimal map accepted (check if there's at least the indication of the player's start position
+      and if it's surrounded by walls):
+        111
+        1N1
+        111
+
+  2. other information:
+  [ ] check identifiers (any order): NO SO WE EA F C
+  [ ] check typos: e.g. "NOO"
+  [ ] check identifier config (multiple spaces accepted): NO     path/to/file
+  [ ] check repeated identifiers
+  [ ] textures: check if path/to/file exists (open)
+  [ ] textures: check file format (must be image file) ?
+  [ ] colors (floor and ceiling): 3 values (R,G,B)
+  [ ] colors (floor and ceiling): each value between 0 and 255
+-------------------------------------------------------------------------
+Rendering:
+[ ] raycaster
+[ ] arrows (left and right): change direction / rotate
+[ ] W A S D : change player position / move
+[ ] collision detection
+[ ] ESC / red cross button: close the window and quit program (no leaks)
