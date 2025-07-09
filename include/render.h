@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/09 14:49:46 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:04:43 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ typedef enum e_keys
 	LEFT,
 	RIGHT
 };
-
-typedef
 
 typedef struct s_raycaster
 {
