@@ -8,10 +8,13 @@ Dockerfile
 
 .build/
 */*/.build/
+lib/minilibx_macos
+lib/minilibx-linux
 
 lib/minilibx-*
 
 cub3D
+
 */*/*.a
 */*.swp
 */*.swo
