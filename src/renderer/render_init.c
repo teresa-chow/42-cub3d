@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:56:00 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/10 11:18:04 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/10 12:22:59 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,18 @@
 
 static void	init_mlx(t_data *img);
 
+
 void render(t_world *world, t_raycaster *rc)
 {
-	(void)world;
+	/*t_world	test;
+	test.tex_n = ;
+	test.tex_s = ;
+	test.tex_w = ;
+	test.tex_e = ;
+	test.ground = ;
+	test.sky = ;
+	test.map = malloc();*/
+
 	rc->img = ft_calloc(1, sizeof(t_data));
 	init_mlx(rc->img);
 	//render_frame(world, rc);
@@ -47,15 +56,3 @@ static void	init_mlx(t_data *img)
 		&img->line_len, &img->endian);
 	return ;
 }
-
-/*void	pixel_put(t_data *img, int x, int y, int color)
-{
-	char	*dst;
-
-	if ((x > 0 && y > 0) && (x < WIN_W && y < WIN_H))
-	{
-		dst = img->addr + (y * img->line_len + x * (img->bits_pxl / 8));
-		*(int *)dst = color;
-	}
-	return ;
-}*/

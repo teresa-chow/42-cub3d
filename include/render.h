@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/10 11:17:00 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/10 12:14:13 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,13 @@ typedef enum e_wall
 	WEST
 }	t_wall;
 
-typedef enum e_keys
-{
-	W,
-	A,
-	S,
-	D,
-	LEFT,
-	RIGHT
-} t_keys;
-
 typedef struct s_raycaster
 {
 	t_data			*img;
 	double			time_curr; //time of current frame
 	double			time_prev; //time of previous frame
 	int				fps;
-	bool			key_state[6];
+	bool			key_state[6]; // W A S D Left Right
 	t_camera		*cam;
 	double			cam_x; //x-coordinate in camera space
 	double			plane_x; //camera plane
@@ -87,7 +77,7 @@ typedef struct s_raycaster
 // MLX
 void	render(t_world *world, t_raycaster *rc);
 // Event handlers
-int		handle_keypress(int keycode, t_data *img);
+int		handle_keypress(int keycode, t_raycaster *rc);
 
 /* =========================== MEMORY MANAGEMENT =========================== */
 int		close_quit(t_data *img);
