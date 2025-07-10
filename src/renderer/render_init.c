@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:56:00 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/10 09:50:42 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/10 11:18:04 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static void	init_mlx(t_data *img);
 
-void render(t_world *world, t_data *img, t_raycaster *raycaster)
+void render(t_world *world, t_raycaster *rc)
 {
 	(void)world;
-	(void)raycaster;
-	init_mlx(img);
-	render_frame(world, img, raycaster);
-	mlx_hook(img->window, 2, 1L << 0, handle_keypress, img);
-	mlx_hook(img->window, 17, 0L, close_quit, img);
-	mlx_loop(img->mlx);
+	rc->img = ft_calloc(1, sizeof(t_data));
+	init_mlx(rc->img);
+	//render_frame(world, rc);
+	mlx_hook(rc->img->window, 2, 1L << 0, handle_keypress, rc);
+	mlx_hook(rc->img->window, 17, 0L, close_quit, rc->img); //review argument
+	mlx_loop(rc->img->mlx);
 }
 
 static void	init_mlx(t_data *img)

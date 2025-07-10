@@ -6,32 +6,30 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:41:55 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/09 14:48:52 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/10 11:13:46 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/render.h"
 
-static void	init_vars(t_world *world, t_data *img, t_raycaster *raycaster);
+static void	init_vars(t_world *world, t_raycaster *raycaster);
 
 int	main(int argc, char **argv)
 {
 	t_world	world;
-	t_data	img;
-	t_raycaster	raycaster;
+	t_raycaster	rc;
 
 	check_input(argc, argv[1]);
-	init_vars(&world, &img, &raycaster);
+	init_vars(&world, &rc);
 	//validate map
 	//fill t_world world; create and fill t_camera *cam
-	render(&world, &img, &raycaster);
+	render(&world, &rc);
 	//free world
 	return (0);
 }
 
-static void	init_vars(t_world *world, t_data *img, t_raycaster *raycaster)
+static void	init_vars(t_world *world, t_raycaster *rc)
 {
 	ft_bzero(world, sizeof(t_world));
-	ft_bzero(img, sizeof(t_data));
-	ft_bzero(raycaster, sizeof(t_raycaster));
+	ft_bzero(rc, sizeof(t_raycaster));
 }
