@@ -6,14 +6,13 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:56:00 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/10 12:22:59 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/10 13:39:06 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
 
 static void	init_mlx(t_data *img);
-
 
 void render(t_world *world, t_raycaster *rc)
 {
@@ -26,6 +25,7 @@ void render(t_world *world, t_raycaster *rc)
 	test.sky = ;
 	test.map = malloc();*/
 
+	(void)world;
 	rc->img = ft_calloc(1, sizeof(t_data));
 	init_mlx(rc->img);
 	//render_frame(world, rc);
