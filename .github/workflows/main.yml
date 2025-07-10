@@ -1,0 +1,35 @@
+name: Build, Parsing, Leaks and Standard Compliance (Norm) check
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone codebase
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: sudo apt update && sudo apt install -y libxext-dev libx11-dev libbsd-dev
+
+      - name: Build cub3D
+        run: make
+
+      - name: Check standard compliance (Norm)
+        run: |
+	        python3 -m pip install --upgrade pip setuptools
+	        python3 -m pip install norminette
+          norminette
+
+      - name: Run argument test
+        run: |
+          ./cub3D
+          ./cub3D invalid
+          ./cub3D 1.cub 2.cub
+          ./cub3D invalid.cub
+        continue-on-error: true
+
+      # When we have a working parser, automate testing with INVALID maps
+      #- name: Check leaks - Map parsing (Valgrind)
+      #  run: |
+      #    valgrind --leak-check=full ./cub3D assets/maps/
