@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/10 09:51:26 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/10 15:31:51 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ typedef struct s_camera
 	double			dir_x;
 	double			dir_y;
 }	t_camera;
+
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+	int	color;
+}	t_rgb;
 
 /* World - config info privided in *.cub */
 typedef struct s_world
