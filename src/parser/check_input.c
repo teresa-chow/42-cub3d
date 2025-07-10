@@ -6,13 +6,13 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:17:18 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/01 15:10:12 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/10 15:24:48 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* This file handles command line argument errors */
 
-#include "../../include/cub3d.h"
+#include "../../include/parse.h"
 
 static bool	check_file_name(char *str);
 static bool	check_file_format(char *str);
@@ -25,9 +25,8 @@ bool	check_input(int argc, char *map)
             "Usage: ./cub3D map.cub\n");
 		return (0);
 	}
-	else if (!check_file_name(map))
+	if (!check_file_name(map))
 	{
-		printf("%s\n", map);
 		printerr_exit("cub3D: invalid map name\n"
 			"Usage: ./cub3D map.cub\n");
 		return (0);
@@ -42,7 +41,7 @@ static bool	check_file_name(char *str)
 	if (ft_strlen(str) < 4)
 		return (0);
 	if (!check_file_format(str))
-		return (1);
+		return (0);
 	return (1);
 }
 
