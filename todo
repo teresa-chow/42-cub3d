@@ -19,7 +19,8 @@ validate map configuration:
   [ ] check identifier config (multiple spaces accepted): NO     path/to/file
   [ ] check repeated identifiers
   [ ] textures: check if path/to/file exists (open)
-  [ ] textures: check file format (must be image file) ?
+  [ ] textures: check if path/to/file is different for NO SO EA WE
+  [ ] textures: check file format (must be image file) .xml
   [ ] colors (floor and ceiling): 3 values (R,G,B)
   [ ] colors (floor and ceiling): each value between 0 and 255
 -------------------------------------------------------------------------
