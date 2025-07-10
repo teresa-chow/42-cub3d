@@ -17,8 +17,8 @@ jobs:
 
       - name: Check standard compliance (Norm)
         run: |
-	        python3 -m pip install --upgrade pip setuptools
-	        python3 -m pip install norminette
+          python3 -m pip install --upgrade pip setuptools
+          python3 -m pip install norminette
           norminette
 
       - name: Run argument test
