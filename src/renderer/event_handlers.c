@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:00:07 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/09 14:41:42 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/10 11:18:37 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static void	handle_movement(int keycode);
 static void	handle_rotation(int keycode);
 
 //triggers callback once per event
-int	handle_keypress(int keycode, t_data *img)
+int	handle_keypress(int keycode, t_raycaster *rc)
 {
 	if (keycode == XK_Escape)
-		close_quit(img);
+		close_quit(rc->img); //review argument
 	handle_movement(keycode);
 	handle_rotation(keycode);
 	return (0);
