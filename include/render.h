@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/10 12:14:13 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/10 15:13:05 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,16 @@ typedef struct s_raycaster
 }	t_raycaster;
 
 /* ============================== RENDERING ================================ */
-// MLX
+// General
 void	render(t_world *world, t_raycaster *rc);
+void	render_frame(t_world *world, t_raycaster *rc, char map[5][5]); // map is tmp
+// Raycaster
+int		raycaster(t_world *world, t_raycaster *rc, char map[5][5]);
 // Event handlers
 int		handle_keypress(int keycode, t_raycaster *rc);
+int		handle_keyrelease(int keycode, t_raycaster *rc);
+// Utils
+void	pixel_put(t_data *img, int x, int y, int color);
 
 /* =========================== MEMORY MANAGEMENT =========================== */
 int		close_quit(t_data *img);
