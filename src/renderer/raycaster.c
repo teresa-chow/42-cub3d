@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:31:02 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/09 14:44:39 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/10 09:32:29 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 /*int	raycaster()
 {
-	t_raycaster	
+	t_raycaster
 }*/
