@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/11 16:34:53 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/11 18:28:19 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,17 @@ typedef struct s_data
 	int				line_len;
 	int				endian;
 }	t_data;
+
+typedef struct s_dda
+{
+	float			x1;
+	float			y1;
+	float			dx;
+	float			dy;
+	int				step;
+	float			x_inc;
+	float			y_inc;
+}	t_dda;
 
 typedef enum e_wall
 {
