@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycaster.c                                        :+:      :+:    :+:   */
+/*   raycaster_calc01.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 14:31:02 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/10 15:13:26 by tchow-so         ###   ########.fr       */
+/*   Created: 2025/07/11 14:30:30 by tchow-so          #+#    #+#             */
+/*   Updated: 2025/07/11 15:26:09 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
 
-int	raycaster(t_world *world, t_raycaster *rc, char map[5][5]) // check return value upon error
+/* Calculate height of line to be drawn
+   Calculate lowest and highest pixels to fill in current stripe */
+void    calc_line_val(t_raycaster *rc)
 {
-	(void)world;
-	(void)rc;
-	(void)map;
-	printf("ola\n");
-	return (0);
+    rc->line_height = (int)(WIN_H / rc->perp_wall_dist);
+    rc->line_start = -rc->line_height / 2 + WIN_H / 2;
+    if (rc->line_start < 0)
+        rc->line_start = 0;
+    rc->line_end = rc->line_height / 2 + WIN_H / 2;
+    if (rc->line_end >= WIN_H)
+        rc->line_end = WIN_H - 1;
 }

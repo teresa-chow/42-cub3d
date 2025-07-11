@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:00:07 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/10 14:37:07 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/11 12:04:09 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 static void	log_movement(int keycode, bool key_state[6]);
 static void	log_rotation(int keycode, bool key_state[6]);
 
-//triggers callback once per event
 int	handle_keypress(int keycode, t_raycaster *rc)
 {
 	if (keycode == XK_Escape)
-		close_quit(rc->img); //review argument
+		close_quit(rc);
 	log_movement(keycode, rc->key_state);
 	log_rotation(keycode, rc->key_state);
 	return (0);
@@ -77,12 +76,12 @@ static void	log_rotation(int keycode, bool key_state[6])
 	}
 }
 
-int	close_quit(t_data *img)
+int	close_quit(t_raycaster *rc)
 {
-	mlx_destroy_image(img->mlx, img->img);
-	mlx_destroy_window(img->mlx, img->window);
-	mlx_destroy_display(img->mlx);
-	free(img->mlx);
+	mlx_destroy_image(rc->img->mlx, rc->img->img);
+	mlx_destroy_window(rc->img->mlx, rc->img->window);
+	mlx_destroy_display(rc->img->mlx);
+	free(rc->img->mlx);
     //free what's missing
 	exit(EXIT_SUCCESS);
 	return (0);

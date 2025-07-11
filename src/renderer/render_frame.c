@@ -6,26 +6,44 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:00:20 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/10 15:14:32 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:30:21 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
 
-void	render_frame(t_world *world, t_raycaster *rc, char map[5][5])
+static void	assign_colors(t_raycaster *rc); //tmp
+
+int	render_frame(t_raycaster *rc)
 {
-    raycaster(world, rc, map);
-    //mlx_put_image_to_window(rc->img->mlx, rc->img->window, rc->img->img, 0, 0);
+    raycaster(rc);
+    mlx_put_image_to_window(rc->img->mlx, rc->img->window, rc->img->img, 0, 0);
+	return (0);
 }
 
-void	pixel_put(t_data *img, int x, int y, int color)
+int	raycaster(t_raycaster *rc) // check return value upon error
 {
-	char	*dst;
+	int	x;
 
-	if ((x > 0 && y > 0) && (x < WIN_W && y < WIN_H))
+	x = 0;
+	while (x < rc->world->map_wid)
 	{
-		dst = img->addr + (y * img->line_len + x * (img->bits_pxl / 8));
-		*(int *)dst = color;
+		calc_ray_pos_dir(rc, x);
+		rc->map_x = (int)rc->cam->pos_x; //coordinates of current map position
+		rc->map_y = (int)rc->cam->pos_y;
+		calc_ray_len(rc);
+		calc_step(rc);
+		perform_dda(rc);
+		calc_cam_dist(rc);
+		calc_line_val(rc);
+		assign_colors(rc); //tmp
+		x++;
 	}
-	return ;
+	return (0);
+}
+
+//TODO: delete tmp function
+static void	assign_colors(t_raycaster *rc)
+{
+	pixel_put(rc->img, rc->line_start, rc->line_end, 14876450);
 }
