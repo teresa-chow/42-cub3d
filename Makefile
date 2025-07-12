@@ -6,7 +6,7 @@
 #    By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 16:14:09 by tchow-so          #+#    #+#              #
-#    Updated: 2025/07/11 18:43:40 by tchow-so         ###   ########.fr        #
+#    Updated: 2025/07/12 18:38:12 by tchow-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME	= cub3D
 
 SRC				= $(addprefix $(SRC_DIR)/, main.c)
 SRC_PARSER		= $(addprefix $(PARSER_DIR)/, check_input.c)
-SRC_RENDERER	= $(addprefix $(RENDERER_DIR)/, event_handlers.c \
+SRC_RENDERER	= $(addprefix $(RENDERER_DIR)/, drawing_utils.c event_handlers.c \
 	minimap.c raycaster_calc00.c raycaster_calc01.c render_frame.c \
 	render_launch.c)
 
