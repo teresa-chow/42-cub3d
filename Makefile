@@ -6,7 +6,7 @@
 #    By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 16:14:09 by tchow-so          #+#    #+#              #
-#    Updated: 2025/07/12 18:38:12 by tchow-so         ###   ########.fr        #
+#    Updated: 2025/07/14 11:08:06 by tchow-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,8 +86,8 @@ all: $(NAME)	## Compile cub3D
 $(NAME): $(LIBFT_ARC) $(MLX_ARC) $(BUILD_DIR) $(OBJS) $(OBJS_PARSER) \
 	$(OBJS_RENDERER)
 	@printf "$(GRN)>> Generated object files$(NC)\n\n"
-	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(OBJS_PARSER) $(OBJS_RENDERER) \
-	$(LIBFT_ARC) $(MLX_ARC) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(OBJS_PARSER) $(OBJS_RENDERER) \
+	$(LIBFT_ARC) $(MLX_ARC) $(MLX_FLAGS) -o $(NAME)
 	@printf "$(GRN)>> Compiled cub3D$(NC)\n\n"
 
 
