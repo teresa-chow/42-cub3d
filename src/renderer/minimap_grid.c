@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_utils.c                                    :+:      :+:    :+:   */
+/*   minimap_grid.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:48:42 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 12:04:44 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:31:15 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void grid_dda(t_raycaster *rc, int y, int x, t_dda *dda);
 static void grid_loop(t_raycaster *rc, int y, int x, t_dda *dda);
 
+/* Grid */
 void    draw_minimap_grid(t_raycaster *rc, t_dda *dda)
 {
     int	x;
@@ -65,27 +66,5 @@ static void grid_loop(t_raycaster *rc, int y, int x, t_dda *dda)
 		pixel_put(rc->img, roundf(dda->x1), roundf(dda->y1), GRAY);
 		dda->x1 += dda->x_inc;
 		i++;
-	}
-}
-
-void    draw_player(t_raycaster *rc, float spacing)
-{
-	int	radius;
-	int	y;
-	int	x;
-	int	dx;
-
-	radius = spacing / 4;
-	y = -radius;
-	while (y <= radius)
-	{
-		dx = (int)sqrtf(radius * radius - y * y);
-		x = -dx;
-		while (x <= dx)
-		{
-			pixel_put(rc->img, spacing * (rc->cam->pos_x + 0.5) + x, spacing * (rc->cam->pos_y + 0.5) + y, YELLOW);
-			x++;
-		}
-		y++;
 	}
 }

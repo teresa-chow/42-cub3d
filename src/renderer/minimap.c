@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:12:30 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 12:04:02 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 13:32:07 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void    draw_minimap(t_raycaster *rc)
 	draw_player(rc, dda.spacing);
 }
 
+/* Minimap display dimensions */
 static void calc_minimap_spacing(t_raycaster *rc, float *spacing)
 {
 	if (rc->world->map_len > rc->world->map_wid)
@@ -48,6 +49,7 @@ static void calc_minimap_spacing(t_raycaster *rc, float *spacing)
 		*spacing = (float)((WIN_W / 5) / rc->world->map_wid);
 }
 
+/* Walls and walkable area */
 static void	filling_dda(t_raycaster *rc, int y, int x, t_dda *dda)
 {
 	dda->dx = (x + 1) * dda->spacing - x * dda->spacing;
