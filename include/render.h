@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 09:30:14 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:04:33 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # define WIN_W 1920
 # define WIN_H 1080
+# define BLACK 0
+# define WHITE 16777215
+# define GRAY 3158064
+# define YELLOW 16776960
+# define M_PI 3.14159265358979323846
 
 # include <X11/X.h>
 # include <X11/keysym.h>

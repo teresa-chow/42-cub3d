@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:12:30 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 11:00:50 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:04:02 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static void	filling_loop(t_raycaster *rc, int y, int x, t_dda *dda)
 static void	get_minimap_color(t_raycaster *rc, int y, int x, int *color)
 {
 	if (rc->world->map[y][x] == '1')
-		*color = 16777215;
+		*color = WHITE;
 	else
-		*color = 0;
+		*color = BLACK;
 }
