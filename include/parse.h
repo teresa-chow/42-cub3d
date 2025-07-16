@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/11 12:01:12 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 14:22:39 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 
 /* Camera - player viewpoint: */
 /*
-	NORTH : dir_x = 1; dir_y = 0;
-	SOUTH : dir_x = -1; dir_y = 0;
-	EAST : dir_x = 0; dir_y = 1;
-	WEST : dir_x = 0; dir_y = -1;
+	NORTH : -Y pos_x = 0 pos_y = -1;
+	SOUTH : +Y;
+	EAST : +X;
+	WEST : -X;
 */
 typedef struct s_camera
 {
@@ -51,8 +51,8 @@ typedef struct s_world
 	char			*tex_e; //east
 	int				ground; //ground color
 	int				sky; //ceiling color
-	int				map_len; //added -- needed?
-	int				map_wid; //added -- needed?
+	int				map_len;
+	int				map_wid;
 	char			**map; //map is a 2D-array
 	t_camera		*cam; //define player start position and direction
 }	t_world;
