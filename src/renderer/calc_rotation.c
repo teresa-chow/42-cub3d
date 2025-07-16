@@ -6,12 +6,14 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:26:28 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 17:44:32 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 19:09:51 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
 
+/* atan2 - arctangeant with quadrant correction, used to obtain
+angle in radians for vector (x, y) */
 void    calc_player_rotation(t_raycaster *rc)
 {
 	double				angle;
@@ -19,7 +21,7 @@ void    calc_player_rotation(t_raycaster *rc)
 	static unsigned int	last_move = 0;
 
 	get_time_ms(&curr_time);
-	angle = atan2(rc->cam->dir_y, rc->cam->dir_x); //returns the angle in radians for vector (x, y)
+	angle = atan2(rc->cam->dir_y, rc->cam->dir_x);
 	if (curr_time - last_move > 20)
 	{
 		if (rc->key_state[4] == 1)
