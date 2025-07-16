@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 13:30:54 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 15:26:34 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 17:43:08 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static void	draw_gaze(t_raycaster *rc, float spacing)
 	int	i;
 	t_dda	dda;
 	
-	dda.dx = rc->cam->dir_x * 20;
-	dda.dy = rc->cam->dir_y * 20;
+	dda.dx = rc->cam->dir_x * 15;
+	dda.dy = rc->cam->dir_y * 15;
 	if (fabsf(dda.dx) > fabsf(dda.dy))
 		dda.step = fabsf(dda.dx);
 	else

@@ -1,0 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calc_rotation.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/16 17:26:28 by tchow-so          #+#    #+#             */
+/*   Updated: 2025/07/16 17:44:32 by tchow-so         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../include/render.h"
+
+void    calc_player_rotation(t_raycaster *rc)
+{
+	double				angle;
+	unsigned int		curr_time;
+	static unsigned int	last_move = 0;
+
+	get_time_ms(&curr_time);
+	angle = atan2(rc->cam->dir_y, rc->cam->dir_x); //returns the angle in radians for vector (x, y)
+	if (curr_time - last_move > 20)
+	{
+		if (rc->key_state[4] == 1)
+			angle -= 0.1;
+		else if (rc->key_state[5] == 1)
+			angle += 0.1;
+		if (rc->key_state[4] == 1 || rc->key_state[5] == 1)
+		{
+			rc->cam->dir_x = cos(angle);
+			rc->cam->dir_y = sin(angle);
+			last_move = curr_time;
+		}
+	}
+}
