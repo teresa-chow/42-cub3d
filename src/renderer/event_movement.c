@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 17:40:43 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 11:10:18 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:13:19 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void    calc_player_movement(t_raycaster *rc)
         rc->cam->pos_x += 1;
 }
 
-//calculate movement based on keys pressed
-//calculate rotation
-//rc->cam->pos_x pos_y dir_x dir_y
+/*void    calc_player_rotation(t_raycaster *rc)
+{
+    
+}*/

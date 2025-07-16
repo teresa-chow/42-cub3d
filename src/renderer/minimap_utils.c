@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:48:42 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 11:09:56 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:04:44 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ static void grid_loop(t_raycaster *rc, int y, int x, t_dda *dda)
 	i = 0;
 	while (i <= dda->step)
 	{
-		pixel_put(rc->img, roundf(dda->x1), roundf(dda->y1), 3158064);
+		pixel_put(rc->img, roundf(dda->x1), roundf(dda->y1), GRAY);
 		dda->y1 += dda->y_inc;
         i++;
     }
 	i = 0;
 	while (i <= dda->step)
 	{
-		pixel_put(rc->img, roundf(dda->x1), roundf(dda->y1), 3158064);
+		pixel_put(rc->img, roundf(dda->x1), roundf(dda->y1), GRAY);
 		dda->x1 += dda->x_inc;
 		i++;
 	}
@@ -83,7 +83,7 @@ void    draw_player(t_raycaster *rc, float spacing)
 		x = -dx;
 		while (x <= dx)
 		{
-			pixel_put(rc->img, spacing * (rc->cam->pos_x + 0.5) + x, spacing * (rc->cam->pos_y + 0.5) + y, 16776960);
+			pixel_put(rc->img, spacing * (rc->cam->pos_x + 0.5) + x, spacing * (rc->cam->pos_y + 0.5) + y, YELLOW);
 			x++;
 		}
 		y++;
