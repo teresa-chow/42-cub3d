@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/11 18:28:19 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 09:30:14 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_data
 
 typedef struct s_dda
 {
+	float			spacing;
 	float			x1;
 	float			y1;
 	float			dx;
@@ -92,6 +93,9 @@ typedef struct s_raycaster
 void	launch_render_engine(t_data *img, t_world *world, t_raycaster *rc);
 int		render_frame(t_raycaster *rc);
 int		raycaster(t_raycaster *rc);
+void    draw_minimap(t_raycaster *rc);
+void    draw_minimap_grid(t_raycaster *rc, t_dda *dda);
+void    draw_player(t_raycaster *rc, float spacing);
 // Raycaster calculations
 void	calc_ray_pos_dir(t_raycaster *rc, int x);
 void	calc_ray_len(t_raycaster *rc);
@@ -102,6 +106,7 @@ void	calc_line_val(t_raycaster *rc);
 // Event handlers
 int		handle_keypress(int keycode, t_raycaster *rc);
 int		handle_keyrelease(int keycode, t_raycaster *rc);
+void	calc_player_movement(t_raycaster *rc);
 // Utils
 void	pixel_put(t_data *img, int x, int y, int color);
 

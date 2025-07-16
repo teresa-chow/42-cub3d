@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 17:30:09 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/11 17:32:45 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/15 23:06:40 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,3 @@ void	pixel_put(t_data *img, int x, int y, int color)
 	}
 	return ;
 }
-
-/* Bucket tool */
-//flood_fill()
