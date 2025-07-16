@@ -6,15 +6,15 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 17:07:45 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:32:16 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_H
 # define RENDER_H
 
-# define WIN_W 1920
-# define WIN_H 1080
+# define WIN_W 1024 //1920
+# define WIN_H 576 //1080
 # define BLACK 0
 # define WHITE 16777215
 # define GRAY 3158064
@@ -49,6 +49,8 @@ typedef struct s_data
 typedef struct s_dda
 {
 	float			spacing;
+	float			x_ofs;
+	float			y_ofs;
 	float			x1;
 	float			y1;
 	float			dx;

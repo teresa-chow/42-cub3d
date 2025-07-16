@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 13:30:54 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 17:43:08 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:34:07 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void    draw_player(t_raycaster *rc, float spacing)
 		x = -dx;
 		while (x <= dx)
 		{
-			pixel_put(rc->img, spacing * (rc->cam->pos_x + 0.5) + x, \
-				spacing * (rc->cam->pos_y + 0.5) + y, YELLOW);
+			pixel_put(rc->img, spacing * (rc->cam->pos_x + 0.5) + x + (WIN_W - rc->world->map_wid * spacing),
+				spacing * (rc->cam->pos_y + 0.5) + y + (WIN_H - rc->world->map_len * spacing), YELLOW);
 			x++;
 		}
 		y++;
@@ -45,8 +45,10 @@ static void	draw_gaze(t_raycaster *rc, float spacing)
 	int	i;
 	t_dda	dda;
 	
-	dda.dx = rc->cam->dir_x * 15;
-	dda.dy = rc->cam->dir_y * 15;
+	dda.dx = rc->cam->dir_x * (spacing / 1.25);
+	dda.dy = rc->cam->dir_y * (spacing / 1.25);
+	dda.x_ofs = WIN_W - rc->world->map_wid * spacing;
+	dda.y_ofs = WIN_H - rc->world->map_len * spacing;
 	if (fabsf(dda.dx) > fabsf(dda.dy))
 		dda.step = fabsf(dda.dx);
 	else
@@ -58,7 +60,7 @@ static void	draw_gaze(t_raycaster *rc, float spacing)
 	dda.y1 = spacing * (rc->cam->pos_y + 0.5);
 	while (i <= dda.step)
 	{
-		pixel_put(rc->img, dda.x1, dda.y1, MAGENTA);
+		pixel_put(rc->img, dda.x1 + + dda.x_ofs, dda.y1 + dda.y_ofs, MAGENTA);
 		dda.x1 += dda.x_inc;
 		dda.y1 += dda.y_inc;
 		i++;
