@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 13:30:54 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 18:34:07 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:55:36 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ void    draw_player(t_raycaster *rc, float spacing)
 		x = -dx;
 		while (x <= dx)
 		{
-			pixel_put(rc->img, spacing * (rc->cam->pos_x + 0.5) + x + (WIN_W - rc->world->map_wid * spacing),
-				spacing * (rc->cam->pos_y + 0.5) + y + (WIN_H - rc->world->map_len * spacing), YELLOW);
+			pixel_put(rc->img, spacing * (rc->cam->pos_x + 0.5) + x
+				+ (WIN_W - rc->world->map_wid * spacing),
+				spacing * (rc->cam->pos_y + 0.5) + y
+				+ (WIN_H - rc->world->map_len * spacing), YELLOW);
 			x++;
 		}
 		y++;
