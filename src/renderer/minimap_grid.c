@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:48:42 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 13:31:15 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:24:45 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ static void grid_loop(t_raycaster *rc, int y, int x, t_dda *dda)
 	i = 0;
 	while (i <= dda->step)
 	{
-		pixel_put(rc->img, roundf(dda->x1), roundf(dda->y1), GRAY);
+		pixel_put(rc->img, roundf(dda->x1) + dda->x_ofs, roundf(dda->y1) + dda->y_ofs, GRAY);
 		dda->y1 += dda->y_inc;
         i++;
     }
 	i = 0;
 	while (i <= dda->step)
 	{
-		pixel_put(rc->img, roundf(dda->x1), roundf(dda->y1), GRAY);
+		pixel_put(rc->img, roundf(dda->x1) + dda->x_ofs, roundf(dda->y1) + dda->y_ofs, GRAY);
 		dda->x1 += dda->x_inc;
 		i++;
 	}

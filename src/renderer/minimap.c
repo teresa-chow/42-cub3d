@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:12:30 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 13:32:07 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 18:24:18 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void    draw_minimap(t_raycaster *rc)
 
 	ft_bzero(&dda, sizeof(t_dda));
 	calc_minimap_spacing(rc, &dda.spacing);
+	dda.x_ofs = WIN_W - rc->world->map_wid * dda.spacing;
+	dda.y_ofs = WIN_H - rc->world->map_len * dda.spacing;
 	y = 0;
 	while (y < rc->world->map_len)
 	{
@@ -74,13 +76,13 @@ static void	filling_loop(t_raycaster *rc, int y, int x, t_dda *dda)
 	j = 0;
 	while (j <= dda->step)
 	{
-		pixel_put(rc->img, roundf(dda->x1), roundf(dda->y1), color);
+		pixel_put(rc->img, roundf(dda->x1) + dda->x_ofs, roundf(dda->y1) + dda->y_ofs, color);
 		dda->y1 += dda->y_inc;
 		dda->x1 = x * dda->spacing;
 		i = 0;
 		while (i < dda->step)
 		{
-			pixel_put(rc->img, roundf(dda->x1), roundf(dda->y1), color);
+			pixel_put(rc->img, roundf(dda->x1)+ dda->x_ofs, roundf(dda->y1) + dda->y_ofs, color);
 			dda->x1 += dda->x_inc;
 			i++;
 		}
