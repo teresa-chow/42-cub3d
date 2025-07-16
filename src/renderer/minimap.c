@@ -6,35 +6,38 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:12:30 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/13 00:52:10 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 11:00:50 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
 
 static void calc_minimap_spacing(t_raycaster *rc, float *spacing);
-static void	line_drawing_dda(t_raycaster *rc, int y, int x, float spacing);
-static int	get_minimap_color(t_raycaster *rc, int y, int x, int *color);
+static void	filling_dda(t_raycaster *rc, int y, int x, t_dda *dda);
+static void	filling_loop(t_raycaster *rc, int y, int x, t_dda *dda);
+static void	get_minimap_color(t_raycaster *rc, int y, int x, int *color);
 
 void    draw_minimap(t_raycaster *rc)
 {
-	float	spacing;
 	int	x;
 	int	y;
+	t_dda		dda;
 
-	calc_minimap_spacing(rc, &spacing);
+	ft_bzero(&dda, sizeof(t_dda));
+	calc_minimap_spacing(rc, &dda.spacing);
 	y = 0;
-	while (y < rc->world->map_len - 1)
+	while (y < rc->world->map_len)
 	{
 		x = 0;
-		while (x < rc->world->map_wid - 1)
+		while (x < rc->world->map_wid)
 		{
-			line_drawing_dda(rc, y, x, spacing);
+			filling_dda(rc, y, x, &dda);
 			x++;
 		}
-		line_drawing_dda(rc, y, x, spacing); // ?
 		y++;
 	}
+	draw_minimap_grid(rc, &dda);
+	draw_player(rc, dda.spacing);
 }
 
 static void calc_minimap_spacing(t_raycaster *rc, float *spacing)
@@ -45,39 +48,48 @@ static void calc_minimap_spacing(t_raycaster *rc, float *spacing)
 		*spacing = (float)((WIN_W / 5) / rc->world->map_wid);
 }
 
-static void	line_drawing_dda(t_raycaster *rc, int y, int x, float spacing)
+static void	filling_dda(t_raycaster *rc, int y, int x, t_dda *dda)
 {
-	int			i;
-	int			color;
-	t_dda		dda;
-
-	get_minimap_color(rc, y, x, &color);
-	dda.dx = (x + 1) * spacing - x * spacing;
-	dda.dy = (y + 1) * spacing - y * spacing;
-	if (fabsf(dda.dx) > fabsf(dda.dy))
-		dda.step = fabsf(dda.dx);
+	dda->dx = (x + 1) * dda->spacing - x * dda->spacing;
+	dda->dy = (y + 1) * dda->spacing - y * dda->spacing;
+	if (fabsf(dda->dx) > fabsf(dda->dy))
+		dda->step = fabsf(dda->dx);
 	else
-		dda.step = fabsf(dda.dy);
-	dda.x_inc = dda.dx / dda.step;
-	dda.y_inc = dda.dy / dda.step;
-	i = 0;
-	dda.x1 = x * spacing;
-	dda.y1 = y * spacing;
-	while (i <= dda.step)
+		dda->step = fabsf(dda->dy);
+	dda->x_inc = dda->dx / dda->step;
+	dda->y_inc = dda->dy / dda->step;
+	filling_loop(rc, y, x, dda);
+}
+
+static void	filling_loop(t_raycaster *rc, int y, int x, t_dda *dda)
+{
+	int	i;
+	int	j;
+	int	color;
+
+	dda->y1 = y * dda->spacing;
+	get_minimap_color(rc, y, x, &color);
+	j = 0;
+	while (j <= dda->step)
 	{
-		pixel_put(rc->img, roundf(dda.x1), roundf(dda.y1), color);
-		dda.x1 += dda.x_inc;
-		dda.y1 += dda.y_inc;
-		i++;
+		pixel_put(rc->img, roundf(dda->x1), roundf(dda->y1), color);
+		dda->y1 += dda->y_inc;
+		dda->x1 = x * dda->spacing;
+		i = 0;
+		while (i < dda->step)
+		{
+			pixel_put(rc->img, roundf(dda->x1), roundf(dda->y1), color);
+			dda->x1 += dda->x_inc;
+			i++;
+		}
+		j++;
 	}
 }
 
-static int	get_minimap_color(t_raycaster *rc, int y, int x, int *color)
+static void	get_minimap_color(t_raycaster *rc, int y, int x, int *color)
 {
 	if (rc->world->map[y][x] == '1')
-		color = 16777215;
+		*color = 16777215;
 	else
-		color = 0;
+		*color = 0;
 }
-
-//draw player

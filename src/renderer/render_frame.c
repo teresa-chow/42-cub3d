@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:00:20 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/13 00:36:19 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 00:11:36 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	assign_colors(t_raycaster *rc); //tmp
 
 int	render_frame(t_raycaster *rc)
 {
-    raycaster(rc);
+    //raycaster(rc);
 	draw_minimap(rc);
     mlx_put_image_to_window(rc->img->mlx, rc->img->window, rc->img->img, 0, 0);
 	return (0);

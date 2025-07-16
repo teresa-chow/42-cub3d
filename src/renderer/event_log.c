@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event_handlers.c                                   :+:      :+:    :+:   */
+/*   event_log.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:00:07 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/11 12:04:09 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/16 09:29:05 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	handle_keypress(int keycode, t_raycaster *rc)
 		close_quit(rc);
 	log_movement(keycode, rc->key_state);
 	log_rotation(keycode, rc->key_state);
+	calc_player_movement(rc);
 	return (0);
 }
 
