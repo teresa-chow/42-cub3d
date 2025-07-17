@@ -6,21 +6,22 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:00:20 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 15:49:21 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 13:02:01 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
 
-static void	assign_colors(t_raycaster *rc); //tmp
+static void	draw_vertical_line(t_raycaster *rc, int x); //tmp
 
 int	render_frame(t_raycaster *rc)
 {
-    //raycaster(rc);
+	fill_background(rc);
+	raycaster(rc);
 	draw_minimap(rc);
 	calc_player_movement(rc);
 	calc_player_rotation(rc);
-    mlx_put_image_to_window(rc->img->mlx, rc->img->window, rc->img->img, 0, 0);
+	mlx_put_image_to_window(rc->img->mlx, rc->img->window, rc->img->img, 0, 0);
 	return (0);
 }
 
@@ -29,7 +30,7 @@ int	raycaster(t_raycaster *rc) // check return value upon error
 	int	x;
 
 	x = 0;
-	while (x < rc->world->map_wid)
+	while (x < WIN_W)
 	{
 		calc_ray_pos_dir(rc, x);
 		rc->map_x = (int)rc->cam->pos_x; //coordinates of current map position
@@ -39,14 +40,29 @@ int	raycaster(t_raycaster *rc) // check return value upon error
 		perform_dda(rc);
 		calc_cam_dist(rc);
 		calc_line_val(rc);
-		assign_colors(rc); //tmp
+		draw_vertical_line(rc, x); //tmp
 		x++;
 	}
 	return (0);
 }
 
 //TODO: delete tmp function
-static void	assign_colors(t_raycaster *rc)
+static void	draw_vertical_line(t_raycaster *rc, int x)
 {
-	pixel_put(rc->img, rc->line_start, rc->line_end, 14876450);
+	int		i;
+	t_dda	dda;
+
+	ft_bzero(&dda, sizeof(t_dda));
+	dda.dy = rc->line_end - rc->line_start;
+	dda.step = fabsf(dda.dy);
+	dda.y_inc = dda.dy / dda.step;
+	i = 0;
+	dda.x1 = x;
+	dda.y1 = rc->line_start;
+	while (i <= dda.step)
+	{
+		pixel_put(rc->img, dda.x1, dda.y1, YELLOW);
+		dda.y1 += dda.y_inc;
+		i++;
+	}
 }

@@ -6,22 +6,22 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:12:30 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 18:24:18 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 13:00:05 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
 
-static void calc_minimap_spacing(t_raycaster *rc, float *spacing);
+static void	calc_minimap_spacing(t_raycaster *rc, float *spacing);
 static void	filling_dda(t_raycaster *rc, int y, int x, t_dda *dda);
 static void	filling_loop(t_raycaster *rc, int y, int x, t_dda *dda);
 static void	get_minimap_color(t_raycaster *rc, int y, int x, int *color);
 
-void    draw_minimap(t_raycaster *rc)
+void	draw_minimap(t_raycaster *rc)
 {
-	int	x;
-	int	y;
-	t_dda		dda;
+	int		x;
+	int		y;
+	t_dda	dda;
 
 	ft_bzero(&dda, sizeof(t_dda));
 	calc_minimap_spacing(rc, &dda.spacing);
@@ -43,7 +43,7 @@ void    draw_minimap(t_raycaster *rc)
 }
 
 /* Minimap display dimensions */
-static void calc_minimap_spacing(t_raycaster *rc, float *spacing)
+static void	calc_minimap_spacing(t_raycaster *rc, float *spacing)
 {
 	if (rc->world->map_len > rc->world->map_wid)
 		*spacing = (float)((WIN_H / 4) / rc->world->map_len);
@@ -76,13 +76,15 @@ static void	filling_loop(t_raycaster *rc, int y, int x, t_dda *dda)
 	j = 0;
 	while (j <= dda->step)
 	{
-		pixel_put(rc->img, roundf(dda->x1) + dda->x_ofs, roundf(dda->y1) + dda->y_ofs, color);
+		pixel_put(rc->img, roundf(dda->x1) + dda->x_ofs,
+			roundf(dda->y1) + dda->y_ofs, color);
 		dda->y1 += dda->y_inc;
 		dda->x1 = x * dda->spacing;
 		i = 0;
 		while (i < dda->step)
 		{
-			pixel_put(rc->img, roundf(dda->x1)+ dda->x_ofs, roundf(dda->y1) + dda->y_ofs, color);
+			pixel_put(rc->img, roundf(dda->x1) + dda->x_ofs,
+				roundf(dda->y1) + dda->y_ofs, color);
 			dda->x1 += dda->x_inc;
 			i++;
 		}
