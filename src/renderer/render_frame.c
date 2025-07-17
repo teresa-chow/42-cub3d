@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:00:20 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/17 13:02:01 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:22:21 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ int	raycaster(t_raycaster *rc) // check return value upon error
 	while (x < WIN_W)
 	{
 		calc_ray_pos_dir(rc, x);
-		rc->map_x = (int)rc->cam->pos_x; //coordinates of current map position
-		rc->map_y = (int)rc->cam->pos_y;
+		reset_ray_map_coord(rc);
 		calc_ray_len(rc);
 		calc_step(rc);
 		perform_dda(rc);
