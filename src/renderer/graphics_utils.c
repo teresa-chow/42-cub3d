@@ -6,56 +6,49 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 17:30:09 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/17 12:50:57 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:26:09 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
 
-//refactor - use same function for block printing as in minimap.c?
+static void	get_bg_color(t_raycaster *rc, float y1, int *color);
+
 void	fill_background(t_raycaster *rc)
 {
-	int	i;
-	int	j = 0;
 	t_dda	dda;
+	int		color;
+	int		i;
+	int		j;
 
 	ft_bzero(&dda, sizeof(t_dda));
-	dda.dx = WIN_W;
-	dda.dy = WIN_H / 2;
-	if (fabsf(dda.dx) > fabsf(dda.dy))
-		dda.step = fabsf(dda.dx);
+	if (WIN_W > WIN_H)
+		dda.step = WIN_W;
 	else
-		dda.step = fabsf(dda.dy);
-	dda.x_inc = dda.dx / dda.step;
-	dda.y_inc = dda.dy / dda.step;
-	while (j <= dda.step)
-	{
-		dda.y1 += dda.y_inc;
-		dda.x1 = 0;
-		i = 0;
-		while (i <= dda.step)
-		{
-			pixel_put(rc->img, dda.x1, dda.y1, rc->world->sky);
-			dda.x1 += dda.x_inc;
-			i++;
-		}
-		j++;
-	}
+		dda.step = WIN_H;
 	j = 0;
-	dda.y1 = WIN_H / 2; 
 	while (j <= dda.step)
 	{
-		dda.y1 += dda.y_inc;
-		dda.x1 = 0;
+		get_bg_color(rc, dda.y1, &color);
 		i = 0;
+		dda.x1 = 0;
 		while (i <= dda.step)
 		{
-			pixel_put(rc->img, dda.x1, dda.y1, rc->world->ground);
-			dda.x1 += dda.x_inc;
+			pixel_put(rc->img, dda.x1, dda.y1, color);
+			dda.x1 += (float)WIN_W / dda.step;
 			i++;
 		}
+		dda.y1 += (float)WIN_H / dda.step;
 		j++;
 	}
+}
+
+static void	get_bg_color(t_raycaster *rc, float y1, int *color)
+{
+	if (y1 < (float)WIN_H / 2)
+		*color = rc->world->sky;
+	else
+		*color = rc->world->ground;
 }
 
 void	pixel_put(t_data *img, int x, int y, int color)
