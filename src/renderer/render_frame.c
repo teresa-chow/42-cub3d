@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:00:20 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/17 15:22:21 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:33:47 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,12 @@ static void	draw_vertical_line(t_raycaster *rc, int x)
 {
 	int		i;
 	t_dda	dda;
+	int		color;
 
+	if (rc->wall == EAST_WEST)
+		color = YELLOW;
+	else
+		color = 16758272;
 	ft_bzero(&dda, sizeof(t_dda));
 	dda.dy = rc->line_end - rc->line_start;
 	dda.step = fabsf(dda.dy);
@@ -60,7 +65,7 @@ static void	draw_vertical_line(t_raycaster *rc, int x)
 	dda.y1 = rc->line_start;
 	while (i <= dda.step)
 	{
-		pixel_put(rc->img, dda.x1, dda.y1, YELLOW);
+		pixel_put(rc->img, dda.x1, dda.y1, color);
 		dda.y1 += dda.y_inc;
 		i++;
 	}

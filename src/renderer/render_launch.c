@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:56:00 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/17 14:51:07 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:42:09 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,7 @@ static void	init_mlx(t_data *img)
 adequate for First-Person Shooter (FPS) */
 static void	init_raycaster(t_world *world, t_raycaster *rc, t_data *img)
 {
-	struct timeval	time;
-
 	rc->img = img;
-	gettimeofday(&time, NULL);
-	rc->time_curr = time.tv_sec + time.tv_usec * 1e6;
-	rc->time_prev = rc->time_curr;
 	rc->world = world;
 	world->cam = malloc(sizeof(t_camera)); //tmp
 	rc->cam = world->cam;
