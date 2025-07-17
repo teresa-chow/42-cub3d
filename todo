@@ -26,7 +26,8 @@ validate map configuration:
 -------------------------------------------------------------------------
 Rendering:
 [ ] raycaster
-[ ] arrows (left and right): change direction / rotate
-[ ] W A S D : change player position / move
+[x] arrows (left and right): change direction / rotate
+[x] W A S D : change player position / move
 [ ] collision detection
-[ ] ESC / red cross button: close the window and quit program (no leaks)
+[x] ESC / red cross button: close the window and quit program (no leaks)
+[x] minimap (bonus feature)
