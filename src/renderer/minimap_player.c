@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 13:30:54 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 18:55:36 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 12:54:05 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	draw_gaze(t_raycaster *rc, float spacing);
 
 /* Player position */
-void    draw_player(t_raycaster *rc, float spacing)
+void	draw_player(t_raycaster *rc, float spacing)
 {
 	int	radius;
 	int	y;
@@ -44,9 +44,9 @@ void    draw_player(t_raycaster *rc, float spacing)
 /* Player direction */
 static void	draw_gaze(t_raycaster *rc, float spacing)
 {
-	int	i;
+	int		i;
 	t_dda	dda;
-	
+
 	dda.dx = rc->cam->dir_x * (spacing / 1.25);
 	dda.dy = rc->cam->dir_y * (spacing / 1.25);
 	dda.x_ofs = WIN_W - rc->world->map_wid * spacing;
@@ -62,7 +62,7 @@ static void	draw_gaze(t_raycaster *rc, float spacing)
 	dda.y1 = spacing * (rc->cam->pos_y + 0.5);
 	while (i <= dda.step)
 	{
-		pixel_put(rc->img, dda.x1 + + dda.x_ofs, dda.y1 + dda.y_ofs, MAGENTA);
+		pixel_put(rc->img, dda.x1 + dda.x_ofs, dda.y1 + dda.y_ofs, MAGENTA);
 		dda.x1 += dda.x_inc;
 		dda.y1 += dda.y_inc;
 		i++;

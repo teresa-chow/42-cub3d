@@ -6,18 +6,18 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:56:00 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 15:10:50 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 13:04:05 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
 
-static void tmp_fill_values(t_raycaster *rc); //placeholder
+static void	tmp_fill_values(t_raycaster *rc); //placeholder
 
 static void	init_mlx(t_data *img);
 static void	init_raycaster(t_world *world, t_raycaster *rc, t_data *img);
 
-void launch_render_engine(t_data *img, t_world *world, t_raycaster *rc)
+void	launch_render_engine(t_data *img, t_world *world, t_raycaster *rc)
 {
 	init_mlx(img);
 	init_raycaster(world, rc, img);
@@ -46,8 +46,8 @@ static void	init_mlx(t_data *img)
 		free(img->mlx);
 		printerr_exit("Failed to create new image\n");
 	}
-	img->addr = mlx_get_data_addr(img->img, &img->bits_pxl, \
-		&img->line_len, &img->endian);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_pxl,
+			&img->line_len, &img->endian);
 	return ;
 }
 
@@ -73,7 +73,7 @@ static void	init_raycaster(t_world *world, t_raycaster *rc, t_data *img)
 
 // TODO: delete code block
 /* tmp values for test: these values will already be filled in parsing stage */
-static void tmp_fill_values(t_raycaster *rc)
+static void	tmp_fill_values(t_raycaster *rc)
 {
 	rc->cam->pos_x = 22;
 	rc->cam->pos_y = 12;
@@ -82,7 +82,7 @@ static void tmp_fill_values(t_raycaster *rc)
 	rc->cam->dir_x = -1;
 	rc->cam->dir_y = 0;
 	rc->world->map = ft_calloc(25, sizeof(char *));
-	char *map[] = {"111111111111111111111111", "100000000000000000000001",
+	char	*map[] = {"111111111111111111111111", "100000000000000000000001",
 		"100000000000000000000001", "100000000000000000000001",
 		"100000000000000000000001", "100000000000000000000001",
 		"100000000011111000000001", "100000000000001000000001",
@@ -97,6 +97,8 @@ static void tmp_fill_values(t_raycaster *rc)
 	};
 	rc->world->map_wid = 24;
 	rc->world->map_len = 24;
+	rc->world->sky = 65535;
+	rc->world->ground = 255;
 	for (int j = 0; j < rc->world->map_len; j++)
 		rc->world->map[j] = ft_strdup(map[j]);
 }

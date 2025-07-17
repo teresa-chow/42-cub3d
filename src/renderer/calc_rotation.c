@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:26:28 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 19:09:51 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 12:47:27 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* atan2 - arctangeant with quadrant correction, used to obtain
 angle in radians for vector (x, y) */
-void    calc_player_rotation(t_raycaster *rc)
+void	calc_player_rotation(t_raycaster *rc)
 {
 	double				angle;
 	unsigned int		curr_time;
