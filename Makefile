@@ -6,7 +6,7 @@
 #    By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 16:14:09 by tchow-so          #+#    #+#              #
-#    Updated: 2025/07/16 17:27:12 by tchow-so         ###   ########.fr        #
+#    Updated: 2025/07/17 11:33:10 by tchow-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME	= cub3D
 SRC				= $(addprefix $(SRC_DIR)/, main.c)
 SRC_PARSER		= $(addprefix $(PARSER_DIR)/, check_input.c)
 SRC_RENDERER	= $(addprefix $(RENDERER_DIR)/, calc_movement.c calc_rotation.c \
-	drawing_utils.c event_log.c minimap.c minimap_grid.c minimap_player.c \
+	event_log.c graphics_utils.c minimap.c minimap_grid.c minimap_player.c \
 	raycaster_calc00.c raycaster_calc01.c render_frame.c render_launch.c \
 	time_management.c)
 
