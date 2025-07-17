@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:31:02 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/17 13:00:32 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:24:03 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,26 @@ void	calc_ray_pos_dir(t_raycaster *rc, int x)
 	rc->ray_dir_y = rc->cam->dir_y + rc->plane_y * rc->cam_x;
 }
 
-/* Calculate ray length (from current position to next x or y side) */
+/* Reset map and hit values for each ray / vertical line */
+void	reset_ray_map_coord(t_raycaster *rc)
+{
+	rc->map_x = (int)rc->cam->pos_x;
+	rc->map_y = (int)rc->cam->pos_y;
+	rc->hit = 0;
+}
+
+/* Calculate ray length (from current position to next x or y side)
+1e30 is a stand-in for "infinite distance" when ray is parallel to an axis */
 void	calc_ray_len(t_raycaster *rc)
 {
 	if (rc->ray_dir_x == 0)
 		rc->delta_dist_x = 1e30;
 	else
-		rc->delta_dist_x = 1 / rc->ray_dir_x;
+		rc->delta_dist_x = 1 / fabs(rc->ray_dir_x);
 	if (rc->ray_dir_y == 0)
 		rc->delta_dist_y = 1e30;
 	else
-		rc->delta_dist_y = 1 / rc->ray_dir_y;
+		rc->delta_dist_y = 1 / fabs(rc->ray_dir_y);
 }
 
 /* Calculate step and side_dist:
@@ -76,16 +85,7 @@ void	perform_dda(t_raycaster *rc)
 			rc->map_y += rc->step_y;
 			rc->wall = NORTH_SOUTH;
 		}
-		if (rc->world->map[rc->map_x][rc->map_y] == '1')
+		if (rc->world->map[rc->map_y][rc->map_x] == '1')
 			rc->hit = 1;
 	}
-}
-
-/* Calculate distance projected on camera direction */
-void	calc_cam_dist(t_raycaster *rc)
-{
-	if (rc->wall == EAST_WEST)
-		rc->perp_wall_dist = rc->side_dist_x - rc->delta_dist_x;
-	else
-		rc->perp_wall_dist = rc->side_dist_y - rc->delta_dist_y;
 }

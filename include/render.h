@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/17 12:45:29 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:24:38 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,9 @@ int		raycaster(t_raycaster *rc);
 void	draw_minimap(t_raycaster *rc);
 void	draw_minimap_grid(t_raycaster *rc, t_dda *dda);
 void	draw_player(t_raycaster *rc, float spacing);
-// Raycaster calculations
+// Raycaster calculations and values (one cycle per ray)
 void	calc_ray_pos_dir(t_raycaster *rc, int x);
+void	reset_ray_map_coord(t_raycaster *rc);
 void	calc_ray_len(t_raycaster *rc);
 void	calc_step(t_raycaster *rc);
 void	perform_dda(t_raycaster *rc);
@@ -119,7 +120,7 @@ int		handle_keypress(int keycode, t_raycaster *rc);
 int		handle_keyrelease(int keycode, t_raycaster *rc);
 // Time management
 void	get_time_ms(unsigned int *curr_time);
-// Graphics Utils
+// Graphics
 void	fill_background(t_raycaster *rc);
 void	pixel_put(t_data *img, int x, int y, int color);
 

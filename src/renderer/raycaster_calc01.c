@@ -6,11 +6,20 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:30:30 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/17 13:01:00 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:14:42 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
+
+/* Calculate distance projected on camera direction */
+void	calc_cam_dist(t_raycaster *rc)
+{
+	if (rc->wall == EAST_WEST)
+		rc->perp_wall_dist = rc->side_dist_x - rc->delta_dist_x;
+	else
+		rc->perp_wall_dist = rc->side_dist_y - rc->delta_dist_y;
+}
 
 /* Calculate height of line to be drawn
    Calculate lowest and highest pixels to fill in current stripe */
