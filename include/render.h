@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 18:32:16 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 12:45:29 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ typedef struct s_raycaster
 	double			delta_dist_x; //ray length from x/y-side to next x/y-side
 	double			delta_dist_y;
 	double			perp_wall_dist;
-	int				step_x; // check if 2 vars are really needed or 1 would suffice; direction to step in (+1 or -1)
+	int				step_x; // check if 2 vars needed or 1 suffice
 	int				step_y;
 	bool			hit; //wall hit control
 	t_wall			wall; //which wall was hit
@@ -101,9 +101,9 @@ typedef struct s_raycaster
 void	launch_render_engine(t_data *img, t_world *world, t_raycaster *rc);
 int		render_frame(t_raycaster *rc);
 int		raycaster(t_raycaster *rc);
-void    draw_minimap(t_raycaster *rc);
-void    draw_minimap_grid(t_raycaster *rc, t_dda *dda);
-void    draw_player(t_raycaster *rc, float spacing);
+void	draw_minimap(t_raycaster *rc);
+void	draw_minimap_grid(t_raycaster *rc, t_dda *dda);
+void	draw_player(t_raycaster *rc, float spacing);
 // Raycaster calculations
 void	calc_ray_pos_dir(t_raycaster *rc, int x);
 void	calc_ray_len(t_raycaster *rc);
@@ -119,7 +119,8 @@ int		handle_keypress(int keycode, t_raycaster *rc);
 int		handle_keyrelease(int keycode, t_raycaster *rc);
 // Time management
 void	get_time_ms(unsigned int *curr_time);
-// Utils
+// Graphics Utils
+void	fill_background(t_raycaster *rc);
 void	pixel_put(t_data *img, int x, int y, int color);
 
 /* =========================== MEMORY MANAGEMENT =========================== */
