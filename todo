@@ -25,9 +25,13 @@ validate map configuration:
   [ ] colors (floor and ceiling): each value between 0 and 255
 -------------------------------------------------------------------------
 Rendering:
-[ ] raycaster
+[-] raycaster
 [x] arrows (left and right): change direction / rotate
 [x] W A S D : change player position / move
-[ ] collision detection
+[ ] collision detection or navigate map grid account for modulo of with and length (?)
 [x] ESC / red cross button: close the window and quit program (no leaks)
 [x] minimap (bonus feature)
+-------------------------------------------------------------------------
+General
+[ ] leak check
+[ ] standard compliance (Norm) check
