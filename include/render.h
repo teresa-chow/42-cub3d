@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/17 15:24:38 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:41:54 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ typedef enum e_wall
 typedef struct s_raycaster
 {
 	t_data			*img;
-	double			time_curr; //time of current frame
-	double			time_prev; //time of previous frame
 	int				fps;
 	bool			key_state[6]; // W A S D Left Right
 	t_world			*world;
