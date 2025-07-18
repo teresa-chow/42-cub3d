@@ -6,13 +6,13 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:04:49 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/17 13:04:31 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 08:33:06 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
 
-/* Get time of day to calculate movement cooldown (50 ms) */
+/* Get time of day to calculate movement cooldown */
 void	get_time_ms(unsigned int *curr_time)
 {
 	struct timeval	now;
