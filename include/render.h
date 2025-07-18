@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/18 19:11:44 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 19:29:21 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,11 @@ typedef struct s_raycaster
 	double			delta_dist_x; //ray length from x/y-side to next x/y-side
 	double			delta_dist_y;
 	double			perp_wall_dist;
-	int				step_x; // check if 2 vars needed or 1 suffice
+	int				step_x;
 	int				step_y;
 	bool			hit; //wall hit control
 	t_wall			wall; //which wall was hit
+	double			wall_x; //point where the wall was hit (still unused)
 	int				line_height;
 	int				line_start;
 	int				line_end;
