@@ -6,13 +6,13 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:00:20 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/18 19:09:17 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 19:37:28 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
 
-static void	draw_vertical_line(t_raycaster *rc, int x); //tmp
+//static void	draw_vertical_line(t_raycaster *rc, int x); //tmp
 
 int	render_frame(t_raycaster *rc)
 {
@@ -45,8 +45,8 @@ int	raycaster(t_raycaster *rc) // check return value upon error
 		perform_dda(rc);
 		calc_cam_dist(rc);
 		calc_line_val(rc);
-		draw_vertical_line(rc, x); //tmp
-		//fill_textures(rc, x);
+		//draw_vertical_line(rc, x); //tmp
+		fill_textures(rc, x);
 		x++;
 	}
 	return (0);
@@ -78,7 +78,7 @@ int	raycaster(t_raycaster *rc) // check return value upon error
 	}
 }*/
 
-static void	draw_vertical_line(t_raycaster *rc, int x)
+/*static void	draw_vertical_line(t_raycaster *rc, int x)
 {
 	int		y;
 	int		color;
@@ -93,4 +93,4 @@ static void	draw_vertical_line(t_raycaster *rc, int x)
 		pixel_put(rc->img, x, y, color);
 		y++;
 	}
-}
+}*/
