@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/18 16:01:23 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:08:26 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ typedef struct s_raycaster
 	t_data			*img;
 	unsigned int	curr_time_ms;
 	unsigned int	prev_time_ms;
-	//int				fps;
 	bool			key_state[6]; // W A S D Left Right
 	t_world			*world;
 	t_camera		*cam;

@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:00:20 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/18 16:01:19 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:08:21 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@ static void	draw_vertical_line(t_raycaster *rc, int x); //tmp
 int	render_frame(t_raycaster *rc)
 {
 	get_time_ms(&rc->curr_time_ms);
-	if (rc->curr_time_ms - rc->prev_time_ms > 24)
+	if (rc->curr_time_ms - rc->prev_time_ms > 40)
 	{
 		rc->prev_time_ms = rc->curr_time_ms;
 		get_time_ms(&rc->curr_time_ms);
-		//rc->fps = round(1.0 / ((rc->curr_time_ms - rc->prev_time_ms) / 1000.0)); //used for reference only
 		fill_background(rc);
 		raycaster(rc);
 		draw_minimap(rc);
