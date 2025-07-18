@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:56:00 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/18 15:58:32 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:57:32 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,12 @@ static void	init_raycaster(t_world *world, t_raycaster *rc, t_data *img)
 	world->cam = malloc(sizeof(t_camera)); //tmp
 	rc->cam = world->cam;
 	tmp_fill_values(rc); //tmp
-	if (rc->cam->dir_x == 0)
+	rc->plane_x = -rc->cam->dir_y * 0.66;
+	rc->plane_y = rc->cam->dir_x * 0.66;
+	/*if (rc->cam->dir_x == 0)
 		rc->plane_x = 0.66;
 	else if (rc->cam->dir_y == 0)
-		rc->plane_y = 0.66;
+		rc->plane_y = 0.66;*/
 }
 
 // TODO: delete code block

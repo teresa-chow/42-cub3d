@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:00:20 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/18 16:08:21 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 19:09:17 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	raycaster(t_raycaster *rc) // check return value upon error
 		calc_cam_dist(rc);
 		calc_line_val(rc);
 		draw_vertical_line(rc, x); //tmp
-		//fill_textures(rc);
+		//fill_textures(rc, x);
 		x++;
 	}
 	return (0);
@@ -80,25 +80,17 @@ int	raycaster(t_raycaster *rc) // check return value upon error
 
 static void	draw_vertical_line(t_raycaster *rc, int x)
 {
-	int		i;
-	t_dda	dda;
+	int		y;
 	int		color;
 
-	if (rc->wall == EAST_WEST)
+	if (rc->wall == EAST || rc->wall == WEST)
 		color = YELLOW;
 	else
 		color = 16758272;
-	ft_bzero(&dda, sizeof(t_dda));
-	dda.dy = rc->line_end - rc->line_start;
-	dda.step = fabsf(dda.dy);
-	dda.y_inc = dda.dy / dda.step;
-	i = 0;
-	dda.x1 = x;
-	dda.y1 = rc->line_start;
-	while (i <= dda.step)
+	y = rc->line_start;
+	while (y <= rc->line_end)
 	{
-		pixel_put(rc->img, dda.x1, dda.y1, color);
-		dda.y1 += dda.y_inc;
-		i++;
+		pixel_put(rc->img, x, y, color);
+		y++;
 	}
 }
