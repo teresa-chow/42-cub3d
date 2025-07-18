@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/16 14:22:39 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 15:36:50 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 /* Camera - player viewpoint: */
 /*
-	NORTH : -Y pos_x = 0 pos_y = -1;
+	NORTH : -Y dir_x = 0 dir_y = -1;
 	SOUTH : +Y;
 	EAST : +X;
 	WEST : -X;

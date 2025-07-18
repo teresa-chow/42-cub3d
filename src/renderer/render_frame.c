@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:00:20 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/17 15:33:47 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:01:19 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,19 @@ static void	draw_vertical_line(t_raycaster *rc, int x); //tmp
 
 int	render_frame(t_raycaster *rc)
 {
-	fill_background(rc);
-	raycaster(rc);
-	draw_minimap(rc);
-	calc_player_movement(rc);
-	calc_player_rotation(rc);
-	mlx_put_image_to_window(rc->img->mlx, rc->img->window, rc->img->img, 0, 0);
+	get_time_ms(&rc->curr_time_ms);
+	if (rc->curr_time_ms - rc->prev_time_ms > 24)
+	{
+		rc->prev_time_ms = rc->curr_time_ms;
+		get_time_ms(&rc->curr_time_ms);
+		//rc->fps = round(1.0 / ((rc->curr_time_ms - rc->prev_time_ms) / 1000.0)); //used for reference only
+		fill_background(rc);
+		raycaster(rc);
+		draw_minimap(rc);
+		calc_player_movement(rc);
+		calc_player_rotation(rc);
+		mlx_put_image_to_window(rc->img->mlx, rc->img->window, rc->img->img, 0, 0);
+	}
 	return (0);
 }
 
@@ -40,12 +47,38 @@ int	raycaster(t_raycaster *rc) // check return value upon error
 		calc_cam_dist(rc);
 		calc_line_val(rc);
 		draw_vertical_line(rc, x); //tmp
+		//fill_textures(rc);
 		x++;
 	}
 	return (0);
 }
 
 //TODO: delete tmp function
+/*static void	draw_vertical_line(t_raycaster *rc, int x)
+{
+	int		i;
+	t_dda	dda;
+	int		color;
+
+	if (rc->wall == EAST_WEST)
+		color = YELLOW;
+	else
+		color = 16758272;
+	ft_bzero(&dda, sizeof(t_dda));
+	dda.dy = rc->line_end - rc->line_start;
+	dda.step = fabsf(dda.dy);
+	dda.y_inc = dda.dy / dda.step;
+	i = 0;
+	dda.x1 = x;
+	dda.y1 = rc->line_start;
+	while (i <= dda.step)
+	{
+		pixel_put(rc->img, dda.x1, dda.y1, color);
+		dda.y1 += dda.y_inc;
+		i++;
+	}
+}*/
+
 static void	draw_vertical_line(t_raycaster *rc, int x)
 {
 	int		i;
