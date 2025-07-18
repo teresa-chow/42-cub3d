@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:56:00 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/17 15:42:09 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 15:58:32 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ adequate for First-Person Shooter (FPS) */
 static void	init_raycaster(t_world *world, t_raycaster *rc, t_data *img)
 {
 	rc->img = img;
+	get_time_ms(&rc->curr_time_ms);
+	rc->prev_time_ms = rc->curr_time_ms;
 	rc->world = world;
 	world->cam = malloc(sizeof(t_camera)); //tmp
 	rc->cam = world->cam;
@@ -92,6 +94,10 @@ static void	tmp_fill_values(t_raycaster *rc)
 	};
 	rc->world->map_wid = 24;
 	rc->world->map_len = 24;
+	rc->world->tex_n = ft_strdup("assets/textures/birds_tex_n.xpm");
+	rc->world->tex_s = ft_strdup("assets/textures/birds_tex_s.xpm");
+	rc->world->tex_w = ft_strdup("assets/textures/birds_tex_w.xpm");
+	rc->world->tex_e = ft_strdup("assets/textures/birds_tex_e.xpm");
 	rc->world->sky = 65535;
 	rc->world->ground = 255;
 	for (int j = 0; j < rc->world->map_len; j++)
