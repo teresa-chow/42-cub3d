@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/18 16:08:26 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 19:11:44 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,10 @@ typedef struct s_dda
 
 typedef enum e_wall
 {
-	NORTH_SOUTH,
-	EAST_WEST
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
 }	t_wall;
 
 typedef struct s_raycaster
@@ -120,6 +122,7 @@ int		handle_keyrelease(int keycode, t_raycaster *rc);
 // Time management
 void	get_time_ms(unsigned int *curr_time);
 // Graphics
+void	fill_textures(t_raycaster *rc, int x);
 void	fill_background(t_raycaster *rc);
 void	pixel_put(t_data *img, int x, int y, int color);
 

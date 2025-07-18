@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:31:02 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/17 15:24:03 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 19:09:00 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,19 @@ void	perform_dda(t_raycaster *rc)
 		{
 			rc->side_dist_x += rc->delta_dist_x;
 			rc->map_x += rc->step_x;
-			rc->wall = EAST_WEST;
+			if (rc->cam->dir_x > 0 && rc->cam->dir_x <= 1)
+				rc->wall = EAST;
+			else
+				rc->wall = WEST;
 		}
 		else
 		{
 			rc->side_dist_y += rc->delta_dist_y;
 			rc->map_y += rc->step_y;
-			rc->wall = NORTH_SOUTH;
+			if (rc->cam->dir_y >= -1 && rc->cam->dir_y <= 0)
+				rc->wall = NORTH;
+			else
+				rc->wall = SOUTH;
 		}
 		if (rc->world->map[rc->map_y][rc->map_x] == '1')
 			rc->hit = 1;

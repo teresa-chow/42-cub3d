@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 15:24:15 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/18 15:38:58 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/18 18:27:13 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,23 @@
 	WEST : -X;
 */
 
-/*void    fill_textures(t_raycaster *rc)
+void	fill_textures(t_raycaster *rc, int x)
 {
-    void    *north;
-    void    *south;
-    void    *east;
-    void    *west;
+	void	*texture;
+	int		y;
 
-    north = mlx_xpm_file_to_image(rc->img->mlx, rc->world->tex_n, *width, *height);
-    south = mlx_xpm_file_to_image(rc->img->mlx, rc->world->tex_s, *width, *height);
-    east = mlx_xpm_file_to_image(rc->img->mlx, rc->world->tex_e, *width, *height);
-    west = mlx_xpm_file_to_image(rc->img->mlx, rc->world->tex_w, *width, *height);
-    mlx_put_image_to_window(rc->img->mlx, rc->img->window, north, 0, 0);
-}*/
+	y = rc->line_start;
+	//if (rc->cam->dir_y >= -1 && rc->cam->dir_y <= 0)
+		texture = mlx_xpm_file_to_image(rc->img->mlx, rc->world->tex_n, &x, &y);
+	/*else if (rc->cam->dir_y > 0 && rc->cam->dir_y <= 1)
+		texture = mlx_xpm_file_to_image(rc->img->mlx, rc->world->tex_s, &x, &y);
+	else if (rc->cam->dir_x > 0 && rc->cam->dir_x <= 1)
+		texture = mlx_xpm_file_to_image(rc->img->mlx, rc->world->tex_e, &x, &y);
+	else if (rc->cam->dir_x >= -1 && rc->cam->dir_x <= 0)
+		texture = mlx_xpm_file_to_image(rc->img->mlx, rc->world->tex_w, &x, &y);
+	while (y <= rc->line_end)
+	{*/
+		mlx_put_image_to_window(rc->img->mlx, rc->img->window, texture, 0, 0);
+	//	y++;
+	//}
+}
