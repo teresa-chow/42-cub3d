@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   error_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 11:59:32 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/06/30 15:24:34 by tchow-so         ###   ########.fr       */
+/*   Created: 2025/07/25 16:20:52 by tchow-so          #+#    #+#             */
+/*   Updated: 2025/07/25 16:24:41 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* This file handles map configuration errors */
+#include "../../include/parse.h"
 
-#include "../../include/cub3d.h"
+void    exit_file_analyze(t_world *world, int fd, char *msg)
+{
+		free_world(world);
+		close(fd);
+		printerr_exit(msg);
+}
 
-/* If any misconfiguration of any kind is encountered in the file, the program
-must exit properly and return "Error\n" followed by an explicit error message
-of your choice.
+void	printerr_exit(char *str)
+{
+	int		len;
 
-printerr_exit("Error\n"); */
+	len = ft_strlen(str);
+	write(STDERR_FILENO, str, len);
+	exit(EXIT_FAILURE);
+}
