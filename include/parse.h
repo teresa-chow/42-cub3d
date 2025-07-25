@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/18 15:36:50 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/25 12:26:41 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ typedef struct s_world
 	char			*tex_s; //south
 	char			*tex_w; //west
 	char			*tex_e; //east
+	char			*ground_str;
 	int				ground; //ground color
+	char			*sky_str;
 	int				sky; //ceiling color
 	int				map_len;
 	int				map_wid;
@@ -58,11 +60,20 @@ typedef struct s_world
 }	t_world;
 
 /* ============================== VALIDATION =============================== */
+// Command line input
 bool	check_input(int argc, char *map);
+// Config file checks
+void	check_file(char *file, t_world *world);
+void    exit_file_analyze(t_world *world, int fd, char *msg);
+int		check_identifier(char *line, char *id);
+// Textures
+char	*get_texture_inf(char *line, char *id);
+
+/* ================================= UTILS ================================= */
+// Memory management
+void	free_world(t_world *world);
 // Utils
 int		ft_isspace(int c);
 void	printerr_exit(char *str);
-
-/* =============================== MAP DATA ================================ */
 
 #endif
