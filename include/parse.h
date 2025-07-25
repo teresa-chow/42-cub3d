@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/25 12:26:41 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/25 17:29:08 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <stdbool.h>
+# include <fcntl.h>
 # include "../lib/libft/libft/libft.h"
 # include "../lib/libft/ft_printf/ft_printf.h"
 # include "../lib/libft/get_next_line/get_next_line.h"
@@ -33,14 +34,6 @@ typedef struct s_camera
 	double			dir_x;
 	double			dir_y;
 }	t_camera;
-
-typedef struct s_rgb
-{
-	int	r;
-	int	g;
-	int	b;
-	int	color;
-}	t_rgb;
 
 /* World - config info provided in *.cub */
 typedef struct s_world
@@ -63,17 +56,21 @@ typedef struct s_world
 // Command line input
 bool	check_input(int argc, char *map);
 // Config file checks
-void	check_file(char *file, t_world *world);
-void    exit_file_analyze(t_world *world, int fd, char *msg);
-int		check_identifier(char *line, char *id);
+void	validate_map(char *file, t_world *world);
 // Textures
+void    validate_texture_path_and_format(t_world *world, int fd);
 char	*get_texture_inf(char *line, char *id);
+// Colors
+void	convert_to_int(t_world *world, int fd, char id);
+
+/* ======================= DYNAMIC MEMORY MANAGEMENT ======================= */
+void	free_world(t_world *world);
+
+/* ============================= ERROR HANDLING ============================ */
+void	exit_file_analyze(t_world *world, int fd, char *msg);
+void	printerr_exit(char *str);
 
 /* ================================= UTILS ================================= */
-// Memory management
-void	free_world(t_world *world);
-// Utils
 int		ft_isspace(int c);
-void	printerr_exit(char *str);
 
 #endif

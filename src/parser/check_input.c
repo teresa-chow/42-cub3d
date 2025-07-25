@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:17:18 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/10 15:24:48 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/25 16:24:25 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,4 @@ static bool	check_file_format(char *str)
 			return (0);
 	}
 	return (1);
-}
-
-void	printerr_exit(char *str)
-{
-	int		len;
-
-	len = ft_strlen(str);
-	write(STDERR_FILENO, str, len);
-	exit(EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:41:55 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/11 16:34:32 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/25 17:27:30 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	main(int argc, char **argv)
 
 	check_input(argc, argv[1]);
 	init_vars(&img, &world, &rc);
-	//validate map
+	validate_map(argv[1], &world);
 	//fill t_world world; create and fill t_camera *cam
-	launch_render_engine(&img, &world, &rc);
+	//launch_render_engine(&img, &world, &rc);
 	//free world
 	return (0);
 }
