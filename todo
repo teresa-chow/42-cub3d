@@ -1,7 +1,5 @@
 Parsing:
 errors:
-[ ] NO NO ./path/to/texture.xpm -- should split and not attempt to open "NO ./path/to/
-      texture.xpm" -- fix error message "Spec misconfiguration", "Invalid path", etc.
 [ ] F 255,255,0
     C
     C 255,255,255
@@ -10,6 +8,9 @@ errors:
     EA ./path/to/texture.xpm
     WE ./path/to/texture.xpm
     only (no more info) -- segfault
+[ ] Review error messages:
+    [ ] "Map content misconfiguration" instead of "Map content has to be last" -- duplicate maps fall in this category
+    [ ] NO NO ./path/to/texture.xpm -- update error message "Spec misconfiguration", "Invalid path" instead of "Failed to open file"
 
 validate map configuration:
   1. map section:
