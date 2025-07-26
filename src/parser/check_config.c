@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/26 06:31:10 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/26 07:28:56 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	validate_map(char *file, t_world *world)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		printerr_exit("cub3D: failed to open config file\n");
+		printerr_exit("Error\nFailed to open config file.\n");
 	check_first_data(fd, world);
 	analyze_map_info(world, fd);
 	check_other_inf(world, fd);
@@ -35,7 +35,7 @@ void	validate_map(char *file, t_world *world)
 	close(fd); // close second time this file because i reopened
 }
 
-/* Check config other than map */
+/* Check config specs other than map */
 static void	check_first_data(int fd, t_world *world)
 {
 	char	*line;
@@ -50,7 +50,7 @@ static void	check_first_data(int fd, t_world *world)
 		free(line);
 		line = get_next_line(fd);
 	}
-        validate_texture_path_and_format(world, fd);
+    validate_texture(world, fd);
 	convert_to_int(world, fd, 'C');
 	convert_to_int(world, fd, 'F');
 }
@@ -63,7 +63,8 @@ static void	check_other_inf(t_world *world, int fd)
 	while (line)
 	{
 		if (ft_strcmp(line, "\n"))
-			exit_file_analyze(world, fd, "Error\nMap should be the last information!\n");
+			exit_file_analyze(world, fd, "Error\n"
+				"Map should be the last information!\n");
 	}
 }
 
@@ -72,21 +73,21 @@ static void	validate_lines(char *line, t_world *world, int fd)
 {
 	if (ft_strcmp(line, "\n"))
 	{
-		if (check_identifier(line, "NO"))
+		if (!world->tex_n && check_identifier(line, "NO"))
 			world->tex_n = get_texture_inf(line, "NO");
-		else if (check_identifier(line, "SO"))
+		else if (!world->tex_s && check_identifier(line, "SO"))
 			world->tex_s = get_texture_inf(line, "SO");
-		else if (check_identifier(line, "WE"))
+		else if (!world->tex_w && check_identifier(line, "WE"))
 			world->tex_w = get_texture_inf(line, "WE");
-		else if (check_identifier(line, "EA"))
+		else if (!world->tex_e && check_identifier(line, "EA"))
 			world->tex_e = get_texture_inf(line, "EA");
-		else if (check_identifier(line, "F"))
+		else if (!world->ground_str && check_identifier(line, "F"))
 			world->ground_str =  get_texture_inf(line, "F");
-		else if (check_identifier(line, "C"))
+		else if (!world->sky_str && check_identifier(line, "C"))
 			world->sky_str = get_texture_inf(line, "C");
 		else
-			exit_file_analyze(world, fd, "Wrong format or "
-				"identifier provided.\n");
+			exit_file_analyze(world, fd, "Error\n"
+				"Color or texture misconfiguration.\n");
 	}
 }
 
