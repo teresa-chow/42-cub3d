@@ -2,7 +2,7 @@ Parsing:
 errors:
 [ ] F 255,255,0
     C
-    C 255,255,255
+    C 255,255,255 -- segfault
 [ ] NO ./path/to/texture.xpm
     SO ./path/to/texture.xpm
     EA ./path/to/texture.xpm
@@ -36,6 +36,7 @@ validate map configuration:
   [ ] textures: check file format (must be image file) .xml
   [ ] colors (floor and ceiling): 3 values (R,G,B)
   [ ] colors (floor and ceiling): each value between 0 and 255
+  [ ] fill player position t_camera struct (see comment in header file)
 -------------------------------------------------------------------------
 Rendering:
 [-] raycaster
