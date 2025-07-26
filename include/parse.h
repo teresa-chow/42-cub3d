@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/26 09:30:06 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/26 09:58:26 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 
 /* Camera - player viewpoint: */
 /*
-	NORTH : -Y dir_x = 0 dir_y = -1;
-	SOUTH : +Y;
-	EAST : +X;
-	WEST : -X;
+	NORTH (N) : -Y dir_x = 0 dir_y = -1;
+	SOUTH (S) : +Y dir_x = 0 dir_y = 1;
+	EAST (E): +X dir_x = 1 dir_y = 0;
+	WEST (W): -X dir_x = -1 dir_y = 0;
 */
 typedef struct s_camera
 {
