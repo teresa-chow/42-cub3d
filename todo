@@ -1,7 +1,7 @@
 Parsing:
 errors:
 [ ] NO NO ./path/to/texture.xpm -- should split and not attempt to open "NO ./path/to/
-      texture.xpm"
+      texture.xpm" -- fix error message "Spec misconfiguration", "Invalid path", etc.
 [ ] F 255,255,0
     C
     C 255,255,255
