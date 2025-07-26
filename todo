@@ -1,4 +1,16 @@
 Parsing:
+errors:
+[ ] NO NO ./path/to/texture.xpm -- should split and not attempt to open "NO ./path/to/
+      texture.xpm"
+[ ] F 255,255,0
+    C
+    C 255,255,255
+[ ] NO ./path/to/texture.xpm
+    SO ./path/to/texture.xpm
+    EA ./path/to/texture.xpm
+    WE ./path/to/texture.xpm
+    only (no more info) -- segfault
+
 validate map configuration:
   1. map section:
   [ ] must be at the bottom (last piece of information)
