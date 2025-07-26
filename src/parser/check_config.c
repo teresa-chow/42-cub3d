@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/25 17:34:08 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/26 06:31:10 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "../../include/parse.h"
 
 static void	check_first_data(int fd, t_world *world);
+static void	check_other_inf(t_world *world, int fd);
 static void	validate_lines(char *line, t_world *world, int fd);
 static int	check_identifier(char *line, char *id);
 
@@ -26,7 +27,12 @@ void	validate_map(char *file, t_world *world)
 	if (fd < 0)
 		printerr_exit("cub3D: failed to open config file\n");
 	check_first_data(fd, world);
+	analyze_map_info(world, fd);
+	check_other_inf(world, fd);
 	close(fd);
+	save_map(world, file);
+
+	close(fd); // close second time this file because i reopened
 }
 
 /* Check config other than map */
@@ -47,7 +53,18 @@ static void	check_first_data(int fd, t_world *world)
         validate_texture_path_and_format(world, fd);
 	convert_to_int(world, fd, 'C');
 	convert_to_int(world, fd, 'F');
-	// create_and_analyze_map(world);
+}
+
+static void	check_other_inf(t_world *world, int fd)
+{
+	char	*line;
+
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (ft_strcmp(line, "\n"))
+			exit_file_analyze(world, fd, "Error\nMap should be the last information!\n");
+	}
 }
 
 /* Check color and texture identifiers */
