@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/26 07:26:03 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/26 09:44:00 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 static bool	check_texture_format(t_world *world, char *format);
 static bool	check_texture_path(t_world *world);
 
-/* Get texture information -- where is it filled? */
+/* Get texture information */
 char	*get_texture_inf(char *line, char *id)
 {
 	char	*s;
@@ -43,11 +43,11 @@ char	*get_texture_inf(char *line, char *id)
 /* Check each texture is valid */
 void    validate_texture(t_world *world, int fd)
 {
-		if (!check_texture_format(world, ".xpm"))
-			exit_file_analyze(world, fd, "Error\nInvalid texture format. "
-				"Only .xpm files are accepted\n");
-		if (!check_texture_path(world))
-			exit_file_analyze(world, fd, "Error\nFailed to open texture.\n");
+	if (!check_texture_format(world, ".xpm"))
+		exit_file_analyze(world, fd, "Error\nInvalid texture format. "
+			"Only .xpm files are accepted\n");
+	if (!check_texture_path(world))
+		exit_file_analyze(world, fd, "Error\nFailed to open texture.\n");
 }
 
 static bool	check_texture_format(t_world *world, char *format)

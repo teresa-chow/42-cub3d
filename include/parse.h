@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/26 07:01:25 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/26 09:30:06 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ char	*get_texture_inf(char *line, char *id);
 // Colors
 void	convert_to_int(t_world *world, int fd, char id);
 // Map
-void	analyze_line(char *s, int fd, t_world *world);
-void	analyze_map_info(t_world *world, int fd);
+void	check_map(t_world *world, int fd);
 void	save_map(t_world *world, char *file);
 
 /* ======================= DYNAMIC MEMORY MANAGEMENT ======================= */

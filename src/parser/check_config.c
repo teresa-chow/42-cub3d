@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/26 07:28:56 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/26 09:44:21 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 #include "../../include/parse.h"
 
-static void	check_first_data(int fd, t_world *world);
-static void	check_other_inf(t_world *world, int fd);
+static void	check_specs(int fd, t_world *world);
 static void	validate_lines(char *line, t_world *world, int fd);
 static int	check_identifier(char *line, char *id);
 
@@ -26,17 +25,18 @@ void	validate_map(char *file, t_world *world)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		printerr_exit("Error\nFailed to open config file.\n");
-	check_first_data(fd, world);
-	analyze_map_info(world, fd);
-	check_other_inf(world, fd);
+	check_specs(fd, world);
+	check_map(world, fd);
+	//analyze_map_info(world, fd);
+	//check_other_inf(world, fd);
 	close(fd);
 	save_map(world, file);
 
 	close(fd); // close second time this file because i reopened
 }
 
-/* Check config specs other than map */
-static void	check_first_data(int fd, t_world *world)
+/* Check config specs other than map (textures and colors) */
+static void	check_specs(int fd, t_world *world)
 {
 	char	*line;
 
@@ -53,19 +53,6 @@ static void	check_first_data(int fd, t_world *world)
     validate_texture(world, fd);
 	convert_to_int(world, fd, 'C');
 	convert_to_int(world, fd, 'F');
-}
-
-static void	check_other_inf(t_world *world, int fd)
-{
-	char	*line;
-
-	line = get_next_line(fd);
-	while (line)
-	{
-		if (ft_strcmp(line, "\n"))
-			exit_file_analyze(world, fd, "Error\n"
-				"Map should be the last information!\n");
-	}
 }
 
 /* Check color and texture identifiers */
@@ -89,6 +76,7 @@ static void	validate_lines(char *line, t_world *world, int fd)
 			exit_file_analyze(world, fd, "Error\n"
 				"Color or texture misconfiguration.\n");
 	}
+	//printf("world->tex_n: %s\n", world->tex_n);
 }
 
 static int	check_identifier(char *line, char *id)
