@@ -8,9 +8,9 @@ errors:
     EA ./path/to/texture.xpm
     WE ./path/to/texture.xpm
     only (no more info) -- segfault
-[ ] Review error messages:
-    [ ] "Map content misconfiguration" instead of "Map content has to be last" -- duplicate maps fall in this category
-    [ ] NO NO ./path/to/texture.xpm -- update error message "Spec misconfiguration", "Invalid path" instead of "Failed to open file"
+[x] Review error messages:
+    [x] "Map content misconfiguration" instead of "Map content has to be last" -- duplicate maps fall in this category
+    [x] NO NO ./path/to/texture.xpm -- update error message "Spec misconfiguration", "Invalid path" instead of "Failed to open file"
 
 validate map configuration:
   1. map section:
