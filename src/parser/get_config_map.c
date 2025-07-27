@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:24:50 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/26 09:43:29 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/27 23:05:55 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	save_map(t_world *world, char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		exit_file_analyze(world, fd, "cub3D: map opening failed\n");
+		exit_file_analyze(world, fd, "Error\nFailed to open config file.\n");
 	line = get_next_line(fd);
 	while (line)
 	{
