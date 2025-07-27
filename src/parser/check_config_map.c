@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:59:32 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/26 09:31:00 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/27 23:00:34 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ static void	check_map_placement(t_world *world, int fd)
 	{
 		if (ft_strcmp(line, "\n"))
 			exit_file_analyze(world, fd, "Error\n"
-				"Map content has to be last.\n");
+				"Map content misconfiguration.\n");
 	}
 }
