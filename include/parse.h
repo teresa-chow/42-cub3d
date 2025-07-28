@@ -29,10 +29,10 @@
 */
 typedef struct s_camera
 {
-	double			pos_x;
-	double			pos_y;
-	double			dir_x;
-	double			dir_y;
+	int			pos_x;
+	int			pos_y;
+	int			dir_x;
+	int			dir_y;
 }	t_camera;
 
 /* World - config info provided in *.cub */
@@ -49,6 +49,7 @@ typedef struct s_world
 	int				map_len;
 	int				map_wid;
 	char			**map; //map is a 2D-array
+	char			**map_cpy;
 	t_camera		*cam; //define player start position and direction
 }	t_world;
 
@@ -59,22 +60,38 @@ bool	check_input(int argc, char *map);
 void	validate_map(char *file, t_world *world);
 // Textures
 void    validate_texture(t_world *world, int fd);
-char	*get_texture_inf(char *line, char *id);
+char	*get_texture_inf(char *line, char *id, t_world *world, int fd);
 // Colors
 void	convert_to_int(t_world *world, int fd, char id);
 // Map
 void	check_map(t_world *world, int fd);
-void	save_map(t_world *world, char *file);
+void	save_map(t_world *world, int fd);
+void	get_player_pos(t_world *world);
+void	get_player_dir(t_world *world);
+void	check_closed_map(t_world *world);
 
 /* ======================= DYNAMIC MEMORY MANAGEMENT ======================= */
 void	free_world(t_world *world);
+void	free_numbers(char **numbers);
+void	free_map(char **map, int len);
 
 /* ============================= ERROR HANDLING ============================ */
-void	exit_file_analyze(t_world *world, int fd, char *msg);
-void	printerr_exit(char *str);
+void	exit_file_analyze(t_world *world, int fd, char *msg, char *value);
+void	printerr_exit(char *str, char *id);
 
 /* ================================= UTILS ================================= */
 bool	check_file_format(char *str, char *format);
 int		ft_isspace(int c);
+//textures utils
+void	find_identifier_value(char *s, t_world *world, int fd, char *value);
+int		all_textures_set_up(t_world *world);
+//map utils
+char	*find_map(int fd);
+void	get_player_pos(t_world *world);
+void	get_player_dir(t_world *world);
+void	check_valid_pos(char *line, t_world *world);
+int		is_map_line(char *s, int *player_pos);
+int		char_pos_found(char *line, t_world *world);
+int		flood_fill_cub(int x, int y, char **map, int high, t_world *world);
 
 #endif

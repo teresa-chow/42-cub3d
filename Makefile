@@ -19,7 +19,8 @@ NAME	= cub3D
 SRC				= $(addprefix $(SRC_DIR)/, main.c)
 SRC_PARSER		= $(addprefix $(PARSER_DIR)/, check_config_color.c \
 	check_config_map.c check_config_tex.c check_config.c check_input.c \
-	error_handling.c get_config_map.c memory_management.c utils.c)
+	error_handling.c get_config_map.c memory_management.c check_config_tex_utils.c \
+	check_config_map_utils.c utils.c)
 SRC_RENDERER	= $(addprefix $(RENDERER_DIR)/, calc_movement.c calc_rotation.c \
 	event_log.c graphics_utils.c minimap.c minimap_grid.c minimap_player.c \
 	raycaster_calc00.c raycaster_calc01.c raycaster_texture.c render_frame.c \

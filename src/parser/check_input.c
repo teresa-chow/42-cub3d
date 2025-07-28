@@ -21,13 +21,13 @@ bool	check_input(int argc, char *map)
 	if (argc != 2)
 	{
 		printerr_exit("cub3D: invalid argument count\n"
-            "Usage: ./cub3D map.cub\n");
+            "Usage: ./cub3D map.cub\n", NULL);
 		return (0);
 	}
 	if (!check_file_name(map))
 	{
 		printerr_exit("cub3D: invalid map name\n"
-			"Usage: ./cub3D map.cub\n");
+			"Usage: ./cub3D map.cub\n", NULL);
 		return (0);
 	}
 	return (1);
