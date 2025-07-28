@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 15:24:15 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/18 19:37:01 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/28 12:01:40 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 	WEST : -X;
 */
 
-void	fill_textures(t_raycaster *rc, int x)
+/*void	fill_textures(t_raycaster *rc, int x)
 {
 	void	*texture;
-	/*int		y;
+	int		y;
 
 	y = rc->line_start;
 	if (rc->cam->dir_y >= -1 && rc->cam->dir_y <= 0)
@@ -38,7 +38,7 @@ void	fill_textures(t_raycaster *rc, int x)
 	{
 		mlx_put_image_to_window(rc->img->mlx, rc->img->window, texture, 0, 0);
 		y++;
-	}*/
+	}
 	if (rc->wall == EAST || rc->wall == WEST)
 		rc->wall_x = rc->cam->pos_y + rc->perp_wall_dist * rc->ray_dir_y;
 	else
@@ -53,4 +53,4 @@ void	fill_textures(t_raycaster *rc, int x)
 	else if (rc->wall == WEST)
 		texture = mlx_xpm_file_to_image(rc->img->mlx, rc->world->tex_w, &x, &rc->line_start);
 	mlx_put_image_to_window(rc->img->mlx, rc->img->window, texture, 0, 0);
-}
+}*/
