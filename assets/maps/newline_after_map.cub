@@ -1,11 +1,17 @@
-NO NO ./assets/textures/birds_tex_n.xpm
+NO ./assets/textures/birds_tex_n.xpm
 SO ./assets/textures/birds_tex_s.xpm
 WE ./assets/textures/birds_tex_w.xpm
 EA ./assets/textures/birds_tex_e.xpm
 
-C             255,255,1             
+C 255,255,1             
 F 0,0,0
 
 111111
 10N001
 111111
+
+
+
+
+
+
