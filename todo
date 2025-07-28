@@ -8,6 +8,7 @@ errors:
     EA ./path/to/texture.xpm
     WE ./path/to/texture.xpm
     only (no more info) -- segfault
+[ ] empty newlines after map content -- program execution/parser gets stuck
 [x] Review error messages:
     [x] "Map content misconfiguration" instead of "Map content has to be last" -- duplicate maps fall in this category
     [x] NO NO ./path/to/texture.xpm -- update error message "Spec misconfiguration", "Invalid path" instead of "Failed to open file"
@@ -39,10 +40,11 @@ validate map configuration:
   [ ] fill player position t_camera struct (see comment in header file)
 -------------------------------------------------------------------------
 Rendering:
-[-] raycaster
+[x] raycaster
 [x] arrows (left and right): change direction / rotate
 [x] W A S D : change player position / move
 [ ] collision detection or navigate map grid account for modulo of with and length (?)
+[-] wall textures
 [x] ESC / red cross button: close the window and quit program (no leaks)
 [x] minimap (bonus feature)
 -------------------------------------------------------------------------
