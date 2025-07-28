@@ -32,19 +32,19 @@ static void	init_mlx(t_data *img)
 {
 	img->mlx = mlx_init();
 	if (img->mlx == NULL)
-		printerr_exit("Failed to initialize MLX\n");
+		printerr_exit("Failed to initialize MLX\n", NULL);
 	img->window = mlx_new_window(img->mlx, WIN_W, WIN_H, "cub3D");
 	if (img->window == NULL)
 	{
 		free(img->mlx);
-		printerr_exit("Failed to open window\n");
+		printerr_exit("Failed to open window\n", NULL);
 	}
 	img->img = mlx_new_image(img->mlx, WIN_W, WIN_H);
 	if (img->img == NULL)
 	{
 		free(img->window);
 		free(img->mlx);
-		printerr_exit("Failed to create new image\n");
+		printerr_exit("Failed to create new image\n", NULL);
 	}
 	img->addr = mlx_get_data_addr(img->img, &img->bits_pxl,
 			&img->line_len, &img->endian);

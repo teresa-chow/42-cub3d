@@ -25,19 +25,20 @@ void	convert_to_int(t_world *world, int fd, char id)
 	unsigned int	g;
 	unsigned int	b;
 
+	numbers = NULL;
 	check_str_color(id, world, fd);
 	if (id == 'C')
 		numbers = ft_split(world->sky_str, ',');
 	else
 		numbers = ft_split(world->ground_str, ',');
 	if (!numbers)
-		exit_file_analyze(world, fd, "Error\nMemory Allocation!\n");
+		exit_file_analyze(world, fd, "Error\nMemory Allocation!\n", NULL);
 	r = ft_atoi(numbers[0]);
 	g = ft_atoi(numbers[1]);
 	b = ft_atoi(numbers[2]);
 	if (r > 255 || g > 255 || b > 255)
-		exit_file_analyze(world, fd, "Error\nNumbers greater than 255 found!\n");
-	free(numbers);
+		exit_file_analyze(world, fd, "Error\nNumbers greater than 255 found", NULL);
+	free_numbers(numbers);
 	if (id == 'C')
 		world->sky = (r << 16 | g << 8 | b);
 	else
@@ -63,12 +64,10 @@ static void	check_str_color(char id, t_world *world, int fd)
 		tmp++;
 	}
 	if (i != 2)
-		exit_file_analyze(world, fd, "Error\nWrong color data!\n");
+		exit_file_analyze(world, fd, "Error\nWrong color data!\n", NULL);
 	if (check_only_digit(s) < 0)
-		exit_file_analyze(world, fd, "Error\nWrong color data!\n");
+		exit_file_analyze(world, fd, "Error\nWrong color data!\n", NULL);
 }
-
-
 
 static int	check_only_digit(char *s)
 {

@@ -14,10 +14,36 @@
 
 void	free_world(t_world *world)
 {
+	free(world->tex_n);
+	free(world->tex_s);
 	free(world->tex_e);
 	free(world->tex_w);
-	free(world->tex_s);
-	free(world->tex_n);
 	free(world->ground_str);
 	free(world->sky_str);
+	free(world->cam);
+	if (world->map)
+	{
+		free_map(world->map_cpy, world->map_len);
+		free_map(world->map, world->map_len);
+	}
+}
+
+void	free_map(char **map, int len)
+{
+	int	i;
+
+	i = -1;
+	while (++i < len)
+		free(map[i]);
+	free(map);
+}
+
+void	free_numbers(char **numbers)
+{
+	int	i;
+
+	i = -1;
+	while (numbers[++i])
+		free(numbers[i]);
+	free(numbers);
 }

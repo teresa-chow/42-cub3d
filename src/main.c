@@ -23,8 +23,8 @@ int	main(int argc, char **argv)
 	check_input(argc, argv[1]);
 	init_vars(&img, &world, &rc);
 	validate_map(argv[1], &world);
-	//fill t_world world; create and fill t_camera *cam
-	//launch_render_engine(&img, &world, &rc);
+	// fill t_world world; create and fill t_camera *cam
+	// launch_render_engine(&img, &world, &rc);
 	//free world
 	return (0);
 }

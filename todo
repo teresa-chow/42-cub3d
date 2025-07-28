@@ -1,42 +1,42 @@
 Parsing:
 errors:
-[ ] F 255,255,0
+[x] F 255,255,0
     C
     C 255,255,255 -- segfault
-[ ] NO ./path/to/texture.xpm
+[x] NO ./path/to/texture.xpm
     SO ./path/to/texture.xpm
     EA ./path/to/texture.xpm
     WE ./path/to/texture.xpm
     only (no more info) -- segfault
-[ ] Review error messages:
-    [ ] "Map content misconfiguration" instead of "Map content has to be last" -- duplicate maps fall in this category
-    [ ] NO NO ./path/to/texture.xpm -- update error message "Spec misconfiguration", "Invalid path" instead of "Failed to open file"
+[x] Review error messages:
+    [x] "Map content misconfiguration" instead of "Map content has to be last" -- duplicate maps fall in this category
+    [x] NO NO ./path/to/texture.xpm -- update error message "Spec misconfiguration", "Invalid path" instead of "Failed to open file"
 
 validate map configuration:
   1. map section:
-  [ ] must be at the bottom (last piece of information)
-  [ ] only six possible characters*: 0 1 N S E W
-  [ ] *spaces are also valid: decide how to handle (accept only in boarders -- see subject example)
-  [ ] map must be closed: surrounded by walls (1)
-  [ ] map cannot contain empty new line
-  [ ] check edge cases and test several maps / make test maps: assets/maps/
-  [ ] minimal map accepted (check if there's at least the indication of the player's start position
+  [x] must be at the bottom (last piece of information)
+  [x] only six possible characters*: 0 1 N S E W
+  [x] *spaces are also valid: decide how to handle (accept only in boarders -- see subject example)
+  [x] map must be closed: surrounded by walls (1)
+  [x] map cannot contain empty new line
+  [x] check edge cases and test several maps / make test maps: assets/maps/
+  [x] minimal map accepted (check if there's at least the indication of the player's start position
       and if it's surrounded by walls):
         111
         1N1
         111
 
   2. other information:
-  [ ] check identifiers (any order): NO SO WE EA F C
-  [ ] check typos: e.g. "NOO"
-  [ ] check identifier config (multiple spaces accepted): NO     path/to/file
-  [ ] check repeated identifiers
-  [ ] textures: check if path/to/file exists (open)
-  [ ] textures: check if path/to/file is different for NO SO EA WE
-  [ ] textures: check file format (must be image file) .xml
-  [ ] colors (floor and ceiling): 3 values (R,G,B)
-  [ ] colors (floor and ceiling): each value between 0 and 255
-  [ ] fill player position t_camera struct (see comment in header file)
+  [x] check identifiers (any order): NO SO WE EA F C
+  [x] check typos: e.g. "NOO"
+  [x] check identifier config (multiple spaces accepted): NO     path/to/file
+  [x] check repeated identifiers
+  [x] textures: check if path/to/file exists (open)
+  [x] textures: check if path/to/file is different for NO SO EA WE
+  [x] textures: check file format (must be image file) .xml
+  [x] colors (floor and ceiling): 3 values (R,G,B)
+  [x] colors (floor and ceiling): each value between 0 and 255
+  [x] fill player position t_camera struct (see comment in header file)
 -------------------------------------------------------------------------
 Rendering:
 [-] raycaster
