@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/29 11:53:33 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/07/29 15:35:15 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	get_player_pos(t_world *world);
 void	get_player_dir(t_world *world);
 void	check_valid_pos(char *line, t_world *world);
 void	create_cpy_map(t_world *world);
+void	format_map_lines(t_world *world);
 int		is_map_line(char *s, int *player_pos);
 int		char_pos_found(char *line, t_world *world);
 int		flood_fill_cub(int x, int y, char **map, int high, t_world *world);

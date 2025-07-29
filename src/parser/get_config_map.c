@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:24:50 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/29 12:15:49 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/07/29 15:39:30 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,8 @@ void	check_closed_map(t_world *world)
 		}
 		j = -1;
 	}
+	// i = -1;
+	// while (map_cpy[++i])
+	// 	printf("%s\n", map_cpy[i]);
 	free_map(world->map_cpy, world->map_len);
 }

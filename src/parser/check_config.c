@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/26 09:44:21 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/29 15:40:10 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	validate_map(char *file, t_world *world)
 	close(fd);
 	get_player_pos(world);
 	get_player_dir(world);
+	format_map_lines(world);
+	// int i = -1;
+	// while (world->map[++i])
+	// 	printf("%s\n", world->map[i]);
 	check_closed_map(world);
 }
 
