@@ -1,4 +1,7 @@
 Parsing:
+tests:
+[ ] update texture paths in assets/maps/mlaraki_invalid_maps from invalid_RGB_011.cub onwards
+
 errors:
 [ ] F 255,255,0
     C
