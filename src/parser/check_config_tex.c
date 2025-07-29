@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_config_tex.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/29 14:42:15 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/07/29 21:18:27 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_texture_inf(char *line, char *id, t_world *world, int fd)
 	char	*s;
 	char	*start;
 	char	*end;
-	int	i;
+	int		i;
 
 	check_identifier_dup(id, world, fd);
 	i = 0;
@@ -61,23 +61,24 @@ static void	check_identifier_dup(char *id, t_world *world, int fd)
 	else if (!ft_strcmp(id, "C") && world->sky_str)
 		dup = true;
 	if (dup)
-		exit_file_analyze(world, fd, "Error\nDuplicate identifier is not allowed!\n", NULL);
+		exit_file_analyze(world, fd, "Error\nDuplicate identifier\n", NULL);
 }
 
 /* Check each texture is valid */
-void    validate_texture(t_world *world, int fd)
+void	validate_texture(t_world *world, int fd)
 {
 	if (!check_texture_format(world, ".xpm"))
 		exit_file_analyze(world, fd, "Error\nInvalid texture format. "
 			"Only .xpm files are accepted\n", NULL);
 	if (!check_texture_path(world))
-		exit_file_analyze(world, fd, "Error\nTexture path misconfiguration\n", NULL);
+		exit_file_analyze(world, fd, "Error\n"
+			"Texture path misconfiguration\n", NULL);
 }
 
 static bool	check_texture_format(t_world *world, char *format)
 {
 	if (!check_file_format(world->tex_n, format)
-		|| !check_file_format(world->tex_s, format) 
+		|| !check_file_format(world->tex_s, format)
 		|| !check_file_format(world->tex_e, format)
 		|| !check_file_format(world->tex_w, format))
 		return (0);
@@ -86,13 +87,13 @@ static bool	check_texture_format(t_world *world, char *format)
 
 static bool	check_texture_path(t_world *world)
 {
-	if (open(world->tex_n, __O_DIRECTORY) != -1 
-		|| open(world->tex_s, __O_DIRECTORY) != -1 
+	if (open(world->tex_n, __O_DIRECTORY) != -1
+		|| open(world->tex_s, __O_DIRECTORY) != -1
 		|| open(world->tex_e, __O_DIRECTORY) != -1
 		|| open(world->tex_w, __O_DIRECTORY) != -1)
 		return (0);
 	if (open(world->tex_n, O_RDONLY) < 0
-		|| open(world->tex_s, O_RDONLY) < 0 
+		|| open(world->tex_s, O_RDONLY) < 0
 		|| open(world->tex_e, O_RDONLY) < 0
 		|| open(world->tex_w, O_RDONLY) < 0)
 		return (0);

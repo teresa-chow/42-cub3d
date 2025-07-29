@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/29 17:10:20 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/29 21:01:13 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ bool	check_input(int argc, char *map);
 // Config file checks
 void	validate_map(char *file, t_world *world);
 // Textures
-void    validate_texture(t_world *world, int fd);
+void	validate_texture(t_world *world, int fd);
 char	*get_texture_inf(char *line, char *id, t_world *world, int fd);
 void	find_identifier_value(char *s, t_world *world, int fd, char *value);
 int		all_textures_set_up(t_world *world);
@@ -93,5 +93,6 @@ void	printerr_exit(char *str, char *id);
 /* ================================= UTILS ================================= */
 bool	check_file_format(char *str, char *format);
 int		ft_isspace(int c);
+size_t	strlen_newline(const char *s);
 
 #endif

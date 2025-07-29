@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 15:42:55 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/29 11:52:24 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/07/29 21:05:05 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	create_cpy_map(t_world *world)
 	i = -1;
 	while (++i < world->map_len)
 	{
-		world->map_cpy[i] = ft_substr(world->map[i], 0, ft_strlen(world->map[i]));
+		world->map_cpy[i] = ft_substr(world->map[i], 0,
+				ft_strlen(world->map[i]));
 		if (!world->map_cpy[i])
 			exit_file_analyze(world, 0, "Error\nMemory allocation\n", NULL);
 	}
@@ -44,4 +45,16 @@ int	ft_isspace(int c)
 {
 	return (c == ' ' || c == '\t' || c == '\n'
 		|| c == '\v' || c == '\f' || c == '\r');
+}
+
+size_t	strlen_newline(const char *s)
+{
+	size_t	i;
+
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i] && s[i] != '\n')
+		i++;
+	return (i);
 }

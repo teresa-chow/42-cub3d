@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/29 15:40:10 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/07/29 21:11:59 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ void	validate_map(char *file, t_world *world)
 	get_player_pos(world);
 	get_player_dir(world);
 	format_map_lines(world);
-	// int i = -1;
-	// while (world->map[++i])
-	// 	printf("%s\n", world->map[i]);
 	check_closed_map(world);
 }
 
@@ -55,7 +52,7 @@ static void	check_specs(int fd, t_world *world)
 		else
 			free(line);
 		if (all_textures_set_up(world))
-			break;
+			break ;
 		line = get_next_line(fd);
 	}
 	if (all_textures_set_up(world))
@@ -84,12 +81,12 @@ static void	validate_lines(char *line, t_world *world, int fd)
 	else if (check_identifier(line, "EA"))
 		world->tex_e = get_texture_inf(line, "EA", world, fd);
 	else if (check_identifier(line, "F"))
-		world->ground_str =  get_texture_inf(line, "F", world, fd);
+		world->ground_str = get_texture_inf(line, "F", world, fd);
 	else if (check_identifier(line, "C"))
 		world->sky_str = get_texture_inf(line, "C", world, fd);
 	else
 	{
-		free(line);	
+		free(line);
 		exit_file_analyze(world, fd, "Error\n"
 			"Color or texture misconfiguration.\n", NULL);
 	}
@@ -98,10 +95,10 @@ static void	validate_lines(char *line, t_world *world, int fd)
 
 static int	check_identifier(char *line, char *id)
 {
-	int     i;
-	char    *start;
-	char    *end;
-	char    save;
+	int		i;
+	char	*start;
+	char	*end;
+	char	save;
 
 	i = 0;
 	while (line[i] && ft_isspace(line[i]))

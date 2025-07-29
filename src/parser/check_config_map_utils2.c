@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   check_config_map_utils2.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 15:34:07 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/29 15:35:02 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/07/29 21:31:52 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/parse.h"
 
-static void	remove_new_line(t_world *world);
+static void	remove_newline(t_world *world);
 
 void	format_map_lines(t_world *world)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	**map;
 
 	i = -1;
@@ -27,20 +27,19 @@ void	format_map_lines(t_world *world)
 	{
 		while (map[i][++j])
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'S' 
+			if (map[i][j] == 'N' || map[i][j] == 'S'
 			|| map[i][j] == 'E' || map[i][j] == 'W')
 				map[i][j] = '0';
-			
 		}
 		j = -1;
 	}
-	remove_new_line(world);
+	remove_newline(world);
 }
 
-static void	remove_new_line(t_world *world)
+static void	remove_newline(t_world *world)
 {
-	int	i;
-	int	len;
+	int		i;
+	int		len;
 	char	**map;
 	char	*new;
 
@@ -56,6 +55,6 @@ static void	remove_new_line(t_world *world)
 				exit_file_analyze(world, 0, "Error\nMemory allocation\n", NULL);
 			free(map[i]);
 			map[i] = new;
-		}			
+		}
 	}
 }

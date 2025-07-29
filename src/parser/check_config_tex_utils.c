@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_config_utils.c                               :+:      :+:    :+:   */
+/*   check_config_tex_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42porto.com>    #+#  +:+       +#+        */
+/*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-07-28 10:48:06 by carlaugu          #+#    #+#             */
-/*   Updated: 2025-07-28 10:48:06 by carlaugu         ###   ########.fr       */
+/*   Created: 2025/07/28 10:48:06 by carlaugu          #+#    #+#             */
+/*   Updated: 2025/07/29 21:18:55 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ void	find_identifier_value(char *s, t_world *world, int fd, char *value)
 		s++;
 	}
 	exit_file_analyze(world, fd, "Error\n"
-			"Missing value for identifier: ", value);
+		"Missing value for identifier: ", value);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_config_map_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:09:43 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/29 12:01:38 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/07/29 21:32:55 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int	is_map_line(char *s, int *player_pos)
 {
 	while (*s)
 	{
-		if (*s != '1' && *s != '0' && *s != 'N' && *s != 'S' 
+		if (*s != '1' && *s != '0' && *s != 'N' && *s != 'S'
 			&& *s != 'E' && *s != 'W' && *s != '\n' && *s != ' ')
 			return (0);
-		if (player_pos && (*s == 'N' || *s == 'S' 
-			|| *s == 'E' || *s == 'W'))
+		if (player_pos && (*s == 'N' || *s == 'S'
+				|| *s == 'E' || *s == 'W'))
 			(*player_pos)++;
 		s++;
 	}
@@ -51,8 +51,9 @@ void	check_valid_pos(char *line, t_world *world)
 	len = ft_strlen(line);
 	if (line[len - 1] == '\n')
 		sub = 2;
-	if (world->cam->pos_x == 0 || world->cam->pos_x == len - sub ||
-	world->cam->pos_y == 0 || world->cam->pos_y == world->map_len - 1)
+	if (world->cam->pos_x == 0 || world->cam->pos_x == len - sub
+		|| world->cam->pos_y == 0
+		|| world->cam->pos_y == world->map_len - 1)
 		exit_file_analyze(world, 0, "Error\nWrong player position!\n", NULL);
 }
 

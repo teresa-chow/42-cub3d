@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/25 17:30:43 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/29 21:33:59 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	check_only_digit(char *s);
 /* Convert RGB color to decimal value */
 void	convert_to_int(t_world *world, int fd, char id)
 {
-	char	**numbers;
+	char			**numbers;
 	unsigned int	r;
 	unsigned int	g;
 	unsigned int	b;
@@ -32,12 +32,13 @@ void	convert_to_int(t_world *world, int fd, char id)
 	else
 		numbers = ft_split(world->ground_str, ',');
 	if (!numbers)
-		exit_file_analyze(world, fd, "Error\nMemory Allocation!\n", NULL);
+		exit_file_analyze(world, fd, "Error\n"
+			"Memory allocation failed\n", NULL);
 	r = ft_atoi(numbers[0]);
 	g = ft_atoi(numbers[1]);
 	b = ft_atoi(numbers[2]);
 	if (r > 255 || g > 255 || b > 255)
-		exit_file_analyze(world, fd, "Error\nNumbers greater than 255 found", NULL);
+		exit_file_analyze(world, fd, "Error\nInvalid RGB values", NULL);
 	free_numbers(numbers);
 	if (id == 'C')
 		world->sky = (r << 16 | g << 8 | b);
@@ -47,7 +48,7 @@ void	convert_to_int(t_world *world, int fd, char id)
 
 static void	check_str_color(char id, t_world *world, int fd)
 {
-	int	i;
+	int		i;
 	char	*s;
 	char	*tmp;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_config_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:24:50 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/29 15:39:30 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/07/29 21:08:14 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ void	save_map(t_world *world, int fd)
 	while (line)
 	{
 		if (!ft_strstr(line, "NO") && !ft_strstr(line, "SO")
-		&& !ft_strstr(line, "WE") && !ft_strstr(line, "EA")
-		&& !ft_strstr(line, "F") && !ft_strstr(line, "C") && ft_strcmp("\n", line))
-			break;
+			&& !ft_strstr(line, "WE") && !ft_strstr(line, "EA")
+			&& !ft_strstr(line, "F") && !ft_strstr(line, "C")
+			&& ft_strcmp("\n", line))
+			break ;
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -53,7 +54,7 @@ static void	start_saving(t_world *world, int fd, char *line)
 
 void	get_player_pos(t_world *world)
 {
-	int	y;
+	int		y;
 	char	**map;
 
 	y = -1;
@@ -67,14 +68,14 @@ void	get_player_pos(t_world *world)
 		{
 			world->cam->pos_y = y;
 			check_valid_pos(map[y], world);
-			break;
+			break ;
 		}
 	}
 }
 
 void	get_player_dir(t_world *world)
 {
-	char	**map;
+	char		**map;
 	t_camera	*cam;
 
 	map = world->map;
@@ -104,12 +105,12 @@ void	get_player_dir(t_world *world)
 void	check_closed_map(t_world *world)
 {
 	char	**map_cpy;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	world->map_cpy = ft_calloc(world->map_len + 1, sizeof(char *));
 	if (!world->map_cpy)
-		exit_file_analyze(world, 0, "Error\nMemory allocation\n", NULL);
+		exit_file_analyze(world, 0, "Error\nMemory allocation failed\n", NULL);
 	create_cpy_map(world);
 	map_cpy = world->map_cpy;
 	i = -1;
@@ -118,15 +119,12 @@ void	check_closed_map(t_world *world)
 	{
 		while (map_cpy[i][++j])
 		{
-			if (map_cpy[i][j] == '0' || map_cpy[i][j] == 'N' 
-			|| map_cpy[i][j] == 'S' || map_cpy[i][j] == 'E' 
+			if (map_cpy[i][j] == '0' || map_cpy[i][j] == 'N'
+			|| map_cpy[i][j] == 'S' || map_cpy[i][j] == 'E'
 			|| map_cpy[i][j] == 'W')
 				flood_fill_cub(j, i, map_cpy, world->map_len, world);
 		}
 		j = -1;
 	}
-	// i = -1;
-	// while (map_cpy[++i])
-	// 	printf("%s\n", map_cpy[i]);
 	free_map(world->map_cpy, world->map_len);
 }

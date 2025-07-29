@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:12:30 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/27 23:09:20 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:56:07 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ static void	get_minimap_color(t_raycaster *rc, int y, int x, int *color)
 {
 	if (rc->world->map[y][x] == '0')
 		*color = BLACK;
+	else if (rc->world->map[y][x] == ' ')
+		*color = GRAY;
 	else
 		*color = WHITE;
 }

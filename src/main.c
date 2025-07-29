@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:41:55 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/28 12:55:09 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/29 21:36:42 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@ static void	init_vars(t_data *img, t_world *world, t_raycaster *raycaster);
 
 int	main(int argc, char **argv)
 {
-	t_data	img;
-	t_world	world;
+	t_data		img;
+	t_world		world;
 	t_raycaster	rc;
 
 	check_input(argc, argv[1]);
 	init_vars(&img, &world, &rc);
 	validate_map(argv[1], &world);
-	// fill t_world world; create and fill t_camera *cam
-	// launch_render_engine(&img, &world, &rc);
+	launch_render_engine(&img, &world, &rc);
 	//free world
 	return (0);
 }

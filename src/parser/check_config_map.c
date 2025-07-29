@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:59:32 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/27 23:00:34 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/29 21:30:24 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "../../include/parse.h"
 
 static void	check_map_content(t_world *world, int fd, char *line);
+static void	calc_map_dimensions(t_world *world, char *line);
 static void	check_map_placement(t_world *world, int fd);
 
 void	check_map(t_world *world, int fd)
@@ -29,30 +30,37 @@ void	check_map(t_world *world, int fd)
 static void	check_map_content(t_world *world, int fd, char *line)
 {
 	bool	in_map;
-	int	player_pos;
+	int		player_pos;
 
 	player_pos = 0;
 	in_map = false;
 	while (line)
 	{
-		if (ft_strlen(line) > (size_t)world->map_wid)
-		world->map_wid = ft_strlen(line);
-		world->map_len++;
+		calc_map_dimensions(world, line);
 		if (!in_map && is_map_line(line, &player_pos))
 			in_map = true;
 		else if (!is_map_line(line, &player_pos))
 			exit_file_analyze(world, fd, "Error\n"
-			"Invalid map provided.\n", NULL);
+				"Invalid map.\n", NULL);
 		if (player_pos > 1)
-			exit_file_analyze(world, fd, "Error\nDuplicate player position!\n", NULL);
+			exit_file_analyze(world, fd, "Error\n"
+				"Multiple player positions\n", NULL);
 		free(line);
 		line = get_next_line(fd);
 		if (line && !ft_strcmp("\n", line) && in_map)
-			break;
+			break ;
 	}
 	free(line);
 	if (!player_pos)
-		exit_file_analyze(world, fd, "Error\nPlayer position not found!\n", NULL);
+		exit_file_analyze(world, fd, "Error\n"
+			"Missing player position\n", NULL);
+}
+
+static void	calc_map_dimensions(t_world *world, char *line)
+{
+	if (strlen_newline(line) > (size_t)world->map_wid)
+		world->map_wid = strlen_newline(line);
+	world->map_len++;
 }
 
 static void	check_map_placement(t_world *world, int fd)
