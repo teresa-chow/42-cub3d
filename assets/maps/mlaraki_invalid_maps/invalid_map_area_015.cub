@@ -1,0 +1,6 @@
+NO ./assets/textures/birds_tex_n.xpm
+SO ./assets/textures/birds_tex_s.xpm
+WE ./assets/textures/birds_tex_w.xpm
+EA ./assets/textures/birds_tex_e.xpm
+C 255,200,160
+F 122,122,122
