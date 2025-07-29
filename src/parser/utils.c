@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 15:42:55 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/29 21:05:05 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:36:52 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	create_cpy_map(t_world *world)
 		world->map_cpy[i] = ft_substr(world->map[i], 0,
 				ft_strlen(world->map[i]));
 		if (!world->map_cpy[i])
-			exit_file_analyze(world, 0, "Error\nMemory allocation\n", NULL);
+			exit_file_analyze(world, 0, "Error\n"
+				"Memory allocation failed\n", NULL);
 	}
 }
 

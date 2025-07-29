@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/29 21:18:27 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:35:47 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static void	check_identifier_dup(char *id, t_world *world, int fd)
 void	validate_texture(t_world *world, int fd)
 {
 	if (!check_texture_format(world, ".xpm"))
-		exit_file_analyze(world, fd, "Error\nInvalid texture format. "
-			"Only .xpm files are accepted\n", NULL);
+		exit_file_analyze(world, fd, "Error\nInvalid texture format: "
+			"only XPM files accepted\n", NULL);
 	if (!check_texture_path(world))
 		exit_file_analyze(world, fd, "Error\n"
 			"Texture path misconfiguration\n", NULL);

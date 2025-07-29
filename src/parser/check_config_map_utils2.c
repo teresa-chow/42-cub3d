@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 15:34:07 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/29 21:31:52 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:34:46 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static void	remove_newline(t_world *world)
 			len = ft_strlen(map[i]) - ft_strlen(ft_strchr(map[i], '\n'));
 			new = ft_substr(map[i], 0, len);
 			if (!new)
-				exit_file_analyze(world, 0, "Error\nMemory allocation\n", NULL);
+				exit_file_analyze(world, 0, "Error\n"
+					"Memory allocation failed\n", NULL);
 			free(map[i]);
 			map[i] = new;
 		}

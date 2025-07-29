@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:24:50 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/29 21:08:14 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:36:40 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static void	start_saving(t_world *world, int fd, char *line)
 
 	world->map = ft_calloc(world->map_len + 1, sizeof(char *));
 	if (!world->map)
-		exit_file_analyze(world, fd, "Error\nMemory Allocation!\n", NULL);
+		exit_file_analyze(world, fd, "Error\n"
+			"Memory allocation failed\n", NULL);
 	i = -1;
 	while (line)
 	{
@@ -61,7 +62,7 @@ void	get_player_pos(t_world *world)
 	map = world->map;
 	world->cam = ft_calloc(sizeof(t_camera), sizeof(char));
 	if (!world->cam)
-		exit_file_analyze(world, 0, "Error\nMemory Allocation!\n", NULL);
+		exit_file_analyze(world, 0, "Error\nMemory allocation failed\n", NULL);
 	while (map[++y])
 	{
 		if (char_pos_found(map[y], world))

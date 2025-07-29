@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:59:32 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/29 21:30:24 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:14:15 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	check_map_content(t_world *world, int fd, char *line)
 			in_map = true;
 		else if (!is_map_line(line, &player_pos))
 			exit_file_analyze(world, fd, "Error\n"
-				"Invalid map.\n", NULL);
+				"Invalid map\n", NULL);
 		if (player_pos > 1)
 			exit_file_analyze(world, fd, "Error\n"
 				"Multiple player positions\n", NULL);

@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/29 21:33:59 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:09:15 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,11 @@ static void	check_str_color(char id, t_world *world, int fd)
 		tmp++;
 	}
 	if (i != 2)
-		exit_file_analyze(world, fd, "Error\nWrong color data!\n", NULL);
+		exit_file_analyze(world, fd, "Error\n"
+			"Color specs misconfiguration\n", NULL);
 	if (check_only_digit(s) < 0)
-		exit_file_analyze(world, fd, "Error\nWrong color data!\n", NULL);
+		exit_file_analyze(world, fd, "Error\n"
+			"Color specs misconfiguration\n", NULL);
 }
 
 static int	check_only_digit(char *s)

@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:09:43 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/29 21:32:55 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:34:25 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	check_valid_pos(char *line, t_world *world)
 	if (world->cam->pos_x == 0 || world->cam->pos_x == len - sub
 		|| world->cam->pos_y == 0
 		|| world->cam->pos_y == world->map_len - 1)
-		exit_file_analyze(world, 0, "Error\nWrong player position!\n", NULL);
+		exit_file_analyze(world, 0, "Error\nInvalid player position\n", NULL);
 }
 
 int	char_pos_found(char *line, t_world *world)

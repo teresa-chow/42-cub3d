@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/29 21:11:59 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:10:45 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	check_specs(int fd, t_world *world)
 	}
 	else
 		exit_file_analyze(world, fd, "Error\n"
-			"One or more required identifiers are missing!\n", NULL);
+			"Texture identifiers missing\n", NULL);
 }
 
 /* Check color and texture identifiers */
@@ -71,7 +71,7 @@ static void	validate_lines(char *line, t_world *world, int fd)
 {
 	if (is_map_line(line, NULL) && !all_textures_set_up(world))
 		exit_file_analyze(world, fd, "Error\n"
-			"One or more required identifiers are missing!\n", NULL);
+			"Missing identifiers\n", NULL);
 	if (check_identifier(line, "NO"))
 		world->tex_n = get_texture_inf(line, "NO", world, fd);
 	else if (check_identifier(line, "SO"))
@@ -88,7 +88,7 @@ static void	validate_lines(char *line, t_world *world, int fd)
 	{
 		free(line);
 		exit_file_analyze(world, fd, "Error\n"
-			"Color or texture misconfiguration.\n", NULL);
+			"Spec misconfiguration\n", NULL);
 	}
 	free(line);
 }
