@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 15:42:55 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/26 07:01:43 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/29 11:52:24 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@ bool	check_file_format(char *str, char *format)
 			return (0);
 	}
 	return (1);
+}
+
+void	create_cpy_map(t_world *world)
+{
+	int	i;
+
+	i = -1;
+	while (++i < world->map_len)
+	{
+		world->map_cpy[i] = ft_substr(world->map[i], 0, ft_strlen(world->map[i]));
+		if (!world->map_cpy[i])
+			exit_file_analyze(world, 0, "Error\nMemory allocation\n", NULL);
+	}
 }
 
 int	ft_isspace(int c)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_config_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:24:50 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/26 09:43:29 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/29 12:15:49 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,22 +79,22 @@ void	get_player_dir(t_world *world)
 
 	map = world->map;
 	cam = world->cam;
-	if (map[cam->pos_y][cam->pos_x] == 'N')
+	if (map[(int)cam->pos_y][(int)cam->pos_x] == 'N')
 	{
 		world->cam->dir_x = 0;
 		world->cam->dir_y = -1;
 	}
-	else if (map[cam->pos_y][cam->pos_x] == 'S')
+	else if (map[(int)cam->pos_y][(int)cam->pos_x] == 'S')
 	{
 		world->cam->dir_x = 0;
 		world->cam->dir_y = 1;
 	}
-	else if (map[cam->pos_y][cam->pos_x] == 'E')
+	else if (map[(int)cam->pos_y][(int)cam->pos_x] == 'E')
 	{
 		world->cam->dir_x = 1;
 		world->cam->dir_y = 0;
 	}
-	else if (map[cam->pos_y][cam->pos_x] == 'W')
+	else if (map[(int)cam->pos_y][(int)cam->pos_x] == 'W')
 	{
 		world->cam->dir_x = -1;
 		world->cam->dir_y = 0;
@@ -105,18 +105,25 @@ void	check_closed_map(t_world *world)
 {
 	char	**map_cpy;
 	int	i;
+	int	j;
 
 	world->map_cpy = ft_calloc(world->map_len + 1, sizeof(char *));
 	if (!world->map_cpy)
 		exit_file_analyze(world, 0, "Error\nMemory allocation\n", NULL);
-	i = -1;
-	while (++i < world->map_len)
-	{
-		world->map_cpy[i] = ft_substr(world->map[i], 0, ft_strlen(world->map[i]));
-		if (!world->map_cpy[i])
-			exit_file_analyze(world, 0, "Error\nMemory allocation\n", NULL);
-	}
+	create_cpy_map(world);
 	map_cpy = world->map_cpy;
-	flood_fill_cub(world->cam->pos_x,world->cam->pos_y, map_cpy, world->map_len, world);
+	i = -1;
+	j = -1;
+	while (map_cpy[++i])
+	{
+		while (map_cpy[i][++j])
+		{
+			if (map_cpy[i][j] == '0' || map_cpy[i][j] == 'N' 
+			|| map_cpy[i][j] == 'S' || map_cpy[i][j] == 'E' 
+			|| map_cpy[i][j] == 'W')
+				flood_fill_cub(j, i, map_cpy, world->map_len, world);
+		}
+		j = -1;
+	}
 	free_map(world->map_cpy, world->map_len);
 }

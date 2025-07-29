@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   memory_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 16:26:27 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/25 16:27:12 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/29 12:10:31 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ void	free_world(t_world *world)
 	free(world->ground_str);
 	free(world->sky_str);
 	free(world->cam);
-	if (world->map)
-	{
+	if (world->map_cpy)
 		free_map(world->map_cpy, world->map_len);
+	if (world->map)
 		free_map(world->map, world->map_len);
-	}
 }
 
 void	free_map(char **map, int len)

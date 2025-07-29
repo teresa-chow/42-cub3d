@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/26 09:58:26 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/29 11:53:33 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
 */
 typedef struct s_camera
 {
-	int			pos_x;
-	int			pos_y;
-	int			dir_x;
-	int			dir_y;
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
 }	t_camera;
 
 /* World - config info provided in *.cub */
@@ -90,6 +90,7 @@ char	*find_map(int fd);
 void	get_player_pos(t_world *world);
 void	get_player_dir(t_world *world);
 void	check_valid_pos(char *line, t_world *world);
+void	create_cpy_map(t_world *world);
 int		is_map_line(char *s, int *player_pos);
 int		char_pos_found(char *line, t_world *world);
 int		flood_fill_cub(int x, int y, char **map, int high, t_world *world);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_config_map_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42porto.com>    #+#  +:+       +#+        */
+/*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-07-28 11:09:43 by carlaugu          #+#    #+#             */
-/*   Updated: 2025-07-28 11:09:43 by carlaugu         ###   ########.fr       */
+/*   Created: 2025/07/28 11:09:43 by carlaugu          #+#    #+#             */
+/*   Updated: 2025/07/29 12:01:38 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ char	*find_map(int fd)
 /* Check if is a valid map line */
 int	is_map_line(char *s, int *player_pos)
 {
-	if (player_pos && ft_strlen(s) < 3)
-		return (0);
 	while (*s)
 	{
 		if (*s != '1' && *s != '0' && *s != 'N' && *s != 'S' 
