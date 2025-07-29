@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:24:50 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/30 00:36:40 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:41:42 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	save_map(t_world *world, int fd)
 	start_saving(world, fd, line);
 }
 
-static void	start_saving(t_world *world, int fd, char *line)
+static void	start_saving(t_world *world, int fd, char *line) //review alloc with ft_calloc(map_wid + 1), not gnl
 {
 	int	i;
 
