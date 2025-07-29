@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_config_tex.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/26 09:44:00 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/29 14:33:32 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,15 @@ static bool	check_texture_format(t_world *world, char *format)
 
 static bool	check_texture_path(t_world *world)
 {
-		if (open(world->tex_n, O_RDONLY) < 0
-			|| open(world->tex_s, O_RDONLY) < 0 
-			|| open(world->tex_e, O_RDONLY) < 0
-			|| open(world->tex_w, O_RDONLY) < 0)
+	if (open(world->tex_n, __O_DIRECTORY) != -1 
+		|| open(world->tex_s, __O_DIRECTORY) != -1 
+		|| open(world->tex_e, __O_DIRECTORY) != -1
+		|| open(world->tex_w, __O_DIRECTORY) != -1)
+		return (0);
+	if (open(world->tex_n, O_RDONLY) < 0
+		|| open(world->tex_s, O_RDONLY) < 0 
+		|| open(world->tex_e, O_RDONLY) < 0
+		|| open(world->tex_w, O_RDONLY) < 0)
 		return (0);
 	return (1);
 }
