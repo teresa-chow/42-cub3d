@@ -6,7 +6,7 @@
 /*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/29 14:33:32 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/07/29 14:42:15 by carlaugu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void    validate_texture(t_world *world, int fd)
 		exit_file_analyze(world, fd, "Error\nInvalid texture format. "
 			"Only .xpm files are accepted\n", NULL);
 	if (!check_texture_path(world))
-		exit_file_analyze(world, fd, "Error\nSpec misconfiguration\n", NULL);
+		exit_file_analyze(world, fd, "Error\nTexture path misconfiguration\n", NULL);
 }
 
 static bool	check_texture_format(t_world *world, char *format)
