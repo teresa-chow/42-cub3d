@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+         #
+#    By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 16:14:09 by tchow-so          #+#    #+#              #
-#    Updated: 2025/07/29 15:35:45 by carlaugu         ###   ########.fr        #
+#    Updated: 2025/07/30 11:40:53 by tchow-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,16 +19,18 @@ NAME	= cub3D
 SRC				= $(addprefix $(SRC_DIR)/, main.c)
 SRC_PARSER		= $(addprefix $(PARSER_DIR)/, check_config_color.c \
 	check_config_map.c check_config_tex.c check_config.c check_input.c \
-	error_handling.c get_config_map.c memory_management.c check_config_tex_utils.c \
-	check_config_map_utils.c check_config_map_utils2.c utils.c)
+	get_config_map.c check_config_tex_utils.c check_config_map_utils.c \
+	check_config_map_utils2.c utils.c)
 SRC_RENDERER	= $(addprefix $(RENDERER_DIR)/, calc_movement.c calc_rotation.c \
 	event_log.c graphics_utils.c minimap.c minimap_grid.c minimap_player.c \
 	raycaster_calc00.c raycaster_calc01.c raycaster_texture.c render_frame.c \
 	render_launch.c time_management.c)
+SRC_UTILS		= $(addprefix $(UTILS_DIR)/, error_handling.c memory_management.c)
 
 OBJS			= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC:.c=.o)))
 OBJS_PARSER		= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_PARSER:.c=.o)))
 OBJS_RENDERER	= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_RENDERER:.c=.o)))
+OBJS_UTILS		= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_UTILS:.c=.o)))
 
 LIBFT_ARC	= $(LIBFT_DIR)/libft.a
 
@@ -41,6 +43,7 @@ INC_DIR			= include
 SRC_DIR 		= src
 PARSER_DIR		= $(SRC_DIR)/parser
 RENDERER_DIR	= $(SRC_DIR)/renderer
+UTILS_DIR		= $(SRC_DIR)/utils
 
 BUILD_DIR	= .build
 LIB_DIR		= lib
@@ -88,9 +91,9 @@ MKDIR	= mkdir -p
 all: $(NAME)	## Compile cub3D
 
 $(NAME): $(LIBFT_ARC) $(MLX_ARC) $(BUILD_DIR) $(OBJS) $(OBJS_PARSER) \
-	$(OBJS_RENDERER)
+	$(OBJS_RENDERER) $(OBJS_UTILS)
 	@printf "$(GRN)>> Generated object files$(NC)\n\n"
-	$(CC) $(CFLAGS) $(OBJS) $(OBJS_PARSER) $(OBJS_RENDERER) \
+	$(CC) $(CFLAGS) $(OBJS) $(OBJS_PARSER) $(OBJS_RENDERER) $(OBJS_UTILS) \
 	$(LIBFT_ARC) $(MLX_ARC) $(MLX_FLAGS) -o $(NAME)
 	@printf "$(GRN)>> Compiled cub3D$(NC)\n\n"
 
@@ -106,6 +109,9 @@ $(BUILD_DIR)/%.o: $(PARSER_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/%.o: $(RENDERER_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(UTILS_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 

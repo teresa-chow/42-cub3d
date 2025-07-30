@@ -6,13 +6,14 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/30 00:35:47 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:32:39 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* This file handles TEXTURE configuration specifications */
 
 #include "../../include/parse.h"
+#include "../../include/utils.h"
 
 static bool	check_texture_format(t_world *world, char *format);
 static bool	check_texture_path(t_world *world);

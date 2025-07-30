@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:00:20 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/29 21:35:46 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:14:49 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,13 @@ int	raycaster(t_raycaster *rc) // check return value upon error
 		perform_dda(rc);
 		calc_cam_dist(rc);
 		calc_line_val(rc);
-		draw_vertical_line(rc, x); //tmp
-		//fill_textures(rc, x);
+		draw_vertical_line(rc, x);
 		x++;
 	}
 	return (0);
 }
 
-//TODO: delete tmp function
+// tmp ------------------------------------------------------
 /*static void	draw_vertical_line(t_raycaster *rc, int x)
 {
 	int		i;

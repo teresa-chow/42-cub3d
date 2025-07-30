@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   memory_management.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlaugu <carlaugu@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 16:26:27 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/29 12:10:31 by carlaugu         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:31:22 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/parse.h"
+#include "../../include/utils.h"
 
 void	free_world(t_world *world)
 {

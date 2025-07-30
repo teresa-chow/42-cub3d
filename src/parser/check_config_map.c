@@ -6,13 +6,14 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:59:32 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/30 00:14:15 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:32:25 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* This file handles map configuration errors */
 
 #include "../../include/parse.h"
+#include "../../include/utils.h"
 
 static void	check_map_content(t_world *world, int fd, char *line);
 static void	calc_map_dimensions(t_world *world, char *line);

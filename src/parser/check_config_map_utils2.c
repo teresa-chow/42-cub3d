@@ -6,11 +6,12 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 15:34:07 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/30 00:34:46 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:31:58 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/parse.h"
+#include "../../include/utils.h"
 
 static void	remove_newline(t_world *world);
 

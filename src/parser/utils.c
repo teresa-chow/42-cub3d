@@ -6,11 +6,12 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 15:42:55 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/30 00:36:52 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:33:02 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/parse.h"
+#include "../../include/utils.h"
 
 bool	check_file_format(char *str, char *format)
 {

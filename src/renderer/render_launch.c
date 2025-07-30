@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:56:00 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/29 20:55:52 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:00:08 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static void	init_raycaster(t_world *world, t_raycaster *rc, t_data *img)
 	rc->cam = world->cam;
 	rc->plane_x = -rc->cam->dir_y * 0.66;
 	rc->plane_y = rc->cam->dir_x * 0.66;
+	init_textures(rc);
 	/*if (rc->cam->dir_x == 0)
 		rc->plane_x = 0.66;
 	else if (rc->cam->dir_y == 0)

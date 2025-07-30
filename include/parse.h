@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/30 10:27:41 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:39:36 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,15 +95,6 @@ void	format_map_lines(t_world *world);
 int		is_map_line(char *s, int *player_pos);
 int		char_pos_found(char *line, t_world *world);
 int		flood_fill_cub(int x, int y, char **map, int high, t_world *world);
-
-/* ======================= DYNAMIC MEMORY MANAGEMENT ======================= */
-void	free_world(t_world *world);
-void	free_numbers(char **numbers);
-void	free_map(char **map, int len);
-
-/* ============================= ERROR HANDLING ============================ */
-void	exit_file_analyze(t_world *world, int fd, char *msg, char *value);
-void	printerr_exit(char *str, char *id);
 
 /* ================================= UTILS ================================= */
 bool	check_file_format(char *str, char *format);

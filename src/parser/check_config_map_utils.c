@@ -6,11 +6,12 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:09:43 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/30 00:34:25 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:32:05 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/parse.h"
+#include "../../include/utils.h"
 
 /* Get lines until have a filled line after the texts*/
 char	*find_map(int fd)

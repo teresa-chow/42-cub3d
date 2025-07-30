@@ -6,15 +6,15 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/29 17:33:48 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:11:20 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_H
 # define RENDER_H
 
-# define WIN_W 1024 //1920
-# define WIN_H 576 //1080
+# define WIN_W 1600
+# define WIN_H 900
 # define BLACK 0
 # define WHITE 16777215
 # define GRAY 3158064
@@ -76,23 +76,23 @@ typedef struct s_raycaster
 	bool			key_state[6]; // W A S D Left Right
 	t_world			*world;
 	t_camera		*cam;
-	double			cam_x; //x-coordinate in camera space
-	double			plane_x; //camera plane
+	double			cam_x; // x-coordinate in camera space
+	double			plane_x; // camera plane
 	double			plane_y;
-	double			ray_dir_x; //ray direction
+	double			ray_dir_x; // ray direction
 	double			ray_dir_y;
-	int				map_x; //current map cell
+	int				map_x; // current map cell
 	int				map_y;
-	double			side_dist_x; //ray length from curr pos to next x/y-side
+	double			side_dist_x; // ray length from curr pos to next x/y-side
 	double			side_dist_y;
-	double			delta_dist_x; //ray length from x/y-side to next x/y-side
+	double			delta_dist_x; // ray length from x/y-side to next x/y-side
 	double			delta_dist_y;
 	double			perp_wall_dist;
 	int				step_x;
 	int				step_y;
-	bool			hit; //wall hit control
-	t_wall			wall; //which wall was hit
-	double			wall_x; //point where the wall was hit (still unused)
+	bool			hit; // wall hit control
+	t_wall			wall; // which wall was hit
+	double			wall_x; // point where the wall was hit
 	int				line_height;
 	int				line_start;
 	int				line_end;
@@ -122,6 +122,8 @@ int		handle_keypress(int keycode, t_raycaster *rc);
 int		handle_keyrelease(int keycode, t_raycaster *rc);
 // Time management
 void	get_time_ms(unsigned int *curr_time);
+// Textures
+void	init_textures(t_raycaster *rc);
 // Graphics
 //void	fill_textures(t_raycaster *rc, int x);
 void	fill_background(t_raycaster *rc);

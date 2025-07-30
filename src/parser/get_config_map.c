@@ -6,13 +6,14 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:24:50 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/30 00:41:42 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:31:06 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* This file handles map configuration value */
 
 #include "../../include/parse.h"
+#include "../../include/utils.h"
 
 static void	start_saving(t_world *world, int fd, char *line);
 

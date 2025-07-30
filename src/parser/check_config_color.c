@@ -6,13 +6,14 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/30 00:09:15 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:30:43 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* This file handles COLOR configuration specifications */
 
 #include "../../include/parse.h"
+#include "../../include/utils.h"
 
 static void	check_str_color(char id, t_world *world, int fd);
 static int	check_only_digit(char *s);
