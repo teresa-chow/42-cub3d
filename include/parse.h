@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/29 21:01:13 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 09:22:05 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@
 # include "../lib/libft/ft_printf/ft_printf.h"
 # include "../lib/libft/get_next_line/get_next_line.h"
 
-/* Camera - player viewpoint: */
-/*
-	NORTH (N) : -Y dir_x = 0 dir_y = -1;
-	SOUTH (S) : +Y dir_x = 0 dir_y = 1;
-	EAST (E): +X dir_x = 1 dir_y = 0;
-	WEST (W): -X dir_x = -1 dir_y = 0;
+/* Camera - player pov:
+	NORTH (N)	: -Y;
+	SOUTH (S)	: +Y;
+	EAST (E)	: +X;
+	WEST (W)	: -X;
 */
 typedef struct s_camera
 {
@@ -35,22 +34,39 @@ typedef struct s_camera
 	double			dir_y;
 }	t_camera;
 
+
+typedef struct s_texture
+{
+	void			*img;
+	char			*addr;
+	char			*data;
+	int				bits_pxl;
+	int				line_len;
+	int				endian;
+	int				width;
+	int				height;
+}	t_texture;
+
 /* World - config info provided in *.cub */
 typedef struct s_world
 {
-	char			*tex_n; //path to textures: north
-	char			*tex_s; //south
-	char			*tex_w; //west
-	char			*tex_e; //east
-	char			*ground_str;
-	int				ground; //ground color
-	char			*sky_str;
-	int				sky; //ceiling color
+	char			*tex_n;
+	char			*tex_s;
+	char			*tex_w;
+	char			*tex_e;
+	t_texture		tex_north;
+	t_texture		tex_south;
+	t_texture		tex_west;
+	t_texture		tex_east;
+	char			*ground_str; //
+	int				ground;
+	char			*sky_str; //
+	int				sky;
 	int				map_len;
 	int				map_wid;
-	char			**map; //map is a 2D-array
-	char			**map_cpy;
-	t_camera		*cam; //define player start position and direction
+	char			**map;
+	char			**map_cpy; //
+	t_camera		*cam;
 }	t_world;
 
 /* ============================== VALIDATION =============================== */
