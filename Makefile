@@ -6,7 +6,7 @@
 #    By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 16:14:09 by tchow-so          #+#    #+#              #
-#    Updated: 2025/07/30 11:40:53 by tchow-so         ###   ########.fr        #
+#    Updated: 2025/07/30 15:14:47 by tchow-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,9 @@ SRC_PARSER		= $(addprefix $(PARSER_DIR)/, check_config_color.c \
 	check_config_map_utils2.c utils.c)
 SRC_RENDERER	= $(addprefix $(RENDERER_DIR)/, calc_movement.c calc_rotation.c \
 	event_log.c graphics_utils.c minimap.c minimap_grid.c minimap_player.c \
-	raycaster_calc00.c raycaster_calc01.c raycaster_texture.c render_frame.c \
-	render_launch.c time_management.c)
+	raycaster_calc00.c raycaster_calc01.c raycaster_texture00.c \
+	raycaster_texture01.c render_frame.c render_launch.c render_wall.c \
+	time_management.c)
 SRC_UTILS		= $(addprefix $(UTILS_DIR)/, error_handling.c memory_management.c)
 
 OBJS			= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC:.c=.o)))

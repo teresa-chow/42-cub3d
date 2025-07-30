@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/30 11:11:20 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 18:25:01 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,15 @@ typedef struct s_dda
 	float			x_inc;
 	float			y_inc;
 }	t_dda;
+
+typedef struct s_texel_info
+{
+	int			tex_x;
+	int			tex_y;
+	double		tex_pos;
+	double		step;
+	t_texture	*texture;
+}	t_texel_info;
 
 typedef enum e_wall
 {
@@ -114,6 +123,8 @@ void	calc_step(t_raycaster *rc);
 void	perform_dda(t_raycaster *rc);
 void	calc_cam_dist(t_raycaster *rc);
 void	calc_line_val(t_raycaster *rc);
+void	calc_wall_x(t_raycaster *rc);
+void	draw_vertical_line(t_raycaster *rc, int x);
 // Calculate player position and direction
 void	calc_player_movement(t_raycaster *rc);
 void	calc_player_rotation(t_raycaster *rc);
@@ -124,8 +135,10 @@ int		handle_keyrelease(int keycode, t_raycaster *rc);
 void	get_time_ms(unsigned int *curr_time);
 // Textures
 void	init_textures(t_raycaster *rc);
+int		map_wall_x_to_tex(t_raycaster *rc);
+int		get_texel(t_raycaster *rc, int y, int tex_x);
+int		get_texel(t_raycaster *rc, int y, int x);
 // Graphics
-//void	fill_textures(t_raycaster *rc, int x);
 void	fill_background(t_raycaster *rc);
 void	pixel_put(t_data *img, int x, int y, int color);
 
