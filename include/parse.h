@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/30 09:22:05 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 10:27:41 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_camera
 	double			dir_y;
 }	t_camera;
 
-
 typedef struct s_texture
 {
 	void			*img;
@@ -58,14 +57,14 @@ typedef struct s_world
 	t_texture		tex_south;
 	t_texture		tex_west;
 	t_texture		tex_east;
-	char			*ground_str; //
+	char			*ground_str;
 	int				ground;
-	char			*sky_str; //
+	char			*sky_str;
 	int				sky;
 	int				map_len;
 	int				map_wid;
 	char			**map;
-	char			**map_cpy; //
+	char			**map_cpy;
 	t_camera		*cam;
 }	t_world;
 
