@@ -1,21 +1,4 @@
 Parsing:
-tests:
-[ ] update texture paths in assets/maps/mlaraki_invalid_maps from invalid_RGB_011.cub onwards
-
-errors:
-[x] F 255,255,0
-    C
-    C 255,255,255 -- segfault
-[x] NO ./path/to/texture.xpm
-    SO ./path/to/texture.xpm
-    EA ./path/to/texture.xpm
-    WE ./path/to/texture.xpm
-    only (no more info) -- segfault
-[ ] empty newlines after map content -- program execution/parser gets stuck
-[x] Review error messages:
-    [x] "Map content misconfiguration" instead of "Map content has to be last" -- duplicate maps fall in this category
-    [x] NO NO ./path/to/texture.xpm -- update error message "Spec misconfiguration", "Invalid path" instead of "Failed to open file"
-
 validate map configuration:
   1. map section:
   [x] must be at the bottom (last piece of information)
