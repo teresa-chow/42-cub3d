@@ -6,11 +6,12 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 10:48:06 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/29 21:18:55 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:43:34 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/parse.h"
+#include "../../include/utils.h"
 
 /* Check that all textures are set up */
 int	all_textures_set_up(t_world *world)

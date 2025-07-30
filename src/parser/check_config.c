@@ -6,13 +6,14 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/30 00:10:45 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/30 11:48:54 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* This file handles configuration specifications */
 
 #include "../../include/parse.h"
+#include "../../include/utils.h"
 
 static void	check_specs(int fd, t_world *world);
 static void	validate_lines(char *line, t_world *world, int fd);
