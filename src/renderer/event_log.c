@@ -6,11 +6,12 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:00:07 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/17 12:48:27 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 16:50:40 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
+#include "../../include/utils.h"
 
 static void	log_movement(int keycode, bool key_state[6]);
 static void	log_rotation(int keycode, bool key_state[6]);
@@ -78,11 +79,15 @@ static void	log_rotation(int keycode, bool key_state[6])
 
 int	close_quit(t_raycaster *rc)
 {
+	mlx_destroy_image(rc->img->mlx, rc->world->tex_north.img);
+	mlx_destroy_image(rc->img->mlx, rc->world->tex_south.img);
+	mlx_destroy_image(rc->img->mlx, rc->world->tex_west.img);
+	mlx_destroy_image(rc->img->mlx, rc->world->tex_east.img);
 	mlx_destroy_image(rc->img->mlx, rc->img->img);
 	mlx_destroy_window(rc->img->mlx, rc->img->window);
 	mlx_destroy_display(rc->img->mlx);
 	free(rc->img->mlx);
-	//free what's missing
+	free_world(rc->world);
 	exit(EXIT_SUCCESS);
 	return (0);
 }
