@@ -22,7 +22,10 @@ jobs:
           python3 -m pip install norminette
           norminette lib/libft/ include/ src/
 
-      - name: Check leaks on invalid maps (Valgrind)
+      - name: Install Valgrind
+        run: sudo apt-get update && sudo apt-get install -y valgrind
+
+      - name: Check leaks on invalid maps
         run: |
           PROGRAM=./cub3D
           MAP_DIRS=("assets/maps/invalid/color" "assets/maps/invalid/content" \
