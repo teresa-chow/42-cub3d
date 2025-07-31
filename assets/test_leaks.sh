@@ -30,19 +30,17 @@ for DIR in "${MAP_DIRS[@]}"; do
 
     for MAP in "$DIR"/*; do
         [ -f "$MAP" ] || continue
-        printf "%s ${CYA_B}%s${NC} " "$PROGRAM" "$MAP"
+        printf "%s ${CYA_B}%s${NC}\n" "$PROGRAM" "$MAP"
         VALGRIND_LOG=$(mktemp)
-        ERR_MSG=$(valgrind --leak-check=full --show-leak-kinds=all --error-exitcode=3 \
+        ERR_MSG=$(valgrind --leak-check=full --show-leak-kinds=all \
             "$PROGRAM" "$MAP" 2> "$VALGRIND_LOG" >/dev/null)
-        STATUS=$?
-
-        if [ $STATUS -eq 0 ]; then
-            printf "${GRN_B}NO LEAKS${NC}\n"
-        elif [ $STATUS -eq 3 ]; then
+        if grep -q "in use at exit: [^0]" "$VALGRIND_LOG"; then
             printf "${RED_B}CRAPPY CODE - BOO!${NC} 💔\n"
             sed 's/^/    /' "$VALGRIND_LOG"
             rm "$VALGRIND_LOG"
             exit 1
+        else
+            printf "${GRN_B}NO LEAKS${NC}\n"
         fi
         rm -f "$VALGRIND_LOG"
     done
