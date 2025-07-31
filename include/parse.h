@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/31 12:04:53 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 17:25:14 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ typedef struct s_world
 	int				map_len;
 	int				map_wid;
 	char			**map;
-	char			**map_cpy; //
 	t_camera		*cam;
 }	t_world;
 
@@ -98,7 +97,8 @@ char	*find_map(int fd);
 void	get_player_pos(t_world *world);
 void	get_player_dir(t_world *world);
 void	check_valid_pos(t_world *world);
-void	create_cpy_map(t_world *world);
+char	**map_dup(t_world *world);
+//void	create_cpy_map(t_world *world);
 void	zero_player_pos_map(t_world *world);
 int		is_map_line(char *s, int *player_pos);
 int		pos_found(int y, t_world *world);

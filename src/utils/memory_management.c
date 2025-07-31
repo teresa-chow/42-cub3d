@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 16:26:27 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/30 11:31:22 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 17:25:36 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	free_world(t_world *world)
 	free(world->ground_str);
 	free(world->sky_str);
 	free(world->cam);
-	if (world->map_cpy)
-		free_map(world->map_cpy, world->map_len);
 	if (world->map)
 		free_map(world->map, world->map_len);
 }

@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:59:32 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/31 09:33:25 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 17:25:19 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,27 +81,25 @@ static void	check_map_placement(t_world *world, int fd)
 
 void	check_closed_map(t_world *world)
 {
-	char	**map_cpy;
+	char	**map_copy;
 	int		i;
 	int		j;
 
-	world->map_cpy = ft_calloc(world->map_len + 1, sizeof(char *));
-	if (!world->map_cpy)
+	map_copy = map_dup(world);
+	if (!map_copy)
 		exit_file_analyze(world, 0, "Error\nMemory allocation failed\n", NULL);
-	create_cpy_map(world);
-	map_cpy = world->map_cpy;
 	i = -1;
 	j = -1;
-	while (map_cpy[++i])
+	while (map_copy[++i])
 	{
-		while (map_cpy[i][++j])
+		while (map_copy[i][++j])
 		{
-			if (map_cpy[i][j] == '0' || map_cpy[i][j] == 'N'
-			|| map_cpy[i][j] == 'S' || map_cpy[i][j] == 'E'
-			|| map_cpy[i][j] == 'W')
-				flood_fill_cub(j, i, map_cpy, world);
+			if (map_copy[i][j] == '0' || map_copy[i][j] == 'N'
+			|| map_copy[i][j] == 'S' || map_copy[i][j] == 'E'
+			|| map_copy[i][j] == 'W')
+				flood_fill_cub(j, i, map_copy, world);
 		}
 		j = -1;
 	}
-	free_map(world->map_cpy, world->map_len);
+	free_map(map_copy, world->map_len);
 }
