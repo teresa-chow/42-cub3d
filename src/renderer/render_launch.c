@@ -6,11 +6,12 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:56:00 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/30 11:00:08 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 18:43:51 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
+#include "../../include/utils.h"
 
 static void	init_mlx(t_data *img);
 static void	init_raycaster(t_world *world, t_raycaster *rc, t_data *img);

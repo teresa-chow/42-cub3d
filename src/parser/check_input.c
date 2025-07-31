@@ -6,13 +6,14 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:17:18 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/29 21:10:26 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 18:43:14 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* This file handles command line argument errors */
 
 #include "../../include/parse.h"
+#include "../../include/utils.h"
 
 static bool	check_file_name(char *str);
 
