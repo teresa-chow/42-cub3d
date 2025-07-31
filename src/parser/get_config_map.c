@@ -124,7 +124,7 @@ void	check_closed_map(t_world *world)
 			if (map_cpy[i][j] == '0' || map_cpy[i][j] == 'N'
 			|| map_cpy[i][j] == 'S' || map_cpy[i][j] == 'E'
 			|| map_cpy[i][j] == 'W')
-				flood_fill_cub(j, i, map_cpy, world->map_len, world);
+				flood_fill_cub(j, i, map_cpy, world);
 		}
 		j = -1;
 	}

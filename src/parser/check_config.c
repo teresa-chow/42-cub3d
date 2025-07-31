@@ -38,6 +38,7 @@ void	validate_map(char *file, t_world *world)
 	get_player_dir(world);
 	format_map_lines(world);
 	check_closed_map(world);
+	resize_lines(world);
 }
 
 /* Check config specs other than map (textures and colors) */

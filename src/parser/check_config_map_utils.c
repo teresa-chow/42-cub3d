@@ -74,18 +74,18 @@ int	char_pos_found(char *line, t_world *world)
 	return (0);
 }
 
-int	flood_fill_cub(int x, int y, char **map, int high, t_world *world)
+int	flood_fill_cub(int x, int y, char **map, t_world *world)
 {
-	if (x < 0 || y < 0 || (size_t)x >= ft_strlen(map[y]) || y >= high)
+	if (x < 0 || y < 0 || (size_t)x >= ft_strlen(map[y]) || y >= world->map_len)
 		exit_file_analyze(world, 0, "Error\nMap not closed\n", NULL);
 	if (ft_isspace(map[y][x]))
 		exit_file_analyze(world, 0, "Error\nMap not closed\n", NULL);
 	if (map[y][x] == '1' || map[y][x] == 'x')
 		return (0);
 	map[y][x] = 'x';
-	flood_fill_cub(x + 1, y, map, high, world);
-	flood_fill_cub(x - 1, y, map, high, world);
-	flood_fill_cub(x, y - 1, map, high, world);
-	flood_fill_cub(x, y + 1, map, high, world);
+	flood_fill_cub(x + 1, y, map, world);
+	flood_fill_cub(x - 1, y, map, world);
+	flood_fill_cub(x, y - 1, map, world);
+	flood_fill_cub(x, y + 1, map, world);
 	return (0);
 }

@@ -60,3 +60,22 @@ static void	remove_newline(t_world *world)
 		}
 	}
 }
+
+void	resize_lines(t_world *world)
+{
+	int	i;
+	int	len;
+	char	*new;
+	char	**map;
+
+	i = -1;
+	map = world->map;
+	while (++i < world->map_len)
+	{
+        	new = ft_calloc(world->map_wid + 1, sizeof(char));
+        	len = ft_strlen(map[i]) - ft_strlen(ft_strchr(map[i], '\n'));
+        	ft_strlcpy(new, map[i], len);
+        	free(map[i]);
+        	map[i] = new;
+	}
+}
