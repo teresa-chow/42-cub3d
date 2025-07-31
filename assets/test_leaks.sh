@@ -1,13 +1,12 @@
 #!/bin/bash
 # =========================================================================== #
-# cub3D: script to test maps (valid and invalid)                              #
-# Created on: 2025-07-29                                                      #
+# cub3D: script to check for memory leaks                                     #
+# Created on: 2025-07-31                                                      #
 # =========================================================================== #
 
 PROGRAM=./cub3D
 MAP_DIRS=("assets/maps/invalid/color" "assets/maps/invalid/content"
-    "assets/maps/invalid/tex" "assets/maps/valid/color"
-    "assets/maps/valid/content" "assets/maps/valid/tex")
+    "assets/maps/invalid/tex")
 
 # -----------------------------------------------------------------------------
 # UTILS: ANSI COLOR SEQUENCES
@@ -31,15 +30,23 @@ for DIR in "${MAP_DIRS[@]}"; do
 
     for MAP in "$DIR"/*; do
         [ -f "$MAP" ] || continue
-        printf "%s ${CYA_B}%s${NC} " "$PROGRAM"  "$MAP"
-        ERR_MSG=$($PROGRAM "$MAP" 2>&1 >/dev/null)
+        printf "%s ${CYA_B}%s${NC} " "$PROGRAM" "$MAP"
+        VALGRIND_LOG=$(mktemp)
+        ERR_MSG=$(valgrind --leak-check=full --show-leak-kinds=all --error-exitcode=3 \
+            "$PROGRAM" "$MAP" 2> "$VALGRIND_LOG" >/dev/null)
         STATUS=$?
+
         if [ $STATUS -eq 0 ]; then
-            printf "${GRN_B}VALIDATED${NC}\n"
-        else
-            printf "${RED_B}MARKED AS INVALID${NC}\n"
-            [ -n "$ERR_MSG" ] && printf "${RED}%s${NC}\n" "$ERR_MSG" | sed 's/^/    /'
+            printf "${GRN_B}NO LEAKS${NC}\n"
+        elif [ $STATUS -eq 3 ]; then
+            printf "${RED_B}CRAPPY CODE - BOO!${NC} 💔\n"
+            sed 's/^/    /' "$VALGRIND_LOG"
+            rm "$VALGRIND_LOG"
+            exit 1
         fi
+        rm -f "$VALGRIND_LOG"
     done
     echo
 done
+
+printf "🥳 ${GRN_B}All maps checked: no leaks!${NC} 🥳\n"
