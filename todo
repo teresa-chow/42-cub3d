@@ -49,3 +49,7 @@ Leaks
 - assets/maps/invalid/content/multiple_player_pos01.cub
 
 - assets/maps/invalid/content/spaces_inside.cub
+
+- assets/maps/invalid/color/color00.cub
+- assets/maps/invalid/color/color01.cub
+- assets/maps/invalid/color/color02.cub

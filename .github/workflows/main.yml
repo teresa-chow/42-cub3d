@@ -21,15 +21,14 @@ jobs:
           python3 -m pip install norminette
           norminette
 
-      - name: Run argument test
+      - name: Check leaks on invalid maps (Valgrind)
         run: |
-          ./cub3D
-          ./cub3D invalid
-          ./cub3D 1.cub 2.cub
-          ./cub3D invalid.cub
-        continue-on-error: true
-
-      # When we have a working parser, automate testing with INVALID maps
-      #- name: Check leaks - Map parsing (Valgrind)
-      #  run: |
-      #    valgrind --leak-check=full ./cub3D assets/maps/
+          PROGRAM=./cub3D
+          MAP_DIRS=("assets/maps/invalid/color" "assets/maps/invalid/content"
+          "assets/maps/invalid/tex")
+          for DIR in "${MAP_DIRS[@]}"; do
+              for MAP in "$DIR"/*; do
+                  [ -f "$MAP" ] || continue
+                  valgrind --leak-check=full --error-exitcode=1 "$PROGRAM" "$MAP" || exit 1
+              done
+          done
