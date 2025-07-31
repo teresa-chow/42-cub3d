@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:24:50 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/31 10:04:08 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 11:23:52 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	fill_map_content(t_world *world, int fd, char *line)
 	{
 		i = 0;
 		if (line[i])
-			world->map[j] = ft_calloc(world->map_wid, sizeof(char));
+			world->map[j] = ft_calloc(world->map_wid + 1, sizeof(char));
 		while (line[i] && line[i] != '\n')
 		{
 			world->map[j][i] = line[i];
@@ -64,19 +64,19 @@ static void	fill_map_content(t_world *world, int fd, char *line)
 void	get_player_pos(t_world *world)
 {
 	int		y;
-	char	**map;
+	//char	**map;
 
-	y = -1;
-	map = world->map;
+	y = 0;
+	//map = world->map;
 	world->cam = ft_calloc(sizeof(t_camera), sizeof(char));
 	if (!world->cam)
 		exit_file_analyze(world, 0, "Error\nMemory allocation failed\n", NULL);
-	while (map[++y])
+	while (world->map[y++])
 	{
-		if (char_pos_found(map[y], world))
+		if (pos_found(y, world))
 		{
 			world->cam->pos_y = y;
-			check_valid_pos(map[y], world);
+			check_valid_pos(world);
 			break ;
 		}
 	}
@@ -113,21 +113,20 @@ void	get_player_dir(t_world *world)
 
 void	zero_player_pos_map(t_world *world)
 {
-	int		i;
-	int		j;
-	char	**map;
+	int		y;
+	int		x;
 
-	i = -1;
-	j = -1;
-	map = world->map;
-	while (++i < world->map_len)
+	y = 0;
+	while (y < world->map_len)
 	{
-		while (map[i][++j])
+		x = 0;
+		while (world->map[y][x])
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'S'
-			|| map[i][j] == 'E' || map[i][j] == 'W')
-				map[i][j] = '0';
+			if (world->map[y][x] == 'N' || world->map[y][x] == 'S'
+			|| world->map[y][x] == 'E' || world->map[y][x] == 'W')
+				world->map[y][x] = '0';
+			x++;
 		}
-		j = -1;
+		y++;
 	}
 }

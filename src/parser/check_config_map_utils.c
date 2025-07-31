@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:09:43 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/30 11:32:05 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 11:21:28 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,33 +43,36 @@ int	is_map_line(char *s, int *player_pos)
 	return (1);
 }
 
-void	check_valid_pos(char *line, t_world *world)
+void	check_valid_pos(t_world *world)
 {
-	int	len;
-	int	sub;
+	int	y;
+	int	x;
 
-	sub = 1;
-	len = ft_strlen(line);
-	if (line[len - 1] == '\n')
-		sub = 2;
-	if (world->cam->pos_x == 0 || world->cam->pos_x == len - sub
-		|| world->cam->pos_y == 0
-		|| world->cam->pos_y == world->map_len - 1)
+	y = world->cam->pos_y;
+	x = world->cam->pos_x;
+	if (y == 0 || y == world->map_len || x == 0 || x == world->map_wid)
+		exit_file_analyze(world, 0, "Error\nInvalid player position\n", NULL);
+	if ((world->map[y - 1][x] != '0' && world->map[y - 1][x] != '1')
+		|| (world->map[y + 1][x] != '0' && world->map[y + 1][x] != '1')
+		|| (world->map[y][x - 1] != '0' && world->map[y][x - 1] != '1')
+		|| (world->map[y][x + 1] != '0' && world->map[y][x + 1] != '1'))
 		exit_file_analyze(world, 0, "Error\nInvalid player position\n", NULL);
 }
 
-int	char_pos_found(char *line, t_world *world)
+int	pos_found(int y, t_world *world)
 {
-	int	i;
+	int	x;
 
-	i = -1;
-	while (line[++i])
+	x = 0;
+	while (world->map[y][x])
 	{
-		if (line[i] != '1' && line[i] != '0' && !ft_isspace(line[i]))
+		if (world->map[y][x] == 'N' || world->map[y][x] == 'S'
+			|| world->map[y][x] == 'W' || world->map[y][x] == 'E')
 		{
-			world->cam->pos_x = i;
+			world->cam->pos_x = x;
 			return (1);
 		}
+		x++;
 	}
 	return (0);
 }

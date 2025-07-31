@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/31 10:04:38 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 11:12:12 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,11 @@ void	check_closed_map(t_world *world);
 char	*find_map(int fd);
 void	get_player_pos(t_world *world);
 void	get_player_dir(t_world *world);
-void	check_valid_pos(char *line, t_world *world);
+void	check_valid_pos(t_world *world);
 void	create_cpy_map(t_world *world);
 void	zero_player_pos_map(t_world *world);
 int		is_map_line(char *s, int *player_pos);
-int		char_pos_found(char *line, t_world *world);
+int		pos_found(int y, t_world *world);
 int		flood_fill_cub(int x, int y, char **map, t_world *world);
 
 /* ================================= UTILS ================================= */

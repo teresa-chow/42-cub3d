@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:41:55 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/31 10:17:22 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 11:14:39 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	init_vars(&img, &world, &rc);
 	validate_map(argv[1], &world);
 	//tmp_print_map(world);
-	launch_render_engine(&img, &world, &rc);
+	//launch_render_engine(&img, &world, &rc);
 	//free world
 	return (0);
 }
@@ -55,5 +55,4 @@ static void	init_vars(t_data *img, t_world *world, t_raycaster *rc)
 		}
 		printf("\n");
 		y++;
-	}
-}*/
+	}*/
