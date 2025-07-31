@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:24:50 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/30 11:31:06 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 10:04:08 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include "../../include/parse.h"
 #include "../../include/utils.h"
 
-static void	start_saving(t_world *world, int fd, char *line);
+static void	fill_map_content(t_world *world, int fd, char *line);
 
-void	save_map(t_world *world, int fd)
+void	get_map_content(t_world *world, int fd)
 {
 	char	*line;
 
@@ -32,24 +32,31 @@ void	save_map(t_world *world, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	start_saving(world, fd, line);
+	fill_map_content(world, fd, line);
 }
 
-static void	start_saving(t_world *world, int fd, char *line) //review alloc with ft_calloc(map_wid + 1), not gnl
+static void	fill_map_content(t_world *world, int fd, char *line)
 {
 	int	i;
+	int	j;
 
 	world->map = ft_calloc(world->map_len + 1, sizeof(char *));
 	if (!world->map)
 		exit_file_analyze(world, fd, "Error\n"
 			"Memory allocation failed\n", NULL);
-	i = -1;
+	j = 0;
 	while (line)
 	{
-		if (ft_strcmp(line, "\n"))
-			world->map[++i] = line;
-		else
-			free(line);
+		i = 0;
+		if (line[i])
+			world->map[j] = ft_calloc(world->map_wid, sizeof(char));
+		while (line[i] && line[i] != '\n')
+		{
+			world->map[j][i] = line[i];
+			i++;
+		}
+		j++;
+		free(line);
 		line = get_next_line(fd);
 	}
 }
@@ -104,29 +111,23 @@ void	get_player_dir(t_world *world)
 	}
 }
 
-void	check_closed_map(t_world *world)
+void	zero_player_pos_map(t_world *world)
 {
-	char	**map_cpy;
 	int		i;
 	int		j;
+	char	**map;
 
-	world->map_cpy = ft_calloc(world->map_len + 1, sizeof(char *));
-	if (!world->map_cpy)
-		exit_file_analyze(world, 0, "Error\nMemory allocation failed\n", NULL);
-	create_cpy_map(world);
-	map_cpy = world->map_cpy;
 	i = -1;
 	j = -1;
-	while (map_cpy[++i])
+	map = world->map;
+	while (++i < world->map_len)
 	{
-		while (map_cpy[i][++j])
+		while (map[i][++j])
 		{
-			if (map_cpy[i][j] == '0' || map_cpy[i][j] == 'N'
-			|| map_cpy[i][j] == 'S' || map_cpy[i][j] == 'E'
-			|| map_cpy[i][j] == 'W')
-				flood_fill_cub(j, i, map_cpy, world);
+			if (map[i][j] == 'N' || map[i][j] == 'S'
+			|| map[i][j] == 'E' || map[i][j] == 'W')
+				map[i][j] = '0';
 		}
 		j = -1;
 	}
-	free_map(world->map_cpy, world->map_len);
 }

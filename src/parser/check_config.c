@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/30 11:48:54 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 10:03:56 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,12 @@ void	validate_map(char *file, t_world *world)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		printerr_exit("Error\nFailed to open config file.\n", NULL);
-	save_map(world, fd);
+	get_map_content(world, fd);
 	close(fd);
 	get_player_pos(world);
 	get_player_dir(world);
-	format_map_lines(world);
+	zero_player_pos_map(world);
 	check_closed_map(world);
-	resize_lines(world);
 }
 
 /* Check config specs other than map (textures and colors) */
