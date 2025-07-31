@@ -5,7 +5,7 @@
 # =========================================================================== #
 
 PROGRAM=./cub3D
-MAP_DIRS=("assets/maps" "assets/maps/mlaraki_invalid_maps")
+MAP_DIRS=("assets/maps/tex")
 
 # -----------------------------------------------------------------------------
 # UTILS: ANSI COLOR SEQUENCES
