@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:41:55 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/31 16:50:10 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 21:03:20 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int argc, char **argv)
 	check_input(argc, argv[1]);
 	init_vars(&img, &world, &rc);
 	validate_map(argv[1], &world);
-	//tmp_print_map(world);
 	launch_render_engine(&img, &world, &rc);
 	//free world
 	return (0);

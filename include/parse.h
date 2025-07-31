@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/31 17:25:14 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 20:38:11 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,27 +82,31 @@ bool	check_input(int argc, char *map);
 void	validate_map(char *file, t_world *world);
 // Textures
 void	validate_texture(t_world *world, int fd);
-char	*get_texture_inf(char *line, char *id, t_world *world, int fd);
 void	find_identifier_value(char *s, t_world *world, int fd, char *value);
 int		all_textures_set_up(t_world *world);
 // Colors
 void	convert_to_int(t_world *world, int fd, char id);
 // Map
 void	check_map(t_world *world, int fd);
-void	get_map_content(t_world *world, int fd);
-void	get_player_pos(t_world *world);
-void	get_player_dir(t_world *world);
 void	check_closed_map(t_world *world);
 char	*find_map(int fd);
-void	get_player_pos(t_world *world);
-void	get_player_dir(t_world *world);
 void	check_valid_pos(t_world *world);
 char	**map_dup(t_world *world);
-//void	create_cpy_map(t_world *world);
-void	zero_player_pos_map(t_world *world);
 int		is_map_line(char *s, int *player_pos);
 int		pos_found(int y, t_world *world);
 int		flood_fill_cub(int x, int y, char **map, t_world *world);
+
+/* ============================ DATA COLLECTION ============================ */
+// Textures
+char	*get_texture_inf(char *line, char *id, t_world *world, int fd);
+// Map
+void	get_map_data(char *file, t_world *world);
+void	get_map_content(t_world *world, int fd);
+void	get_player_pos(t_world *world);
+void	get_player_dir(t_world *world);
+void	get_player_pos(t_world *world);
+void	get_player_dir(t_world *world);
+void	zero_player_pos_map(t_world *world);
 
 /* ================================= UTILS ================================= */
 bool	check_file_format(char *str, char *format);

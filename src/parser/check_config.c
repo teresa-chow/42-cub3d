@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/31 11:24:15 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 21:24:47 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,7 @@ void	validate_map(char *file, t_world *world)
 	check_specs(fd, world);
 	check_map(world, fd);
 	close(fd);
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		printerr_exit("Error\nFailed to open config file.\n", NULL);
-	get_map_content(world, fd);
-	close(fd);
-	get_player_pos(world);
-	get_player_dir(world);
-	zero_player_pos_map(world);
+	get_map_data(file, world);
 	check_closed_map(world);
 }
 
@@ -44,7 +37,9 @@ void	validate_map(char *file, t_world *world)
 static void	check_specs(int fd, t_world *world)
 {
 	char	*line;
+	bool	tex;
 
+	tex = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -53,16 +48,16 @@ static void	check_specs(int fd, t_world *world)
 		else
 			free(line);
 		if (all_textures_set_up(world))
+		{
+			validate_texture(world, fd);
+			convert_to_int(world, fd, 'C');
+			convert_to_int(world, fd, 'F');
+			tex = 1;
 			break ;
+		}
 		line = get_next_line(fd);
 	}
-	if (all_textures_set_up(world))
-	{
-		validate_texture(world, fd);
-		convert_to_int(world, fd, 'C');
-		convert_to_int(world, fd, 'F');
-	}
-	else
+	if (!tex)
 		exit_file_analyze(world, fd, "Error\n"
 			"Texture identifiers missing\n", NULL);
 }
@@ -71,8 +66,11 @@ static void	check_specs(int fd, t_world *world)
 static void	validate_lines(char *line, t_world *world, int fd)
 {
 	if (is_map_line(line, NULL) && !all_textures_set_up(world))
+	{
+		free(line);
 		exit_file_analyze(world, fd, "Error\n"
 			"Missing identifiers\n", NULL);
+	}
 	if (check_identifier(line, "NO"))
 		world->tex_n = get_texture_inf(line, "NO", world, fd);
 	else if (check_identifier(line, "SO"))

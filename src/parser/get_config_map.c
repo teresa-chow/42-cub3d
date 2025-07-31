@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:24:50 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/31 11:23:52 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 20:36:20 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,20 @@
 #include "../../include/utils.h"
 
 static void	fill_map_content(t_world *world, int fd, char *line);
+
+void	get_map_data(char *file, t_world *world)
+{
+	int	fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		printerr_exit("Error\nFailed to open config file.\n", NULL);
+	get_map_content(world, fd);
+	close(fd);
+	get_player_pos(world);
+	get_player_dir(world);
+	zero_player_pos_map(world);
+}
 
 void	get_map_content(t_world *world, int fd)
 {
@@ -64,10 +78,8 @@ static void	fill_map_content(t_world *world, int fd, char *line)
 void	get_player_pos(t_world *world)
 {
 	int		y;
-	//char	**map;
 
 	y = 0;
-	//map = world->map;
 	world->cam = ft_calloc(sizeof(t_camera), sizeof(char));
 	if (!world->cam)
 		exit_file_analyze(world, 0, "Error\nMemory allocation failed\n", NULL);
@@ -111,22 +123,3 @@ void	get_player_dir(t_world *world)
 	}
 }
 
-void	zero_player_pos_map(t_world *world)
-{
-	int		y;
-	int		x;
-
-	y = 0;
-	while (y < world->map_len)
-	{
-		x = 0;
-		while (world->map[y][x])
-		{
-			if (world->map[y][x] == 'N' || world->map[y][x] == 'S'
-			|| world->map[y][x] == 'E' || world->map[y][x] == 'W')
-				world->map[y][x] = '0';
-			x++;
-		}
-		y++;
-	}
-}
