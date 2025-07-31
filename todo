@@ -40,3 +40,12 @@ General
 [ ] check how to deliver project with bonus features (optional additional files?
 same project?)
 [ ] OPTIONAL: refactor error handling (enum with type of error) + err msgs printed taking enum as arg
+-------------------------------------------------------------------------
+Leaks
+- assets/maps/invalid/content/duplicate_map.cub
+- assets/maps/valid/content/newline_after_map.cub
+
+- assets/maps/invalid/content/multiple_player_pos00.cub
+- assets/maps/invalid/content/multiple_player_pos01.cub
+
+- assets/maps/invalid/content/spaces_inside.cub
