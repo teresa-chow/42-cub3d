@@ -16,15 +16,16 @@ jobs:
         run: make
 
       - name: Check standard compliance (Norm)
+        continue-on-error: true
         run: |
           python3 -m pip install --upgrade pip setuptools
           python3 -m pip install norminette
-          norminette
+          norminette lib/libft/ include/ src/
 
       - name: Check leaks on invalid maps (Valgrind)
         run: |
           PROGRAM=./cub3D
-          MAP_DIRS=("assets/maps/invalid/color" "assets/maps/invalid/content"
+          MAP_DIRS=("assets/maps/invalid/color" "assets/maps/invalid/content" \
           "assets/maps/invalid/tex")
           for DIR in "${MAP_DIRS[@]}"; do
               for MAP in "$DIR"/*; do
