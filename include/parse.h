@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/31 11:12:12 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/07/31 12:04:53 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 # include "../lib/libft/libft/libft.h"
 # include "../lib/libft/ft_printf/ft_printf.h"
 # include "../lib/libft/get_next_line/get_next_line.h"
+
+/* review error messages */
+/*typedef enum e_err_code
+{
+	INPUT_ARGC,
+	CONFIG_OPEN,
+	MEMALLOC,
+}	t_err_code;*/
 
 /* Camera - player pov:
 	NORTH (N)	: -Y;
@@ -57,14 +65,14 @@ typedef struct s_world
 	t_texture		tex_south;
 	t_texture		tex_west;
 	t_texture		tex_east;
-	char			*ground_str;
+	char			*ground_str; //
 	int				ground;
-	char			*sky_str;
+	char			*sky_str; //
 	int				sky;
 	int				map_len;
 	int				map_wid;
 	char			**map;
-	char			**map_cpy;
+	char			**map_cpy; //
 	t_camera		*cam;
 }	t_world;
 
