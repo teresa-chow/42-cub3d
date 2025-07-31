@@ -39,3 +39,4 @@ General
 [ ] standard compliance (Norm) check
 [ ] check how to deliver project with bonus features (optional additional files?
 same project?)
+[ ] OPTIONAL: refactor error handling (enum with type of error) + err msgs printed taking enum as arg
