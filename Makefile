@@ -6,7 +6,7 @@
 #    By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 16:14:09 by tchow-so          #+#    #+#              #
-#    Updated: 2025/07/31 10:04:25 by tchow-so         ###   ########.fr        #
+#    Updated: 2025/07/31 16:45:24 by tchow-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -162,8 +162,8 @@ norm: all	## Execute norminette
 
 ##@ MEMORY MANAGEMENT & THREADING DEBUG
 
-vg: all	## Run valgrind
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) .cub
+vg: all	## Run valgrind (export ARG first)
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) $(ARG)
 
 
 ##@ TOOL INSTALLATION
