@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:17:18 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/31 18:43:14 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/01 15:11:43 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,13 @@ bool	check_input(int argc, char *map)
 {
 	if (argc != 2)
 	{
-		printerr_exit("cub3D: invalid argument count\n"
-			"Usage: ./cub3D map.cub\n", NULL);
-		return (0);
+		print_error(INPUT_ARGC);
+		exit(EXIT_FAILURE);
 	}
 	if (!check_file_name(map))
 	{
-		printerr_exit("cub3D: invalid file type\n"
-			"Usage: ./cub3D map.cub\n", NULL);
-		return (0);
+		print_error(INPUT_FORMAT);
+		exit(EXIT_FAILURE);
 	}
 	return (1);
 }

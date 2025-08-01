@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 15:42:55 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/31 17:25:30 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/01 16:38:11 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,20 @@ bool	check_file_format(char *str, char *format)
 char	**map_dup(t_world *world)
 {
 	char	**map_copy;
-	int	i;
+	int		i;
 
 	map_copy = ft_calloc(world->map_len + 1, sizeof(char *));
 	if (!map_copy)
-		exit_file_analyze(world, 0, "Error\nMemory allocation failed\n", NULL);
+		exit_on_error(world, -1, MEMALLOC);
 	i = -1;
 	while (++i < world->map_len)
 	{
 		map_copy[i] = ft_substr(world->map[i], 0,
 				ft_strlen(world->map[i]));
 		if (!map_copy[i])
-			exit_file_analyze(world, 0, "Error\n"
-				"Memory allocation failed\n", NULL);
+			exit_on_error(world, -1, MEMALLOC);
 	}
-	return(map_copy);
+	return (map_copy);
 }
 
 int	ft_isspace(int c)

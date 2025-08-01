@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/30 11:32:39 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/01 16:31:46 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*get_texture_inf(char *line, char *id, t_world *world, int fd)
 	check_identifier_dup(id, world, fd);
 	i = 0;
 	s = ft_strstr(line, id);
-	find_identifier_value(s + ft_strlen(id), world, fd, id);
+	identifier_value_exists(s + ft_strlen(id), world, fd);
 	s += 2;
 	start = NULL;
 	end = NULL;
@@ -62,18 +62,16 @@ static void	check_identifier_dup(char *id, t_world *world, int fd)
 	else if (!ft_strcmp(id, "C") && world->sky_str)
 		dup = true;
 	if (dup)
-		exit_file_analyze(world, fd, "Error\nDuplicate identifier\n", NULL);
+		exit_on_error(world, fd, SPEC_REPEATED);
 }
 
 /* Check each texture is valid */
 void	validate_texture(t_world *world, int fd)
 {
 	if (!check_texture_format(world, ".xpm"))
-		exit_file_analyze(world, fd, "Error\nInvalid texture format: "
-			"only XPM files accepted\n", NULL);
+		exit_on_error(world, fd, TEX_FORMAT);
 	if (!check_texture_path(world))
-		exit_file_analyze(world, fd, "Error\n"
-			"Texture path misconfiguration\n", NULL);
+		exit_on_error(world, fd, TEX_PATH);
 }
 
 static bool	check_texture_format(t_world *world, char *format)

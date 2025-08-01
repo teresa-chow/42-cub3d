@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/31 21:24:47 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/01 16:31:58 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,24 @@ void	validate_map(char *file, t_world *world)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		printerr_exit("Error\nFailed to open config file.\n", NULL);
+	{
+		print_error(CONFIG_OPEN);
+		exit(EXIT_FAILURE);
+	}
 	check_specs(fd, world);
 	check_map(world, fd);
 	close(fd);
 	get_map_data(file, world);
 	check_closed_map(world);
 }
+
+/*void	check_missing_identifier(t_world *world, int fd) // review
+{
+	if (!world->tex_n || !world->tex_s || !world->tex_e || !world->tex_w)
+		exit_on_error(world, fd, TEX_MISSING);
+	else if (!world->sky_str || !world->ground_str)
+		exit_on_error(world, fd, COLOR_MISSING);
+}*/
 
 /* Check config specs other than map (textures and colors) */
 static void	check_specs(int fd, t_world *world)
@@ -58,8 +69,7 @@ static void	check_specs(int fd, t_world *world)
 		line = get_next_line(fd);
 	}
 	if (!tex)
-		exit_file_analyze(world, fd, "Error\n"
-			"Texture identifiers missing\n", NULL);
+		exit_on_error(world, fd, SPEC_INVALID); // "Texture identifiers missing"
 }
 
 /* Check color and texture identifiers */
@@ -68,8 +78,7 @@ static void	validate_lines(char *line, t_world *world, int fd)
 	if (is_map_line(line, NULL) && !all_textures_set_up(world))
 	{
 		free(line);
-		exit_file_analyze(world, fd, "Error\n"
-			"Missing identifiers\n", NULL);
+		exit_on_error(world, fd, SPEC_INVALID); // "Missing identifiers"
 	}
 	if (check_identifier(line, "NO"))
 		world->tex_n = get_texture_inf(line, "NO", world, fd);
@@ -86,8 +95,7 @@ static void	validate_lines(char *line, t_world *world, int fd)
 	else
 	{
 		free(line);
-		exit_file_analyze(world, fd, "Error\n"
-			"Spec misconfiguration\n", NULL);
+		exit_on_error(world, fd, SPEC_INVALID);
 	}
 	free(line);
 }

@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:24:50 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/31 20:36:20 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/01 16:38:27 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	get_map_data(char *file, t_world *world)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		printerr_exit("Error\nFailed to open config file.\n", NULL);
+	{
+		print_error(CONFIG_OPEN);
+		exit(EXIT_FAILURE);
+	}
 	get_map_content(world, fd);
 	close(fd);
 	get_player_pos(world);
@@ -56,8 +59,7 @@ static void	fill_map_content(t_world *world, int fd, char *line)
 
 	world->map = ft_calloc(world->map_len + 1, sizeof(char *));
 	if (!world->map)
-		exit_file_analyze(world, fd, "Error\n"
-			"Memory allocation failed\n", NULL);
+		exit_on_error(world, fd, MEMALLOC);
 	j = 0;
 	while (line)
 	{
@@ -82,7 +84,7 @@ void	get_player_pos(t_world *world)
 	y = 0;
 	world->cam = ft_calloc(sizeof(t_camera), sizeof(char));
 	if (!world->cam)
-		exit_file_analyze(world, 0, "Error\nMemory allocation failed\n", NULL);
+		exit_on_error(world, -1, MEMALLOC);
 	while (world->map[y++])
 	{
 		if (pos_found(y, world))
@@ -122,4 +124,3 @@ void	get_player_dir(t_world *world)
 		world->cam->dir_y = 0;
 	}
 }
-

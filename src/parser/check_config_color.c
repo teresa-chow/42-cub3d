@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/30 11:30:43 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/01 16:14:57 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,12 @@ void	convert_to_int(t_world *world, int fd, char id)
 	else
 		numbers = ft_split(world->ground_str, ',');
 	if (!numbers)
-		exit_file_analyze(world, fd, "Error\n"
-			"Memory allocation failed\n", NULL);
+		exit_on_error(world, fd, MEMALLOC);
 	r = ft_atoi(numbers[0]);
 	g = ft_atoi(numbers[1]);
 	b = ft_atoi(numbers[2]);
 	if (r > 255 || g > 255 || b > 255)
-		exit_file_analyze(world, fd, "Error\nInvalid RGB values", NULL);
+		exit_on_error(world, fd, COLOR_RGB);
 	free_numbers(numbers);
 	if (id == 'C')
 		world->sky = (r << 16 | g << 8 | b);
@@ -66,11 +65,9 @@ static void	check_str_color(char id, t_world *world, int fd)
 		tmp++;
 	}
 	if (i != 2)
-		exit_file_analyze(world, fd, "Error\n"
-			"Color specs misconfiguration\n", NULL);
+		exit_on_error(world, fd, COLOR_INVALID);
 	if (check_only_digit(s) < 0)
-		exit_file_analyze(world, fd, "Error\n"
-			"Color specs misconfiguration\n", NULL);
+		exit_on_error(world, fd, COLOR_INVALID);
 }
 
 static int	check_only_digit(char *s)

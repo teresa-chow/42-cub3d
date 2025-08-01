@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 10:48:06 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/30 11:43:34 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/01 16:29:43 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int	all_textures_set_up(t_world *world)
 	return (0);
 }
 
-/* Find value to identifier */
-void	find_identifier_value(char *s, t_world *world, int fd, char *value)
+void	identifier_value_exists(char *s, t_world *world, int fd)
 {
 	while (*s)
 	{
@@ -31,6 +30,5 @@ void	find_identifier_value(char *s, t_world *world, int fd, char *value)
 			return ;
 		s++;
 	}
-	exit_file_analyze(world, fd, "Error\n"
-		"Missing value for identifier: ", value);
+	exit_on_error(world, fd, SPEC_INVALID);
 }

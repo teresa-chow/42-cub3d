@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:09:43 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/07/31 11:21:28 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/01 16:38:54 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ void	check_valid_pos(t_world *world)
 	y = world->cam->pos_y;
 	x = world->cam->pos_x;
 	if (y == 0 || y == world->map_len || x == 0 || x == world->map_wid)
-		exit_file_analyze(world, 0, "Error\nInvalid player position\n", NULL);
+		exit_on_error(world, -1, PLAYER_POS_INVALID);
 	if ((world->map[y - 1][x] != '0' && world->map[y - 1][x] != '1')
 		|| (world->map[y + 1][x] != '0' && world->map[y + 1][x] != '1')
 		|| (world->map[y][x - 1] != '0' && world->map[y][x - 1] != '1')
 		|| (world->map[y][x + 1] != '0' && world->map[y][x + 1] != '1'))
-		exit_file_analyze(world, 0, "Error\nInvalid player position\n", NULL);
+		exit_on_error(world, -1, PLAYER_POS_INVALID);
 }
 
 int	pos_found(int y, t_world *world)
@@ -79,10 +79,11 @@ int	pos_found(int y, t_world *world)
 
 int	flood_fill_cub(int x, int y, char **map, t_world *world)
 {
-	if (x < 0 || y < 0 || (size_t)x >= ft_strlen(map[y]) || y >= world->map_len)
-		exit_file_analyze(world, 0, "Error\nMap not closed\n", NULL);
-	if (ft_isspace(map[y][x]))
-		exit_file_analyze(world, 0, "Error\nMap not closed\n", NULL);
+	if (x < 0 || y < 0
+		|| (size_t)x >= ft_strlen(map[y])
+		|| y >= world->map_len
+		|| ft_isspace(map[y][x]))
+		exit_on_error(world, -1, MAP_OPEN);
 	if (map[y][x] == '1' || map[y][x] == 'x')
 		return (0);
 	map[y][x] = 'x';

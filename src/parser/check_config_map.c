@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:59:32 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/31 21:23:06 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/01 16:40:20 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_map(t_world *world, int fd)
 	check_map_placement(world, fd);
 }
 
-static void	check_map_content(t_world *world, int fd, char *line)
+static void	check_map_content(t_world *world, int fd, char *line) // no. lines
 {
 	bool	in_map;
 	int		player_pos;
@@ -43,14 +43,12 @@ static void	check_map_content(t_world *world, int fd, char *line)
 		else if (!is_map_line(line, &player_pos))
 		{
 			free(line);
-			exit_file_analyze(world, fd, "Error\n"
-				"Invalid map\n", NULL);
+			exit_on_error(world, fd, MAP_INVALID);
 		}
 		if (player_pos > 1)
 		{
 			free(line);
-			exit_file_analyze(world, fd, "Error\n"
-				"Multiple player positions\n", NULL);
+			exit_on_error(world, fd, PLAYER_POS_EXTRA);
 		}
 		free(line);
 		line = get_next_line(fd);
@@ -59,8 +57,7 @@ static void	check_map_content(t_world *world, int fd, char *line)
 	}
 	free(line);
 	if (!player_pos)
-		exit_file_analyze(world, fd, "Error\n"
-			"Missing player position\n", NULL);
+		exit_on_error(world, fd, PLAYER_POS_NONE);
 }
 
 static void	calc_map_dimensions(t_world *world, char *line)
@@ -80,8 +77,7 @@ static void	check_map_placement(t_world *world, int fd)
 		if (ft_strcmp(line, "\n"))
 		{
 			free(line);
-			exit_file_analyze(world, fd, "Error\n"
-				"Map content misconfiguration\n", NULL);
+			exit_on_error(world, fd, MAP_INVALID);
 		}
 		free(line);
 		line = get_next_line(fd);
@@ -96,7 +92,7 @@ void	check_closed_map(t_world *world)
 
 	map_copy = map_dup(world);
 	if (!map_copy)
-		exit_file_analyze(world, 0, "Error\nMemory allocation failed\n", NULL);
+		exit_on_error(world, -1, MEMALLOC);
 	i = -1;
 	j = -1;
 	while (map_copy[++i])
