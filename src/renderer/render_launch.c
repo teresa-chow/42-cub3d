@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:56:00 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/31 18:43:51 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/01 15:48:15 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,24 @@ static void	init_mlx(t_data *img)
 {
 	img->mlx = mlx_init();
 	if (img->mlx == NULL)
-		printerr_exit("Failed to initialize MLX\n", NULL);
+	{
+		print_error(MLX_INIT);
+		exit(EXIT_FAILURE);
+	}
 	img->window = mlx_new_window(img->mlx, WIN_W, WIN_H, "cub3D");
 	if (img->window == NULL)
 	{
 		free(img->mlx);
-		printerr_exit("Failed to open window\n", NULL);
+		print_error(MLX_WIN);
+		exit(EXIT_FAILURE);
 	}
 	img->img = mlx_new_image(img->mlx, WIN_W, WIN_H);
 	if (img->img == NULL)
 	{
 		free(img->window);
 		free(img->mlx);
-		printerr_exit("Failed to create new image\n", NULL);
+		print_error(MLX_IMG);
+		exit(EXIT_FAILURE);
 	}
 	img->addr = mlx_get_data_addr(img->img, &img->bits_pxl,
 			&img->line_len, &img->endian);
