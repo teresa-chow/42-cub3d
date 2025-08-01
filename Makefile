@@ -6,7 +6,7 @@
 #    By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 16:14:09 by tchow-so          #+#    #+#              #
-#    Updated: 2025/07/31 20:33:38 by tchow-so         ###   ########.fr        #
+#    Updated: 2025/08/01 16:32:25 by tchow-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRC_RENDERER	= $(addprefix $(RENDERER_DIR)/, calc_movement.c calc_rotation.c \
 	raycaster_calc00.c raycaster_calc01.c raycaster_texture00.c \
 	raycaster_texture01.c render_frame.c render_launch.c render_wall.c \
 	time_management.c)
-SRC_UTILS		= $(addprefix $(UTILS_DIR)/, error_handling.c memory_management.c)
+SRC_UTILS		= $(addprefix $(UTILS_DIR)/, error_handling.c memory_management.c \
+	print_error.c)
 
 OBJS			= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC:.c=.o)))
 OBJS_PARSER		= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_PARSER:.c=.o)))
