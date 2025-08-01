@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/31 20:38:11 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/01 14:35:17 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,6 @@
 # include "../lib/libft/libft/libft.h"
 # include "../lib/libft/ft_printf/ft_printf.h"
 # include "../lib/libft/get_next_line/get_next_line.h"
-
-/* review error messages */
-/*typedef enum e_err_code
-{
-	INPUT_ARGC,
-	CONFIG_OPEN,
-	MEMALLOC,
-}	t_err_code;*/
 
 /* Camera - player pov:
 	NORTH (N)	: -Y;
@@ -82,12 +74,12 @@ bool	check_input(int argc, char *map);
 void	validate_map(char *file, t_world *world);
 // Textures
 void	validate_texture(t_world *world, int fd);
-void	find_identifier_value(char *s, t_world *world, int fd, char *value);
+void	identifier_value_exists(char *s, t_world *world, int fd);
 int		all_textures_set_up(t_world *world);
 // Colors
 void	convert_to_int(t_world *world, int fd, char id);
 // Map
-void	check_map(t_world *world, int fd);
+void	check_map(t_world *world, int fd); // review
 void	check_closed_map(t_world *world);
 char	*find_map(int fd);
 void	check_valid_pos(t_world *world);
