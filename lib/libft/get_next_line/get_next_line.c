@@ -19,7 +19,7 @@ char	*read_from_fd(char *str, int fd);
 char	*ft_get_line(char *str);
 char	*clear_line(char *str);
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, t_tmp *tmp)
 {
 	static char	*str;
 	char		*line;
@@ -36,6 +36,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_get_line(str);
 	str = clear_line(str);
+	if (tmp)
+		tmp->to_free = str;
 	return (line);
 }
 

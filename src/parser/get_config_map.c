@@ -15,9 +15,9 @@
 #include "../../include/parse.h"
 #include "../../include/utils.h"
 
-static void	fill_map_content(t_world *world, int fd, char *line);
+static void	fill_map_content(t_world *world, int fd, t_tmp *tmp);
 
-void	get_map_data(char *file, t_world *world)
+void	get_map_data(char *file, t_world *world, t_tmp *tmp)
 {
 	int	fd;
 
@@ -27,70 +27,68 @@ void	get_map_data(char *file, t_world *world)
 		print_error(CONFIG_OPEN);
 		exit(EXIT_FAILURE);
 	}
-	get_map_content(world, fd);
+	get_map_content(world, tmp, fd);
 	close(fd);
-	get_player_pos(world);
+	get_player_pos(world, tmp);
 	get_player_dir(world);
 	zero_player_pos_map(world);
 }
 
-void	get_map_content(t_world *world, int fd)
+void	get_map_content(t_world *world, t_tmp *tmp, int fd)
 {
-	char	*line;
-
-	line = get_next_line(fd);
-	while (line)
+	tmp->line = get_next_line(fd, tmp);
+	while (tmp->line)
 	{
-		if (!ft_strstr(line, "NO") && !ft_strstr(line, "SO")
-			&& !ft_strstr(line, "WE") && !ft_strstr(line, "EA")
-			&& !ft_strstr(line, "F") && !ft_strstr(line, "C")
-			&& ft_strcmp("\n", line))
+		if (!ft_strstr(tmp->line, "NO") && !ft_strstr(tmp->line, "SO")
+			&& !ft_strstr(tmp->line, "WE") && !ft_strstr(tmp->line, "EA")
+			&& !ft_strstr(tmp->line, "F") && !ft_strstr(tmp->line, "C")
+			&& ft_strcmp("\n", tmp->line))
 			break ;
-		free(line);
-		line = get_next_line(fd);
+		free(tmp->line);
+		tmp->line = get_next_line(fd, tmp);
 	}
-	fill_map_content(world, fd, line);
+	fill_map_content(world, fd, tmp);
 }
 
-static void	fill_map_content(t_world *world, int fd, char *line)
+static void	fill_map_content(t_world *world, int fd, t_tmp *tmp)
 {
 	int	i;
 	int	j;
 
 	world->map = ft_calloc(world->map_len + 1, sizeof(char *));
 	if (!world->map)
-		exit_on_error(world, fd, MEMALLOC);
+		exit_on_error(world, fd, MEMALLOC, tmp);
 	j = 0;
-	while (line)
+	while (tmp->line && ft_strcmp(tmp->line, "\n"))
 	{
 		i = 0;
-		if (line[i])
+		if (tmp->line[i])
 			world->map[j] = ft_calloc(world->map_wid + 1, sizeof(char));
-		while (line[i] && line[i] != '\n')
+		while (tmp->line[i] && tmp->line[i] != '\n')
 		{
-			world->map[j][i] = line[i];
+			world->map[j][i] = tmp->line[i];
 			i++;
 		}
 		j++;
-		free(line);
-		line = get_next_line(fd);
+		free(tmp->line);
+		tmp->line = get_next_line(fd, tmp);
 	}
 }
 
-void	get_player_pos(t_world *world)
+void	get_player_pos(t_world *world, t_tmp *tmp)
 {
 	int		y;
 
-	y = 0;
+	y = -1;
 	world->cam = ft_calloc(sizeof(t_camera), sizeof(char));
 	if (!world->cam)
-		exit_on_error(world, -1, MEMALLOC);
-	while (world->map[y++])
+		exit_on_error(world, -1, MEMALLOC, tmp);
+	while (world->map[++y])
 	{
 		if (pos_found(y, world))
 		{
 			world->cam->pos_y = y;
-			check_valid_pos(world);
+			check_valid_pos(world, tmp);
 			break ;
 		}
 	}

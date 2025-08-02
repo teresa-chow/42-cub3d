@@ -15,75 +15,76 @@
 #include "../../include/parse.h"
 #include "../../include/utils.h"
 
-static void	check_specs(char **line, int fd, t_world *world);
-static void	validate_lines(char **line, t_world *world, int fd);
-static void	check_missing_identifier(t_world *world, int fd);
+static void	check_specs(int fd, t_world *world, t_tmp *tmp);
+static void	validate_lines(t_world *world, int fd, t_tmp *tmp);
+static void	check_missing_identifier(t_world *world, int fd, t_tmp *tmp);
 static int	check_identifier(char *line, char *id);
 
 void	validate_map(char *file, t_world *world)
 {
-	char	*line;
 	int		fd;
+	t_tmp	tmp;
 
-	line = NULL;
+	ft_bzero(&tmp, sizeof(tmp));
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
 		print_error(CONFIG_OPEN);
 		exit(EXIT_FAILURE);
 	}
-	check_specs(&line, fd, world);
-	check_map(&line, world, fd);
+	check_specs(fd, world, &tmp);
+	check_map(&tmp, world, fd);
 	close(fd);
-	get_map_data(file, world);
-	check_closed_map(world);
+	get_map_data(file, world, &tmp);
+   	check_closed_map(world, &tmp);
 }
 
 /* Check config specs other than map (textures and colors) */
-static void	check_specs(char **line, int fd, t_world *world)
+static void	check_specs(int fd, t_world *world, t_tmp *tmp)
 {
-	*line = get_next_line(fd);
-	while (*line)
+	tmp->line = get_next_line(fd, tmp);
+	while (tmp->line)
 	{
-		if (ft_strcmp("\n", *line))
-			validate_lines(line, world, fd);
-		free(*line);
-		*line = get_next_line(fd);
+		if (ft_strcmp(tmp->line, "\n") && is_map_line(tmp->line, NULL))
+			break;
+		if (ft_strcmp("\n", tmp->line))
+			validate_lines(world, fd, tmp);
+		free(tmp->line);
+		tmp->line = get_next_line(fd, tmp);
 	}
 	if (all_textures_set_up(world))
 	{
-		validate_texture(world, fd);
-		convert_to_int(world, fd, 'C');
-		convert_to_int(world, fd, 'F');
+		validate_texture(world, fd, tmp);
+		convert_to_int(world, tmp, fd, 'C');
+		convert_to_int(world, tmp, fd, 'F');
 	}
 	else
-		check_missing_identifier(world, fd);
+		check_missing_identifier(world, fd, tmp);
 }
 
 /* Check color and texture identifiers */
-static void	validate_lines(char **line, t_world *world, int fd)
+static void	validate_lines(t_world *world, int fd, t_tmp *tmp)
 {
-	if (is_map_line(*line, NULL) && !all_textures_set_up(world))
-	{
-		free(*line);
-		exit_on_error(world, fd, SPEC_INVALID); // "Missing identifiers"
-	}
-	if (check_identifier(*line, "NO"))
-		world->tex_n = get_texture_inf(line, "NO", world, fd);
-	else if (check_identifier(*line, "SO"))
-		world->tex_s = get_texture_inf(line, "SO", world, fd);
-	else if (check_identifier(*line, "WE"))
-		world->tex_w = get_texture_inf(line, "WE", world, fd);
-	else if (check_identifier(*line, "EA"))
-		world->tex_e = get_texture_inf(line, "EA", world, fd);
-	else if (check_identifier(*line, "F"))
-		world->ground_str = get_texture_inf(line, "F", world, fd);
-	else if (check_identifier(*line, "C"))
-		world->sky_str = get_texture_inf(line, "C", world, fd);
+	if (is_map_line(tmp->line, NULL) && !all_textures_set_up(world))
+		exit_on_error(world, fd, SPEC_INVALID, tmp); // "Missing identifiers"
+	if (check_identifier(tmp->line, "NO"))
+		world->tex_n = get_texture_inf(tmp, world, "NO", fd);
+	else if (check_identifier(tmp->line, "SO"))
+		world->tex_s = get_texture_inf(tmp, world, "SO", fd);
+	else if (check_identifier(tmp->line, "WE"))
+		world->tex_w = get_texture_inf(tmp, world,"WE", fd);
+	else if (check_identifier(tmp->line, "EA"))
+		world->tex_e = get_texture_inf(tmp, world, "EA", fd);
+	else if (check_identifier(tmp->line, "F"))
+		world->ground_str = get_texture_inf(tmp, world,"F", fd);
+	else if (check_identifier(tmp->line, "C"))
+		world->sky_str = get_texture_inf(tmp, world, "C", fd);
 	else
 	{
-		free(*line);
-		exit_on_error(world, fd, SPEC_INVALID);
+		if (all_textures_set_up(world))
+			exit_on_error(world, fd, SPEC_UNEXPECTED, tmp);
+		else
+			exit_on_error(world, fd, SPEC_INVALID, tmp);
 	}
 }
 
@@ -116,10 +117,10 @@ static int	check_identifier(char *line, char *id)
 	return (0);
 }
 
-static void	check_missing_identifier(t_world *world, int fd)
+static void	check_missing_identifier(t_world *world, int fd, t_tmp *tmp)
 {
 	if (!world->tex_n || !world->tex_s || !world->tex_e || !world->tex_w)
-		exit_on_error(world, fd, TEX_MISSING);
+		exit_on_error(world, fd, TEX_MISSING, tmp);
 	else if (!world->sky_str || !world->ground_str)
-		exit_on_error(world, fd, COLOR_MISSING);
+		exit_on_error(world, fd, COLOR_MISSING, tmp);
 }

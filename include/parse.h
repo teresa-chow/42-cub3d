@@ -20,6 +20,8 @@
 # include "../lib/libft/ft_printf/ft_printf.h"
 # include "../lib/libft/get_next_line/get_next_line.h"
 
+typedef struct s_tmp t_tmp;
+
 /* Camera - player pov:
 	NORTH (N)	: -Y;
 	SOUTH (S)	: +Y;
@@ -73,30 +75,28 @@ bool	check_input(int argc, char *map);
 // Config file checks
 void	validate_map(char *file, t_world *world);
 // Textures
-void	validate_texture(t_world *world, int fd);
-void	identifier_value_exists(char **line, char *s, t_world *world, int fd);
+void	validate_texture(t_world *world, int fd, t_tmp *tmp);
+void	identifier_value_exists(t_tmp *tmp, char *s, t_world *world, int fd);
 int		all_textures_set_up(t_world *world);
 // Colors
-void	convert_to_int(t_world *world, int fd, char id);
+void	convert_to_int(t_world *world, t_tmp *tmp, int fd, char id);
 // Map
-void	check_map(char **line, t_world *world, int fd);
-void	check_closed_map(t_world *world);
-void	find_map(char **line, int fd);
-void	check_valid_pos(t_world *world);
-char	**map_dup(t_world *world);
+void	check_map(t_tmp *tmp, t_world *world, int fd);
+void	check_closed_map(t_world *world, t_tmp *tmp);
+void	check_valid_pos(t_world *world, t_tmp *tmp);
+char	**map_dup(t_world *world, t_tmp *tmp);
 int		is_map_line(char *s, int *player_pos);
 int		pos_found(int y, t_world *world);
-int		flood_fill_cub(int x, int y, char **map, t_world *world);
+int		flood_fill_cub(int x, int y, t_world *world, t_tmp *tmp);
 
 /* ============================ DATA COLLECTION ============================ */
 // Textures
-char	*get_texture_inf(char **line, char *id, t_world *world, int fd);
+char	*get_texture_inf(t_tmp *tmp, t_world *world, char *id, int fd);
 // Map
-void	get_map_data(char *file, t_world *world);
-void	get_map_content(t_world *world, int fd);
-void	get_player_pos(t_world *world);
+void	get_map_data(char *file, t_world *world, t_tmp *tmp);
+void	get_map_content(t_world *world, t_tmp *tmp, int fd);
+void	get_player_pos(t_world *world, t_tmp *tmp);
 void	get_player_dir(t_world *world);
-void	get_player_pos(t_world *world);
 void	get_player_dir(t_world *world);
 void	zero_player_pos_map(t_world *world);
 

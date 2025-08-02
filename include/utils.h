@@ -43,13 +43,20 @@ typedef enum e_err_code
 	MLX_IMG
 }	t_err_code;
 
+typedef struct s_tmp
+{
+	char	*line;
+	char	**map_cpy;
+	char	*to_free;
+}	t_tmp;
+
 /* ======================= DYNAMIC MEMORY MANAGEMENT ======================= */
 void	free_world(t_world *world);
 void	free_numbers(char **numbers);
 void	free_map(char **map, int len);
 
 /* ============================= ERROR HANDLING ============================ */
-void	exit_on_error(t_world *world, int fd, t_err_code err); // review
+void	exit_on_error(t_world *world, int fd, t_err_code err, t_tmp *tmp); // review
 void	print_error(t_err_code err);
 
 #endif

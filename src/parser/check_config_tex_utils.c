@@ -22,7 +22,7 @@ int	all_textures_set_up(t_world *world)
 	return (0);
 }
 
-void	identifier_value_exists(char **line, char *s, t_world *world, int fd)
+void	identifier_value_exists(t_tmp *tmp ,char *s, t_world *world, int fd)
 {
 	while (*s)
 	{
@@ -30,6 +30,5 @@ void	identifier_value_exists(char **line, char *s, t_world *world, int fd)
 			return ;
 		s++;
 	}
-	free(*line);
-	exit_on_error(world, fd, SPEC_INVALID);
+	exit_on_error(world, fd, SPEC_INVALID, tmp);
 }

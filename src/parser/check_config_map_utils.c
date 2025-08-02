@@ -13,17 +13,6 @@
 #include "../../include/parse.h"
 #include "../../include/utils.h"
 
-/* Get lines until have a filled line after the texts*/
-void	find_map(char **line, int fd)
-{
-	*line = get_next_line(fd);
-	while (*line && !ft_strcmp("\n", *line))
-	{
-		free(*line);
-		*line = get_next_line(fd);
-	}
-}
-
 /* Check if is a valid map line */
 int	is_map_line(char *s, int *player_pos)
 {
@@ -43,7 +32,7 @@ int	is_map_line(char *s, int *player_pos)
 	return (1);
 }
 
-void	check_valid_pos(t_world *world)
+void	check_valid_pos(t_world *world, t_tmp *tmp)
 {
 	int	y;
 	int	x;
@@ -51,12 +40,12 @@ void	check_valid_pos(t_world *world)
 	y = world->cam->pos_y;
 	x = world->cam->pos_x;
 	if (y == 0 || y == world->map_len || x == 0 || x == world->map_wid)
-		exit_on_error(world, -1, PLAYER_POS_INVALID);
+		exit_on_error(world, -1, PLAYER_POS_INVALID, tmp);
 	if ((world->map[y - 1][x] != '0' && world->map[y - 1][x] != '1')
 		|| (world->map[y + 1][x] != '0' && world->map[y + 1][x] != '1')
 		|| (world->map[y][x - 1] != '0' && world->map[y][x - 1] != '1')
 		|| (world->map[y][x + 1] != '0' && world->map[y][x + 1] != '1'))
-		exit_on_error(world, -1, PLAYER_POS_INVALID);
+		exit_on_error(world, -1, PLAYER_POS_INVALID, tmp);
 }
 
 int	pos_found(int y, t_world *world)
@@ -77,19 +66,22 @@ int	pos_found(int y, t_world *world)
 	return (0);
 }
 
-int	flood_fill_cub(int x, int y, char **map, t_world *world)
+int	flood_fill_cub(int x, int y, t_world *world, t_tmp *tmp)
 {
+	char	**map;
+
+	map = world->map;
 	if (x < 0 || y < 0
 		|| (size_t)x >= ft_strlen(map[y])
 		|| y >= world->map_len
 		|| ft_isspace(map[y][x]))
-		exit_on_error(world, -1, MAP_OPEN);
+		exit_on_error(world, -1, MAP_OPEN, tmp);
 	if (map[y][x] == '1' || map[y][x] == 'x')
 		return (0);
 	map[y][x] = 'x';
-	flood_fill_cub(x + 1, y, map, world);
-	flood_fill_cub(x - 1, y, map, world);
-	flood_fill_cub(x, y - 1, map, world);
-	flood_fill_cub(x, y + 1, map, world);
+	flood_fill_cub(x + 1, y, world, tmp);
+	flood_fill_cub(x - 1, y, world, tmp);
+	flood_fill_cub(x, y - 1, world, tmp);
+	flood_fill_cub(x, y + 1, world, tmp);
 	return (0);
 }

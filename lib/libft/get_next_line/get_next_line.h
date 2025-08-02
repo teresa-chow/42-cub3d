@@ -16,11 +16,15 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+#include "../../../include/utils.h"
+
+typedef struct s_tmp t_tmp;
+
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 30
 # endif
 
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, t_tmp *tmp);
 int		ft_strlen_gnl(char *str);
 char	*ft_strchr_gnl(const char *str, int c);
 char	*ft_strjoin_gnl(char *str, char *next_buffer);

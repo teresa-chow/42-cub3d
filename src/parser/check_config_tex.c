@@ -17,20 +17,20 @@
 
 static bool	check_texture_format(t_world *world, char *format);
 static bool	check_texture_path(t_world *world);
-static void	check_identifier_dup(char **line, char *id, t_world *world, int fd);
+static void	check_identifier_dup(t_tmp *tmp, t_world *world, char *id, int fd);
 
 /* Get texture information */
-char	*get_texture_inf(char **line, char *id, t_world *world, int fd)
+char	*get_texture_inf(t_tmp *tmp, t_world *world, char *id, int fd)
 {
 	char	*s;
 	char	*start;
 	char	*end;
 	int		i;
 
-	check_identifier_dup(line, id, world, fd);
+	check_identifier_dup(tmp, world, id, fd);
 	i = 0;
-	s = ft_strstr(*line, id);
-	identifier_value_exists(line, s + ft_strlen(id), world, fd);
+	s = ft_strstr(tmp->line, id);
+	identifier_value_exists(tmp, s + ft_strlen(id), world, fd);
 	s += 2;
 	start = NULL;
 	end = NULL;
@@ -44,7 +44,7 @@ char	*get_texture_inf(char **line, char *id, t_world *world, int fd)
 	return (ft_substr(start, 0, (end - start) + 1));
 }
 
-static void	check_identifier_dup(char **line, char *id, t_world *world, int fd)
+static void	check_identifier_dup(t_tmp *tmp, t_world *world, char *id, int fd)
 {
 	bool	dup;
 
@@ -62,19 +62,16 @@ static void	check_identifier_dup(char **line, char *id, t_world *world, int fd)
 	else if (!ft_strcmp(id, "C") && world->sky_str)
 		dup = true;
 	if (dup)
-	{
-		free(*line);
-		exit_on_error(world, fd, SPEC_REPEATED);
-	}
+		exit_on_error(world, fd, SPEC_REPEATED, tmp);
 }
 
 /* Check each texture is valid */
-void	validate_texture(t_world *world, int fd)
+void	validate_texture(t_world *world, int fd, t_tmp *tmp)
 {
 	if (!check_texture_format(world, ".xpm"))
-		exit_on_error(world, fd, TEX_FORMAT);
+		exit_on_error(world, fd, TEX_FORMAT, tmp);
 	if (!check_texture_path(world))
-		exit_on_error(world, fd, TEX_PATH);
+		exit_on_error(world, fd, TEX_PATH, tmp);
 }
 
 static bool	check_texture_format(t_world *world, char *format)
