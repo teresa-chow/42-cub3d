@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/01 14:35:17 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/02 11:02:29 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ int		all_textures_set_up(t_world *world);
 // Colors
 void	convert_to_int(t_world *world, int fd, char id);
 // Map
-void	check_map(t_world *world, int fd); // review
+void	check_map(char **line, t_world *world, int fd);
 void	check_closed_map(t_world *world);
-char	*find_map(int fd);
+void	find_map(char **line, int fd);
 void	check_valid_pos(t_world *world);
 char	**map_dup(t_world *world);
 int		is_map_line(char *s, int *player_pos);

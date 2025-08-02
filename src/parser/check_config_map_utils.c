@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:09:43 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/08/01 16:38:54 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/02 11:02:14 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,31 @@
 #include "../../include/utils.h"
 
 /* Get lines until have a filled line after the texts*/
-char	*find_map(int fd)
+void	find_map(char **line, int fd)
 {
-	char	*line;
-
-	line = get_next_line(fd);
-	while (!ft_strcmp("\n", line))
+	*line = get_next_line(fd);
+	while (*line && !ft_strcmp("\n", *line))
 	{
-		free(line);
-		line = get_next_line(fd);
+		free(*line);
+		*line = get_next_line(fd);
 	}
-	return (line);
 }
 
 /* Check if is a valid map line */
 int	is_map_line(char *s, int *player_pos)
 {
-	while (*s)
+	int i;
+
+	i = 0;
+	while (s[i])
 	{
-		if (*s != '1' && *s != '0' && *s != 'N' && *s != 'S'
-			&& *s != 'E' && *s != 'W' && *s != '\n' && *s != ' ')
+		if (s[i] != '1' && s[i] != '0' && s[i] != 'N' && s[i] != 'S'
+			&& s[i] != 'E' && s[i] != 'W' && s[i] != '\n' && s[i] != ' ')
 			return (0);
-		if (player_pos && (*s == 'N' || *s == 'S'
-				|| *s == 'E' || *s == 'W'))
+		if (player_pos && (s[i] == 'N' || s[i] == 'S'
+				|| s[i] == 'E' || s[i] == 'W'))
 			(*player_pos)++;
-		s++;
+		i++;
 	}
 	return (1);
 }

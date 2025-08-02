@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:59:32 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/01 16:40:20 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/02 10:59:02 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,47 +15,45 @@
 #include "../../include/parse.h"
 #include "../../include/utils.h"
 
-static void	check_map_content(t_world *world, int fd, char *line);
+static void	check_map_content(char **line, t_world *world, int fd);
 static void	calc_map_dimensions(t_world *world, char *line);
-static void	check_map_placement(t_world *world, int fd);
+static void	check_map_placement(char **line, t_world *world, int fd);
 
-void	check_map(t_world *world, int fd)
+void	check_map(char **line, t_world *world, int fd)
 {
-	char	*line;
-
-	line = find_map(fd);
-	check_map_content(world, fd, line);
-	check_map_placement(world, fd);
+	find_map(line, fd);
+	check_map_content(line, world, fd);
+	check_map_placement(line, world, fd);
 }
 
-static void	check_map_content(t_world *world, int fd, char *line) // no. lines
+static void	check_map_content(char **line, t_world *world, int fd) // no. lines
 {
 	bool	in_map;
 	int		player_pos;
 
 	player_pos = 0;
 	in_map = false;
-	while (line)
+	while (*line)
 	{
-		calc_map_dimensions(world, line);
-		if (!in_map && is_map_line(line, &player_pos))
+		calc_map_dimensions(world, *line);
+		if (!in_map && is_map_line(*line, &player_pos))
 			in_map = true;
-		else if (!is_map_line(line, &player_pos))
+		else if (!is_map_line(*line, &player_pos))
 		{
-			free(line);
+			free(*line);
 			exit_on_error(world, fd, MAP_INVALID);
 		}
 		if (player_pos > 1)
 		{
-			free(line);
+			free(*line);
 			exit_on_error(world, fd, PLAYER_POS_EXTRA);
 		}
-		free(line);
-		line = get_next_line(fd);
-		if (line && !ft_strcmp("\n", line) && in_map)
+		free(*line);
+		*line = get_next_line(fd);
+		if (*line && !ft_strcmp("\n", *line) && in_map)
 			break ;
 	}
-	free(line);
+	free(*line);
 	if (!player_pos)
 		exit_on_error(world, fd, PLAYER_POS_NONE);
 }
@@ -67,20 +65,18 @@ static void	calc_map_dimensions(t_world *world, char *line)
 	world->map_len++;
 }
 
-static void	check_map_placement(t_world *world, int fd)
+static void	check_map_placement(char **line, t_world *world, int fd)
 {
-	char	*line;
-
-	line = get_next_line(fd);
-	while (line)
+	*line = get_next_line(fd);
+	while (*line)
 	{
-		if (ft_strcmp(line, "\n"))
+		if (ft_strcmp(*line, "\n"))
 		{
-			free(line);
+			free(*line);
 			exit_on_error(world, fd, MAP_INVALID);
 		}
-		free(line);
-		line = get_next_line(fd);
+		free(*line);
+		*line = get_next_line(fd);
 	}
 }
 
