@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/08/02 11:09:03 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/02 11:31:52 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,17 @@ static void	validate_lines(char **line, t_world *world, int fd)
 		exit_on_error(world, fd, SPEC_INVALID); // "Missing identifiers"
 	}
 	if (check_identifier(*line, "NO"))
-		world->tex_n = get_texture_inf(*line, "NO", world, fd);
+		world->tex_n = get_texture_inf(line, "NO", world, fd);
 	else if (check_identifier(*line, "SO"))
-		world->tex_s = get_texture_inf(*line, "SO", world, fd);
+		world->tex_s = get_texture_inf(line, "SO", world, fd);
 	else if (check_identifier(*line, "WE"))
-		world->tex_w = get_texture_inf(*line, "WE", world, fd);
+		world->tex_w = get_texture_inf(line, "WE", world, fd);
 	else if (check_identifier(*line, "EA"))
-		world->tex_e = get_texture_inf(*line, "EA", world, fd);
+		world->tex_e = get_texture_inf(line, "EA", world, fd);
 	else if (check_identifier(*line, "F"))
-		world->ground_str = get_texture_inf(*line, "F", world, fd);
+		world->ground_str = get_texture_inf(line, "F", world, fd);
 	else if (check_identifier(*line, "C"))
-		world->sky_str = get_texture_inf(*line, "C", world, fd);
+		world->sky_str = get_texture_inf(line, "C", world, fd);
 	else
 	{
 		free(*line);

@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/08/01 16:31:46 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/02 11:35:19 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@
 
 static bool	check_texture_format(t_world *world, char *format);
 static bool	check_texture_path(t_world *world);
-static void	check_identifier_dup(char *id, t_world *world, int fd);
+static void	check_identifier_dup(char **line, char *id, t_world *world, int fd);
 
 /* Get texture information */
-char	*get_texture_inf(char *line, char *id, t_world *world, int fd)
+char	*get_texture_inf(char **line, char *id, t_world *world, int fd)
 {
 	char	*s;
 	char	*start;
 	char	*end;
 	int		i;
 
-	check_identifier_dup(id, world, fd);
+	check_identifier_dup(line, id, world, fd);
 	i = 0;
-	s = ft_strstr(line, id);
-	identifier_value_exists(s + ft_strlen(id), world, fd);
+	s = ft_strstr(*line, id);
+	identifier_value_exists(line, s + ft_strlen(id), world, fd);
 	s += 2;
 	start = NULL;
 	end = NULL;
@@ -44,7 +44,7 @@ char	*get_texture_inf(char *line, char *id, t_world *world, int fd)
 	return (ft_substr(start, 0, (end - start) + 1));
 }
 
-static void	check_identifier_dup(char *id, t_world *world, int fd)
+static void	check_identifier_dup(char **line, char *id, t_world *world, int fd)
 {
 	bool	dup;
 
@@ -62,7 +62,10 @@ static void	check_identifier_dup(char *id, t_world *world, int fd)
 	else if (!ft_strcmp(id, "C") && world->sky_str)
 		dup = true;
 	if (dup)
+	{
+		free(*line);
 		exit_on_error(world, fd, SPEC_REPEATED);
+	}
 }
 
 /* Check each texture is valid */

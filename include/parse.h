@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/02 11:02:29 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/02 11:33:36 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ bool	check_input(int argc, char *map);
 void	validate_map(char *file, t_world *world);
 // Textures
 void	validate_texture(t_world *world, int fd);
-void	identifier_value_exists(char *s, t_world *world, int fd);
+void	identifier_value_exists(char **line, char *s, t_world *world, int fd);
 int		all_textures_set_up(t_world *world);
 // Colors
 void	convert_to_int(t_world *world, int fd, char id);
@@ -90,7 +90,7 @@ int		flood_fill_cub(int x, int y, char **map, t_world *world);
 
 /* ============================ DATA COLLECTION ============================ */
 // Textures
-char	*get_texture_inf(char *line, char *id, t_world *world, int fd);
+char	*get_texture_inf(char **line, char *id, t_world *world, int fd);
 // Map
 void	get_map_data(char *file, t_world *world);
 void	get_map_content(t_world *world, int fd);
