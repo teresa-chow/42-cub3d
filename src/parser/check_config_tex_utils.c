@@ -22,7 +22,7 @@ int	all_textures_set_up(t_world *world)
 	return (0);
 }
 
-void	identifier_value_exists(t_tmp *tmp ,char *s, t_world *world, int fd)
+void	identifier_value_exists(t_tmp *tmp, char *s, t_world *world, int fd)
 {
 	while (*s)
 	{
@@ -31,4 +31,12 @@ void	identifier_value_exists(t_tmp *tmp ,char *s, t_world *world, int fd)
 		s++;
 	}
 	exit_on_error(world, fd, SPEC_INVALID, tmp);
+}
+
+void	check_missing_identifier(t_world *world, int fd, t_tmp *tmp)
+{
+	if (!world->tex_n || !world->tex_s || !world->tex_e || !world->tex_w)
+		exit_on_error(world, fd, TEX_MISSING, tmp);
+	else if (!world->sky_str || !world->ground_str)
+		exit_on_error(world, fd, COLOR_MISSING, tmp);
 }

@@ -52,7 +52,6 @@ static void	check_map_content(t_tmp *tmp, t_world *world, int fd) // no. lines
 		exit_on_error(world, fd, PLAYER_POS_NONE, tmp);
 }
 
-
 static void	calc_map_dimensions(t_world *world, char *line)
 {
 	if (strlen_newline(line) > (size_t)world->map_wid)

@@ -16,9 +16,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-#include "../../../include/utils.h"
+# include "../../../include/parse.h"
 
-typedef struct s_tmp t_tmp;
+typedef struct s_tmp	t_tmp;
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 30

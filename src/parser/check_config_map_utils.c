@@ -16,7 +16,7 @@
 /* Check if is a valid map line */
 int	is_map_line(char *s, int *player_pos)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i])

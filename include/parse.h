@@ -20,7 +20,12 @@
 # include "../lib/libft/ft_printf/ft_printf.h"
 # include "../lib/libft/get_next_line/get_next_line.h"
 
-typedef struct s_tmp t_tmp;
+typedef struct s_tmp
+{
+	char	*line;
+	char	**map_cpy;
+	char	*to_free;
+}	t_tmp;
 
 /* Camera - player pov:
 	NORTH (N)	: -Y;
@@ -102,6 +107,7 @@ void	zero_player_pos_map(t_world *world);
 
 /* ================================= UTILS ================================= */
 bool	check_file_format(char *str, char *format);
+void	check_missing_identifier(t_world *world, int fd, t_tmp *tmp);
 int		ft_isspace(int c);
 size_t	strlen_newline(const char *s);
 

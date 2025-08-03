@@ -15,7 +15,7 @@
 void	exit_on_error(t_world *world, int fd, t_err_code err, t_tmp *tmp)
 {
 	free_world(world);
-	free(tmp->to_free); //add
+	free(tmp->to_free);
 	free(tmp->line);
 	if (tmp->map_cpy)
 		free_map(tmp->map_cpy, world->map_len);

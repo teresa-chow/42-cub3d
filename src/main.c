@@ -23,7 +23,6 @@ int	main(int argc, char **argv)
 	check_input(argc, argv[1]);
 	init_vars(&img, &world, &rc);
 	validate_map(argv[1], &world);
-	free_world(&world);
 	// launch_render_engine(&img, &world, &rc);
 	//free world
 	return (0);

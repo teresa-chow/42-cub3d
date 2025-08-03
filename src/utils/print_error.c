@@ -43,11 +43,11 @@ static void	err_config(t_err_code err, int fd)
 {
 	if (err == CONFIG_OPEN)
 		ft_putstr_fd("Error\nFailed to open config file\n", fd);
-	else if (err == SPEC_UNEXPECTED) // ?
+	else if (err == SPEC_UNEXPECTED)
 		ft_putstr_fd("Error\nUnexpected line after configuration\n", fd);
 	else if (err == SPEC_INVALID)
 		ft_putstr_fd("Error\nSpec misconfiguration\n", fd);
-	else if (err == SPEC_REPEATED) //review
+	else if (err == SPEC_REPEATED)
 		ft_putstr_fd("Error\nRepeated identifier\n", fd);
 	if (err == COLOR_RGB)
 		ft_putstr_fd("Error\nInvalid RGB values\n", fd);
@@ -62,7 +62,7 @@ static void	err_config(t_err_code err, int fd)
 		ft_putstr_fd("Error\nTexture path misconfiguration\n", fd);
 	else if (err == TEX_MISSING)
 		ft_putstr_fd("Error\nTexture identifiers missing\n", fd);
-	else if (err == MAP_EXTRA) //review (broken maps)
+	else if (err == MAP_EXTRA)
 		ft_putstr_fd("Error\nUnexpected content after map\n", fd);
 }
 
