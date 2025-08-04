@@ -6,11 +6,12 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:41:55 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/31 21:03:20 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/04 23:24:35 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/render.h"
+
 //static void	tmp_print_map(t_world world);
 static void	init_vars(t_data *img, t_world *world, t_raycaster *raycaster);
 
@@ -23,8 +24,8 @@ int	main(int argc, char **argv)
 	check_input(argc, argv[1]);
 	init_vars(&img, &world, &rc);
 	validate_map(argv[1], &world);
-	// launch_render_engine(&img, &world, &rc);
-	//free world
+	//tmp_print_map(world);
+	launch_render_engine(&img, &world, &rc);
 	return (0);
 }
 
@@ -54,4 +55,5 @@ static void	init_vars(t_data *img, t_world *world, t_raycaster *rc)
 		}
 		printf("\n");
 		y++;
-	}*/
+	}
+}*/

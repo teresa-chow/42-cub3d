@@ -6,19 +6,19 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:56:00 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/01 15:48:15 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/04 23:11:10 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
 #include "../../include/utils.h"
 
-static void	init_mlx(t_data *img);
+static void	init_mlx(t_data *img, t_world *world);
 static void	init_raycaster(t_world *world, t_raycaster *rc, t_data *img);
 
 void	launch_render_engine(t_data *img, t_world *world, t_raycaster *rc)
 {
-	init_mlx(img);
+	init_mlx(img, world);
 	init_raycaster(world, rc, img);
 	mlx_loop_hook(rc->img->mlx, render_frame, rc);
 	mlx_hook(rc->img->window, 2, 1L << 0, handle_keypress, rc);
@@ -27,11 +27,12 @@ void	launch_render_engine(t_data *img, t_world *world, t_raycaster *rc)
 	mlx_loop(rc->img->mlx);
 }
 
-static void	init_mlx(t_data *img)
+static void	init_mlx(t_data *img, t_world *world) // lines
 {
 	img->mlx = mlx_init();
 	if (img->mlx == NULL)
 	{
+		free_world(world);
 		print_error(MLX_INIT);
 		exit(EXIT_FAILURE);
 	}
@@ -39,6 +40,7 @@ static void	init_mlx(t_data *img)
 	if (img->window == NULL)
 	{
 		free(img->mlx);
+		free_world(world);
 		print_error(MLX_WIN);
 		exit(EXIT_FAILURE);
 	}
@@ -47,6 +49,7 @@ static void	init_mlx(t_data *img)
 	{
 		free(img->window);
 		free(img->mlx);
+		free_world(world);
 		print_error(MLX_IMG);
 		exit(EXIT_FAILURE);
 	}

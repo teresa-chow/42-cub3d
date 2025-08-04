@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:09:43 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/08/02 11:02:14 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/04 23:23:36 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	flood_fill_cub(int x, int y, t_world *world, t_tmp *tmp)
 {
 	char	**map;
 
-	map = world->map;
+	map = tmp->map_cpy;
 	if (x < 0 || y < 0
 		|| (size_t)x >= ft_strlen(map[y])
 		|| y >= world->map_len
