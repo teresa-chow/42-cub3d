@@ -37,9 +37,9 @@ void	convert_to_int(t_world *world, t_tmp *tmp, int fd, char id)
 	r = ft_atoi(numbers[0]);
 	g = ft_atoi(numbers[1]);
 	b = ft_atoi(numbers[2]);
+	free_numbers(numbers);
 	if (r > 255 || g > 255 || b > 255)
 		exit_on_error(world, fd, COLOR_RGB, tmp);
-	free_numbers(numbers);
 	if (id == 'C')
 		world->sky = (r << 16 | g << 8 | b);
 	else

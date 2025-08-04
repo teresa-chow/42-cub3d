@@ -19,7 +19,8 @@ void	exit_on_error(t_world *world, int fd, t_err_code err, t_tmp *tmp)
 	free(tmp->line);
 	if (tmp->map_cpy)
 		free_map(tmp->map_cpy, world->map_len);
-	close(fd);
+	if (fd != -1 && fd != 0)
+		close(fd);
 	print_error(err);
 	exit(EXIT_FAILURE);
 }
