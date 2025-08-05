@@ -1,10 +1,10 @@
-NO ./assets/textures/wolfenstein_tex_n.xpm
-SO ./assets/textures/wolfenstein_tex_s.xpm
-WE ./assets/textures/wolfenstein_tex_w.xpm
-EA ./assets/textures/wolfenstein_tex_e.xpm
+NO ./assets/textures/pikachu_tex_n.xpm
+SO ./assets/textures/pikachu_tex_s.xpm
+WE ./assets/textures/pikachu_tex_w.xpm
+EA ./assets/textures/pikachu_tex_e.xpm
 
-F 220,100,0
-C 225,30,0
+C 120,240,228
+F 98,209,131
 
 1111111111111
 1000000000001
