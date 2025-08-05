@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:30:30 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/05 09:44:34 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/05 17:06:16 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	calc_cam_dist(t_raycaster *rc)
 		rc->perp_wall_dist = rc->side_dist_x - rc->delta_dist_x;
 	else
 		rc->perp_wall_dist = rc->side_dist_y - rc->delta_dist_y;
+	if (rc->perp_wall_dist < 0.001)
+		rc->perp_wall_dist = 0.001;
 }
 
 /* Calculate the point where the ray hit the wall (wall_x)
