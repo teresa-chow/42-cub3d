@@ -35,11 +35,8 @@ Rendering:
 [x] minimap (bonus feature)
 -------------------------------------------------------------------------
 General
-[?] leak check
+[x] leak check
 [x] standard compliance (Norm) check
-[ ] check how to deliver project with bonus features (optional additional files?
+[x] check how to deliver project with bonus features (optional additional files?
 same project?)
 [x] OPTIONAL: refactor error handling (enum with type of error) + err msgs printed taking enum as arg
--------------------------------------------------------------------------
-Fix:
-[ ] texture black border
