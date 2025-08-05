@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 13:52:26 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/05 12:50:10 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/05 17:39:35 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,12 @@ int	map_wall_x_to_tex(t_raycaster *rc)
 	else if (rc->wall == WEST)
 		texture = &rc->world->tex_west;
 	tex_x = (int)(rc->wall_x * (double)texture->width);
+	if (tex_x == 0)
+		tex_x = 1;
 	if (rc->wall == WEST)
-		tex_x = texture->width - tex_x - 1;
+		tex_x = texture->width - tex_x;
 	if (rc->wall == SOUTH)
-		tex_x = texture->width - tex_x - 1;
+		tex_x = texture->width - tex_x;
 	return (tex_x);
 }
 
