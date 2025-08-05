@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:56:00 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/05 13:10:04 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/05 13:16:19 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ so that plane is perpendicular to player's direction */
 static void	init_raycaster(t_world *world, t_raycaster *rc, t_data *img)
 {
 	double	fov_factor;
-	
+
 	fov_factor = 0.66;
 	rc->img = img;
 	get_time_ms(&rc->curr_time_ms);
