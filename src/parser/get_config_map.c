@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 09:24:50 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/01 16:38:27 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/05 16:25:22 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ static void	fill_map_content(t_world *world, int fd, t_tmp *tmp)
 	if (!world->map)
 		exit_on_error(world, fd, MEMALLOC, tmp);
 	j = 0;
-	while (tmp->line && ft_strcmp(tmp->line, "\n"))
+	while (tmp->line)
 	{
 		i = 0;
-		if (tmp->line[i])
+		if (tmp->line[i] && tmp->line[i] != '\n')
 			world->map[j] = ft_calloc(world->map_wid + 1, sizeof(char));
 		while (tmp->line[i] && tmp->line[i] != '\n')
 		{
