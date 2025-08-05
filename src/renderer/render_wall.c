@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 15:13:29 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/30 18:27:27 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/05 23:43:56 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	draw_vertical_line(t_raycaster *rc, int x)
 	while (y < rc->line_end)
 	{
 		texel.tex_y = (int)texel.tex_pos & (texel.texture->height - 1);
+		if (texel.tex_y == 0)
+			texel.tex_y = 1;
 		texel.tex_pos += texel.step;
 		color = get_texel(rc, texel.tex_y, texel.tex_x);
 		pixel_put(rc->img, x, y, color);
