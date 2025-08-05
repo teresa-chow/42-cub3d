@@ -1,0 +1,14 @@
+NO ./assets/textures/pikachu_tex_n.xpm
+SO ./assets/textures/pikachu_tex_s.xpm
+WE ./assets/textures/pikachu_tex_w.xpm
+EA ./assets/textures/pikachu_tex_e.xpm
+
+F 98,209,131
+C 120,240,228
+  1   1
+ 101 101
+100010001
+ 100W001
+  10001
+   101
+    1
