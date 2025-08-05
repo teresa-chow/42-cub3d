@@ -35,12 +35,10 @@ jobs:
                   [ -f "$MAP" ] || continue
                   valgrind --leak-check=full --error-exitcode=2 "$PROGRAM" "$MAP"
                   CODE=$?
-                if [ $CODE -eq 1 ]; then
-                  CODE=0
-                fi
                 if [ $CODE -eq 2 ]; then
                   echo "💔 Memory leaks detected when testing $MAP"
                   exit 1
                 fi
               done
           done
+          exit 0
