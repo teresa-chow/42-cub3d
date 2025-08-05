@@ -6,11 +6,12 @@
 #    By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 16:14:09 by tchow-so          #+#    #+#              #
-#    Updated: 2025/08/05 16:10:37 by tchow-so         ###   ########.fr        #
+#    Updated: 2025/08/06 00:49:24 by tchow-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3D
+BONUS	= cub3D_bonus
 
 # ============================================================================ #
 # FILES                                                                        #
@@ -22,17 +23,23 @@ SRC_PARSER		= $(addprefix $(PARSER_DIR)/, check_config_color.c \
 	get_config_map.c get_config_map2.c check_config_tex_utils.c \
 	check_config_map_utils.c utils.c)
 SRC_RENDERER	= $(addprefix $(RENDERER_DIR)/, calc_movement.c calc_rotation.c \
-	event_log.c graphics_utils.c minimap.c minimap_grid.c minimap_player.c \
-	raycaster_calc00.c raycaster_calc01.c raycaster_texture00.c \
-	raycaster_texture01.c render_frame.c render_launch.c render_wall.c \
-	time_management.c)
+	event_log.c graphics_utils.c raycaster_calc00.c raycaster_calc01.c \
+	raycaster_texture00.c raycaster_texture01.c render_frame.c render_launch.c \
+	render_wall.c time_management.c)
+SRC_RENDERER_BONUS	= $(addprefix $(SRC_DIR)/, main_bonus.c) $(addprefix $(RENDERER_DIR)/, \
+	calc_movement.c calc_rotation.c event_log.c graphics_utils.c raycaster_calc00.c \
+	raycaster_calc01.c raycaster_texture00.c raycaster_texture01.c render_wall.c \
+	time_management.c) $(addprefix $(RENDERER_DIR_BONUS)/, minimap_bonus.c \
+	minimap_grid_bonus.c minimap_player_bonus.c render_frame_bonus.c \
+	render_launch_bonus.c)
 SRC_UTILS		= $(addprefix $(UTILS_DIR)/, error_handling.c memory_management.c \
 	print_error.c)
 
-OBJS			= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC:.c=.o)))
-OBJS_PARSER		= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_PARSER:.c=.o)))
-OBJS_RENDERER	= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_RENDERER:.c=.o)))
-OBJS_UTILS		= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_UTILS:.c=.o)))
+OBJS				= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC:.c=.o)))
+OBJS_PARSER			= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_PARSER:.c=.o)))
+OBJS_RENDERER		= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_RENDERER:.c=.o)))
+OBJS_RENDERER_BONUS	= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_RENDERER_BONUS:.c=.o)))
+OBJS_UTILS			= $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_UTILS:.c=.o)))
 
 LIBFT_ARC	= $(LIBFT_DIR)/libft.a
 
@@ -41,11 +48,12 @@ LIBFT_ARC	= $(LIBFT_DIR)/libft.a
 # PATHS                                                                        #
 # ============================================================================ #
 
-INC_DIR			= include
-SRC_DIR 		= src
-PARSER_DIR		= $(SRC_DIR)/parser
-RENDERER_DIR	= $(SRC_DIR)/renderer
-UTILS_DIR		= $(SRC_DIR)/utils
+INC_DIR				= include
+SRC_DIR 			= src
+PARSER_DIR			= $(SRC_DIR)/parser
+RENDERER_DIR		= $(SRC_DIR)/renderer
+RENDERER_DIR_BONUS	= $(SRC_DIR)/renderer_bonus
+UTILS_DIR			= $(SRC_DIR)/utils
 
 BUILD_DIR	= .build
 LIB_DIR		= lib
@@ -99,6 +107,14 @@ $(NAME): $(LIBFT_ARC) $(MLX_ARC) $(BUILD_DIR) $(OBJS) $(OBJS_PARSER) \
 	$(LIBFT_ARC) $(MLX_ARC) $(MLX_FLAGS) -o $(NAME)
 	@printf "$(GRN)>> Compiled cub3D$(NC)\n\n"
 
+bonus: $(BONUS)	## Compile cub3D bonus (minimap)
+
+$(BONUS): $(LIBFT_ARC) $(MLX_ARC) $(BUILD_DIR) $(OBJS_PARSER) \
+	$(OBJS_RENDERER_BONUS) $(OBJS_UTILS)
+	@printf "$(GRN)>> Generated object files$(NC)\n\n"
+	$(CC) $(CFLAGS) $(OBJS_PARSER) $(OBJS_RENDERER_BONUS) \
+	$(OBJS_UTILS) $(LIBFT_ARC) $(MLX_ARC) $(MLX_FLAGS) -o $(BONUS)
+	@printf "$(GRN)>> Compiled cub3D with bonus feature (minimap)$(NC)\n\n"
 
 $(BUILD_DIR):
 	$(MKDIR) $(BUILD_DIR)
@@ -111,6 +127,9 @@ $(BUILD_DIR)/%.o: $(PARSER_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/%.o: $(RENDERER_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(RENDERER_DIR_BONUS)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR)/%.o: $(UTILS_DIR)/%.c
@@ -145,7 +164,7 @@ clean:	## Remove object files
 	@printf "$(GRN)>> Removed object files$(NC)\n\n"
 
 fclean: clean	## Remove executable files
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(BONUS)
 	@printf "$(GRN)>> Removed executable files$(NC)\n\n"
 	$(MAKE) $(LIBFT_DIR) fclean
 	@printf "$(GRN)>> Removed Libft archive$(NC)\n\n"
@@ -157,7 +176,7 @@ re: fclean all	## Purge and recompile
 
 ##@ STANDARD COMPLIANCE CHECK
 
-norm: all	## Execute norminette
+norm:	## Execute norminette
 	norminette $(INC_DIR) $(LIBFT_DIR) $(SRC_DIR)
 
 

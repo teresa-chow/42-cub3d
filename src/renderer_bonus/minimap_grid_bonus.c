@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_grid.c                                     :+:      :+:    :+:   */
+/*   minimap_grid_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:48:42 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/17 12:53:14 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 00:23:26 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
+#include "../../include/render_bonus.h"
 
 static void	grid_dda(t_raycaster *rc, int y, int x, t_dda *dda);
 static void	grid_loop(t_raycaster *rc, int y, int x, t_dda *dda);

@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/30 18:25:01 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 00:22:52 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # define GRAY 3158064
 # define YELLOW 16776960
 # define MAGENTA 16711935
-# define PI 3.14159265358979323846
 
 # include <X11/X.h>
 # include <X11/keysym.h>

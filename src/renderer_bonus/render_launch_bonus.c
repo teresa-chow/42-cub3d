@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_launch_bonus copy.c                         :+:      :+:    :+:   */
+/*   render_launch_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:56:00 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/06 00:24:25 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 00:26:11 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	init_mlx(t_data *img, t_world *world);
 static void	init_mlx_img(t_data *img, t_world *world);
 static void	init_raycaster(t_world *world, t_raycaster *rc, t_data *img);
 
-void	launch_render_engine(t_data *img, t_world *world, t_raycaster *rc)
+void	launch_render_engine_bonus(t_data *img, t_world *world, t_raycaster *rc)
 {
 	init_mlx(img, world);
 	init_raycaster(world, rc, img);
-	mlx_loop_hook(rc->img->mlx, render_frame, rc);
+	mlx_loop_hook(rc->img->mlx, render_frame_bonus, rc);
 	mlx_hook(rc->img->window, 2, 1L << 0, handle_keypress, rc);
 	mlx_hook(rc->img->window, 3, 1L << 1, handle_keyrelease, rc);
 	mlx_hook(rc->img->window, 17, 0L, close_quit, rc);

@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.c                                          :+:      :+:    :+:   */
+/*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:12:30 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/30 14:34:54 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 00:23:19 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
+#include "../../include/render_bonus.h"
 
 static void	calc_minimap_spacing(t_raycaster *rc, float *spacing);
 static void	filling_dda(t_raycaster *rc, int y, int x, t_dda *dda);

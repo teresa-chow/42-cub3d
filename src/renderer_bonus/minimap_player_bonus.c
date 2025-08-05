@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap_player.c                                   :+:      :+:    :+:   */
+/*   minimap_player_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 13:30:54 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/05 12:27:34 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 00:23:10 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
+#include "../../include/render_bonus.h"
 
 static void	draw_gaze(t_raycaster *rc, float spacing);
 

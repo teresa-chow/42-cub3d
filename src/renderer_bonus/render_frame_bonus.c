@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_frame.c                                     :+:      :+:    :+:   */
+/*   render_frame_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 11:00:20 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/06 00:25:47 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 00:42:38 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
+#include "../../include/render_bonus.h"
 
-int	render_frame(t_raycaster *rc)
+int	render_frame_bonus(t_raycaster *rc)
 {
 	get_time_ms(&rc->curr_time_ms);
 	if (rc->curr_time_ms - rc->prev_time_ms > 40)
@@ -21,6 +22,7 @@ int	render_frame(t_raycaster *rc)
 		get_time_ms(&rc->curr_time_ms);
 		fill_background(rc);
 		raycaster(rc);
+		draw_minimap(rc);
 		calc_player_movement(rc);
 		calc_player_rotation(rc);
 		mlx_put_image_to_window(rc->img->mlx,
