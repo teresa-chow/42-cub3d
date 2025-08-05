@@ -1,0 +1,13 @@
+NO ./assets/textures/wolfenstein_tex_n.xpm
+SO ./assets/textures/wolfenstein_tex_s.xpm
+WE ./assets/textures/wolfenstein_tex_w.xpm
+EA ./assets/textures/wolfenstein_tex_e.xpm
+
+F 0,0,255
+C 0,255,255
+
+11111
+10001
+10N01
+10001
+11111

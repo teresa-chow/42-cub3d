@@ -6,33 +6,58 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 17:26:28 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/04 23:34:06 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/05 09:31:38 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
 
-/* atan2 - arctangeant with quadrant correction, used to obtain
-angle in radians for vector (x, y) */
+static void	rotate_direction(t_raycaster *rc, double rot);
+static void	rotate_camera_plane(t_raycaster *rc, double rot);
+
+/* Calculate player rotation by angle increment (rot)
+- this will affect both direction vector and plane vector */
 void	calc_player_rotation(t_raycaster *rc)
 {
-	double				angle;
+	double				rot;
 	unsigned int		curr_time;
 	static unsigned int	last_move = 0;
+	double				rot_speed;
 
+	rot = 0;
+	rot_speed = 0.05;
 	get_time_ms(&curr_time);
-	angle = atan2(rc->cam->dir_y, rc->cam->dir_x);
 	if (curr_time - last_move > 30)
 	{
-		if (rc->key_state[4] == 1)
-			angle -= 0.05;
-		else if (rc->key_state[5] == 1)
-			angle += 0.05;
-		if (rc->key_state[4] == 1 || rc->key_state[5] == 1)
+		if (rc->key_state[4])
+			rot = -rot_speed;
+		else if (rc->key_state[5])
+			rot = rot_speed;
+		if (rot != 0)
 		{
-			rc->cam->dir_x = cos(angle);
-			rc->cam->dir_y = sin(angle);
+			rotate_direction(rc, rot);
+			rotate_camera_plane(rc, rot);
 			last_move = curr_time;
 		}
 	}
+}
+
+/* Rotate both the direction vector (cam->dir_) and the plane vector
+by the same angle increment (rot) */
+static void	rotate_direction(t_raycaster *rc, double rot)
+{
+	double	old_dir_x;
+
+	old_dir_x = rc->cam->dir_x;
+	rc->cam->dir_x = rc->cam->dir_x * cos(rot) - rc->cam->dir_y * sin(rot);
+	rc->cam->dir_y = old_dir_x * sin(rot) + rc->cam->dir_y * cos(rot);
+}
+
+static void	rotate_camera_plane(t_raycaster *rc, double rot)
+{
+	double	old_plane_x;
+
+	old_plane_x = rc->plane_x;
+	rc->plane_x = rc->plane_x * cos(rot) - rc->plane_y * sin(rot);
+	rc->plane_y = old_plane_x * sin(rot) + rc->plane_y * cos(rot);
 }

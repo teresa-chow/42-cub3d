@@ -6,24 +6,11 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:30:30 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/30 14:51:57 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/05 09:15:20 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/render.h"
-
-/* Calculate the point where the ray hit the wall (wall_x)
-	floor returns largest int not greater than arg. Hence,
-	rc->wall_x -= floor(rc->wall_x) returns only
-	the fractional part of wall hit coordinate */
-void	calc_wall_x(t_raycaster *rc)
-{
-	if (rc->wall == EAST || rc->wall == WEST) // check if right wall
-		rc->wall_x = rc->cam->pos_y + rc->perp_wall_dist * rc->ray_dir_y;
-	else
-		rc->wall_x = rc->cam->pos_x + rc->perp_wall_dist * rc->ray_dir_x;
-	rc->wall_x -= floor(rc->wall_x);
-}
 
 /* Calculate distance projected on camera direction */
 void	calc_cam_dist(t_raycaster *rc)
@@ -32,6 +19,19 @@ void	calc_cam_dist(t_raycaster *rc)
 		rc->perp_wall_dist = rc->side_dist_x - rc->delta_dist_x;
 	else
 		rc->perp_wall_dist = rc->side_dist_y - rc->delta_dist_y;
+}
+
+/* Calculate the point where the ray hit the wall (wall_x)
+	floor returns largest int not greater than arg. Hence,
+	rc->wall_x -= floor(rc->wall_x) returns only
+	the fractional part of wall hit coordinate */
+void	calc_wall_x(t_raycaster *rc)
+{
+	if (rc->wall == EAST || rc->wall == WEST)
+		rc->wall_x = rc->cam->pos_y + rc->perp_wall_dist * rc->ray_dir_y;
+	else
+		rc->wall_x = rc->cam->pos_x + rc->perp_wall_dist * rc->ray_dir_x;
+	rc->wall_x -= floor(rc->wall_x);
 }
 
 /* Calculate height of line to be drawn

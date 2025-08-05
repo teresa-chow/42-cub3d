@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 14:31:02 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/07/18 19:09:00 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/05 01:52:00 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ void	perform_dda(t_raycaster *rc)
 {
 	while (rc->hit == 0)
 	{
-		if (rc->side_dist_x < rc->side_dist_y)
+		if (fabs(rc->side_dist_x) < fabs(rc->side_dist_y))
 		{
 			rc->side_dist_x += rc->delta_dist_x;
 			rc->map_x += rc->step_x;
-			if (rc->cam->dir_x > 0 && rc->cam->dir_x <= 1)
+			if (rc->step_x > 0)
 				rc->wall = EAST;
 			else
 				rc->wall = WEST;
@@ -86,7 +86,7 @@ void	perform_dda(t_raycaster *rc)
 		{
 			rc->side_dist_y += rc->delta_dist_y;
 			rc->map_y += rc->step_y;
-			if (rc->cam->dir_y >= -1 && rc->cam->dir_y <= 0)
+			if (rc->step_y > 0)
 				rc->wall = NORTH;
 			else
 				rc->wall = SOUTH;
