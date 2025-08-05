@@ -6,7 +6,7 @@
 #    By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 16:14:09 by tchow-so          #+#    #+#              #
-#    Updated: 2025/08/01 16:32:25 by tchow-so         ###   ########.fr        #
+#    Updated: 2025/08/05 16:10:37 by tchow-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -163,8 +163,8 @@ norm: all	## Execute norminette
 
 ##@ MEMORY MANAGEMENT & THREADING DEBUG
 
-vg: all	## Run valgrind (export ARG first)
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) $(ARG)
+vg: all	## Run valgrind (export MAP first)
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) $(MAP)
 
 
 ##@ TOOL INSTALLATION
