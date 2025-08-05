@@ -29,27 +29,15 @@ Rendering:
 [x] raycaster
 [x] arrows (left and right): change direction / rotate
 [x] W A S D : change player position / move
-[ ] collision detection or navigate map grid account for modulo of with and length (?)
-[-] wall textures
+[x] collision detection or navigate map grid account for modulo of with and length (?)
+[x] wall textures
 [x] ESC / red cross button: close the window and quit program (no leaks)
 [x] minimap (bonus feature)
 -------------------------------------------------------------------------
 General
 [ ] leak check
-[ ] standard compliance (Norm) check
+[x] standard compliance (Norm) check
 [ ] check how to deliver project with bonus features (optional additional files?
 same project?)
-[ ] OPTIONAL: refactor error handling (enum with type of error) + err msgs printed taking enum as arg
+[x] OPTIONAL: refactor error handling (enum with type of error) + err msgs printed taking enum as arg
 -------------------------------------------------------------------------
-Leaks
-- assets/maps/invalid/content/duplicate_map.cub
-- assets/maps/valid/content/newline_after_map.cub
-
-- assets/maps/invalid/content/multiple_player_pos00.cub
-- assets/maps/invalid/content/multiple_player_pos01.cub
-
-- assets/maps/invalid/content/spaces_inside.cub
-
-- assets/maps/invalid/color/color00.cub
-- assets/maps/invalid/color/color01.cub
-- assets/maps/invalid/color/color02.cub
