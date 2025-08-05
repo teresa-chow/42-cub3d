@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 13:52:26 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/05 09:44:35 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/05 12:50:10 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static int	get_texel_color(int y, int x, t_texture tex);
 
-/* Find where the wall's horizontal axis hits and scale it to texture width */
+/* Find where the wall's horizontal axis hits and scale it to texture width,
+adjust mirroring for WEST and SOUTH textures */
 int	map_wall_x_to_tex(t_raycaster *rc)
 {
 	t_texture	*texture;
@@ -30,10 +31,10 @@ int	map_wall_x_to_tex(t_raycaster *rc)
 	else if (rc->wall == WEST)
 		texture = &rc->world->tex_west;
 	tex_x = (int)(rc->wall_x * (double)texture->width);
-	/*if (rc->wall == EAST) / check mirroring
-		tex_x = texture.width - tex_x - 1;
-	if (rc->wall == NORTH)
-		tex_x = texture.width - tex_x - 1;*/
+	if (rc->wall == WEST)
+		tex_x = texture->width - tex_x - 1;
+	if (rc->wall == SOUTH)
+		tex_x = texture->width - tex_x - 1;
 	return (tex_x);
 }
 

@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:56:00 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/05 09:44:43 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/05 13:10:04 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,20 @@ static void	init_mlx_img(t_data *img, t_world *world)
 }
 
 /* Field of View (FOV) is set to 66 degrees,
-adequate for First-Person Shooter (FPS) */
+adequate for First-Person Shooter (FPS).
+plane_x and plane_y will either be 0 or (-)0.66,
+so that plane is perpendicular to player's direction */
 static void	init_raycaster(t_world *world, t_raycaster *rc, t_data *img)
 {
+	double	fov_factor;
+	
+	fov_factor = 0.66;
 	rc->img = img;
 	get_time_ms(&rc->curr_time_ms);
 	rc->prev_time_ms = rc->curr_time_ms;
 	rc->world = world;
 	rc->cam = world->cam;
-	if (rc->cam->dir_x == 0)
-		rc->plane_x = 0.66;
-	else if (rc->cam->dir_y == 0)
-		rc->plane_y = 0.66;
+	rc->plane_x = -rc->cam->dir_y * fov_factor;
+	rc->plane_y = rc->cam->dir_x * fov_factor;
 	init_textures(rc);
 }
