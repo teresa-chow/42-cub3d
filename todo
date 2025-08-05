@@ -41,3 +41,7 @@ General
 same project?)
 [x] OPTIONAL: refactor error handling (enum with type of error) + err msgs printed taking enum as arg
 -------------------------------------------------------------------------
+Fix:
+[ ] leak newline_after_map.cub
+[ ] invisible wall heart_map.cub and alike
+[ ] texture black border
