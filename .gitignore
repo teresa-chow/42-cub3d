@@ -14,6 +14,7 @@ lib/minilibx-linux
 lib/minilibx-*
 
 cub3D
+cub3D_bonus
 
 */*/*.a
 */*.swp
