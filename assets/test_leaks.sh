@@ -6,7 +6,8 @@
 
 PROGRAM=./cub3D
 MAP_DIRS=("assets/maps/invalid/color" "assets/maps/invalid/content"
-    "assets/maps/invalid/tex")
+    "assets/maps/invalid/tex" "assets/maps/valid/color" "assets/maps/valid/content"
+    "assets/maps/valid/tex")
 
 # -----------------------------------------------------------------------------
 # UTILS: ANSI COLOR SEQUENCES
