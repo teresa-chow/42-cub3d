@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:17:18 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/01 15:11:43 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 11:55:09 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static bool	check_file_name(char *str)
 {
 	if (!str)
 		return (0);
-	if (ft_strlen(str) < 4)
+	if (ft_strlen(str) < 5)
 		return (0);
 	if (!check_file_format(str, ".cub"))
 		return (0);
