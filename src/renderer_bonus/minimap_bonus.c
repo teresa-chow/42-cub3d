@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:12:30 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/06 00:23:19 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 09:33:15 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static void	calc_minimap_spacing(t_raycaster *rc, float *spacing)
 		*spacing = (float)((WIN_H / 4) / rc->world->map_len);
 	else
 		*spacing = (float)((WIN_W / 5) / rc->world->map_wid);
+	if (*spacing < 1)
+		*spacing = 1;
 }
 
 /* Walls and walkable area */

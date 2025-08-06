@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 14:48:42 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/06 00:23:26 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 09:23:28 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	draw_minimap_grid(t_raycaster *rc, t_dda *dda)
 	int	y;
 
 	y = 0;
+	if (dda->spacing == 1)
+		return ;
 	while (y < rc->world->map_len)
 	{
 		x = 0;
