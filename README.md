@@ -71,6 +71,14 @@ Includes a custom script to:
 
 ___
 
+### Team
+
+Carlos Teixeira [@Carlos688940](https://github.com/Carlos688940)
+
+Teresa Chow (me)
+
+</br>
+
 ### License
 This work is published under the terms of [MIT License](./LICENSE).
 
