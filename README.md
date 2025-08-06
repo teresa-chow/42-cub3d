@@ -7,26 +7,34 @@ ___
 
 
 ### Table of contents
-[Subject notes](#subject-notes) · [Usage](#usage) · [License](#license)
+[Usage](#usage) · [License](#license) · [References & further reading](#references--further-reading)
 
 </br>
 
 ![demo](assets/cub3D.gif)
 
-___
-
 </br>
-
-# Subject notes
-
-Notes on the subject and further reading : [here](https://github.com/teresa-chow/42-cub3d/wiki).
 
 ___
 
+## Features
+
+- Raycasting algorithm to render walls in a pseudo-3D perspective
+
+- Texture mapping for different wall orientations
+
+- Player movement with collision detection
+
+- Camera rotation
+
+- Configurable map parsing from `.cub` files
+
+- Error handling and memory management
+
 </br>
 
-# Usage
-## Setup and compilation
+## Usage
+### Setup and compilation
 
 1. Clone repository
     ```bash
@@ -44,13 +52,25 @@ ___
     ./cub3D_bonus path/to/map.cub
     ```
 
-___
-
 </br>
+
+___
 
 ### License
 This work is published under the terms of [MIT License](./LICENSE).
 
 </br>
 
-[⬆ back to top](##cub3d---raycasting-engine)
+#### References & further reading
+
+- 42 Docs: [MiniLibX](https://harm-smits.github.io/42docs/libs/minilibx.html)
+
+- Lode's Computer Graphics Tutorial: [Flood Fill](https://lodev.org/cgtutor/floodfill.html)
+
+- Lode's Computer Graphics Tutorial: [Raycasting](https://lodev.org/cgtutor/raycasting.html)
+
+- 3DSage: [Make Your Own Raycaster](https://www.youtube.com/watch?v=gYRrGTC7GtA) [series]
+
+</br></br>
+
+[⬆ back to top](#cub3d---raycasting-engine)
