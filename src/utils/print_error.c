@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 16:20:52 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/06 09:50:23 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 10:59:46 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ static void	err_map_content(t_err_code err, int fd)
 		ft_putstr_fd("Error\nMap not closed\n", fd);
 	else if (err == MAP_INVALID)
 		ft_putstr_fd("Error\nMap content misconfiguration\n", fd);
+	else if (err == MAP_SIZE)
+		ft_putstr_fd("Error\nMap size too big "
+			"- maximum accepted map area: 91200\n", fd);
 	else if (err == MINIMAP_SIZE)
 		ft_putstr_fd("Error\nMap size too big to print minimap "
 			"- use regular version instead\n", fd);

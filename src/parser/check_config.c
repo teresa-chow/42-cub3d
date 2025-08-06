@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/08/06 10:33:14 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 11:02:30 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 static void	check_specs(int fd, t_world *world, t_tmp *tmp);
 static void	validate_lines(t_world *world, int fd, t_tmp *tmp);
 static int	check_identifier(char *line, char *id);
+static void	check_map_dimensions(t_world *world, t_tmp *tmp);
 
 void	validate_map(char *file, t_world *world)
 {
@@ -35,6 +36,7 @@ void	validate_map(char *file, t_world *world)
 	check_map(&tmp, world, fd);
 	close(fd);
 	get_map_data(file, world, &tmp);
+	check_map_dimensions(world, &tmp);
 	check_closed_map(world, &tmp);
 }
 
@@ -112,4 +114,13 @@ static int	check_identifier(char *line, char *id)
 		*end = save;
 	}
 	return (0);
+}
+
+static void	check_map_dimensions(t_world *world, t_tmp *tmp)
+{
+	int	map_area;
+
+	map_area = world->map_len * world->map_wid;
+	if (map_area > 91200)
+		exit_on_error(world, -1, MAP_SIZE, tmp);
 }

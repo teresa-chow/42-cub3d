@@ -6,7 +6,7 @@
 #    By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 16:14:09 by tchow-so          #+#    #+#              #
-#    Updated: 2025/08/06 10:29:03 by tchow-so         ###   ########.fr        #
+#    Updated: 2025/08/06 11:01:14 by tchow-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,9 @@ SRC_RENDERER	= $(addprefix $(RENDERER_DIR)/, calc_movement.c calc_rotation.c \
 SRC_RENDERER_BONUS	= $(addprefix $(SRC_DIR)/, main_bonus.c) $(addprefix $(RENDERER_DIR)/, \
 	calc_movement.c calc_rotation.c event_log.c graphics_utils.c raycaster_calc00.c \
 	raycaster_calc01.c raycaster_texture00.c raycaster_texture01.c render_wall.c \
-	time_management.c) $(addprefix $(RENDERER_DIR_BONUS)/, check_minimap_bonus.c \
-	minimap_bonus.c minimap_grid_bonus.c minimap_player_bonus.c \
-	render_frame_bonus.c render_launch_bonus.c)
+	time_management.c) $(addprefix $(RENDERER_DIR_BONUS)/, minimap_bonus.c \
+	minimap_grid_bonus.c minimap_player_bonus.c render_frame_bonus.c \
+	render_launch_bonus.c)
 SRC_UTILS		= $(addprefix $(UTILS_DIR)/, error_handling.c memory_management.c \
 	print_error.c)
 
@@ -183,7 +183,7 @@ norm:	## Execute norminette
 ##@ MEMORY MANAGEMENT & THREADING DEBUG
 
 vg: all	## Run valgrind (export MAP first)
-	valgrind --leak-check=full --show-leak-kinds=all ./$(BONUS) $(MAP)
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) $(MAP)
 
 
 ##@ TOOL INSTALLATION
