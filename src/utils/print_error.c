@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 16:20:52 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/06 11:08:06 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 13:54:30 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,7 @@ static void	err_mlx(t_err_code err, int fd)
 		ft_putstr_fd("MiniLibX: Failed to open window\n", fd);
 	else if (err == MLX_IMG)
 		ft_putstr_fd("MiniLibX: Failed to create new image\n", fd);
+	else if (err == MLX_XPM)
+		ft_putstr_fd("MiniLibX: Failed to convert XPM file "
+			"to a new image instance\n", fd);
 }

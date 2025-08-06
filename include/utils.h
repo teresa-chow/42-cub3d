@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 11:26:53 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/06 11:00:12 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 13:52:34 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ typedef enum e_err_code
 	MAP_SIZE,
 	MLX_INIT,
 	MLX_WIN,
-	MLX_IMG
+	MLX_IMG,
+	MLX_XPM
 }	t_err_code;
 
 /* ======================= DYNAMIC MEMORY MANAGEMENT ======================= */
