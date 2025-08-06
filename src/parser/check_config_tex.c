@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/08/02 11:35:19 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 17:16:44 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "../../include/parse.h"
 #include "../../include/utils.h"
 
-static bool	check_texture_format(t_world *world, char *format);
 static bool	check_texture_path(t_world *world);
 static void	check_identifier_dup(t_tmp *tmp, t_world *world, char *id, int fd);
 
@@ -68,20 +67,8 @@ static void	check_identifier_dup(t_tmp *tmp, t_world *world, char *id, int fd)
 /* Check each texture is valid */
 void	validate_texture(t_world *world, int fd, t_tmp *tmp)
 {
-	if (!check_texture_format(world, ".xpm"))
-		exit_on_error(world, fd, TEX_FORMAT, tmp);
 	if (!check_texture_path(world))
 		exit_on_error(world, fd, TEX_PATH, tmp);
-}
-
-static bool	check_texture_format(t_world *world, char *format)
-{
-	if (!check_file_format(world->tex_n, format)
-		|| !check_file_format(world->tex_s, format)
-		|| !check_file_format(world->tex_e, format)
-		|| !check_file_format(world->tex_w, format))
-		return (0);
-	return (1);
 }
 
 static bool	check_texture_path(t_world *world)

@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 11:26:53 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/06 13:52:34 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 17:16:15 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef enum e_err_code
 	COLOR_RGB,
 	COLOR_INVALID,
 	COLOR_MISSING,
-	TEX_FORMAT,
 	TEX_PATH,
 	TEX_MISSING,
 	MAP_EXTRA,
