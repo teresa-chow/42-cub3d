@@ -54,6 +54,21 @@ ___
 
 </br>
 
+### Testing script
+Includes a custom script to:
+
+- Compile and run the project with sample maps (both valid and invalid)
+
+- Check for memory leaks and error handling
+
+- Validate edge cases (invalid maps, configurations, etc.)
+
+```bash
+./assets/test_leaks.sh
+```
+
+</br>
+
 ___
 
 ### License
