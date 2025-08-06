@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 16:20:52 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/06 13:54:30 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 17:18:11 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,6 @@ static void	err_config(t_err_code err, int fd)
 		ft_putstr_fd("Error\nColor specs misconfiguration\n", fd);
 	else if (err == COLOR_MISSING)
 		ft_putstr_fd("Error\nColor identifiers missing\n", fd);
-	else if (err == TEX_FORMAT)
-		ft_putstr_fd("Error\nInvalid texture format: "
-			"only XPM files accepted\n", fd);
 	else if (err == TEX_PATH)
 		ft_putstr_fd("Error\nTexture path misconfiguration\n", fd);
 	else if (err == TEX_MISSING)
