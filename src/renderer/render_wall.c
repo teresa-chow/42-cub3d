@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 15:13:29 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/05 23:43:56 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 17:22:47 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ static void	init_texel(t_raycaster *rc, t_texel_info *texel)
 	texel->tex_pos = 0;
 	texel->step = 0;
 	if (rc->wall == NORTH)
-		texel->texture = &rc->world->tex_north;
-	else if (rc->wall == SOUTH)
 		texel->texture = &rc->world->tex_south;
+	else if (rc->wall == SOUTH)
+		texel->texture = &rc->world->tex_north;
 	else if (rc->wall == EAST)
-		texel->texture = &rc->world->tex_east;
-	else if (rc->wall == WEST)
 		texel->texture = &rc->world->tex_west;
+	else if (rc->wall == WEST)
+		texel->texture = &rc->world->tex_east;
 }
