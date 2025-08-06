@@ -41,4 +41,4 @@ jobs:
                 fi
               done
           done
-          exit 0
+          continue-on-error: true
