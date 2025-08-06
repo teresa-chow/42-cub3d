@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 11:59:32 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/02 10:59:02 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 10:22:58 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	check_map_placement(t_tmp *tmp, t_world *world, int fd)
 	}
 }
 
-void	check_closed_map(t_world *world, t_tmp *tmp)
+/*void	check_closed_map(t_world *world, t_tmp *tmp)
 {
 	int		i;
 	int		j;
@@ -93,4 +93,4 @@ void	check_closed_map(t_world *world, t_tmp *tmp)
 		j = -1;
 	}
 	free_map(tmp->map_cpy, world->map_len);
-}
+}*/

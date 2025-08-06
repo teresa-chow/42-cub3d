@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 11:26:53 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/01 16:36:50 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 09:46:34 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef enum e_err_code
 	PLAYER_POS_NONE,
 	MAP_OPEN,
 	MAP_INVALID,
+	MINIMAP_SIZE,
 	MLX_INIT,
 	MLX_WIN,
 	MLX_IMG

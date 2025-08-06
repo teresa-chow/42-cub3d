@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 18:12:30 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/06 09:33:15 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 10:29:23 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	draw_minimap(t_raycaster *rc)
 
 	ft_bzero(&dda, sizeof(t_dda));
 	calc_minimap_spacing(rc, &dda.spacing);
+	check_minimap(rc, dda);
 	dda.x_ofs = WIN_W - rc->world->map_wid * dda.spacing;
 	dda.y_ofs = WIN_H - rc->world->map_len * dda.spacing;
 	y = 0;

@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 15:28:45 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/02 11:33:36 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 10:23:12 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ typedef struct s_world
 	t_texture		tex_south;
 	t_texture		tex_west;
 	t_texture		tex_east;
-	char			*ground_str; //
+	char			*ground_str;
 	int				ground;
-	char			*sky_str; //
+	char			*sky_str;
 	int				sky;
 	int				map_len;
 	int				map_wid;
@@ -87,12 +87,12 @@ int		all_textures_set_up(t_world *world);
 void	convert_to_int(t_world *world, t_tmp *tmp, int fd, char id);
 // Map
 void	check_map(t_tmp *tmp, t_world *world, int fd);
-void	check_closed_map(t_world *world, t_tmp *tmp);
+//void	check_closed_map(t_world *world, t_tmp *tmp);
 void	check_valid_pos(t_world *world, t_tmp *tmp);
 char	**map_dup(t_world *world, t_tmp *tmp);
 int		is_map_line(char *s, int *player_pos);
 int		pos_found(int y, t_world *world);
-int		flood_fill_cub(int x, int y, t_world *world, t_tmp *tmp);
+//int		flood_fill_cub(int x, int y, t_world *world, t_tmp *tmp);
 
 /* ============================ DATA COLLECTION ============================ */
 // Textures

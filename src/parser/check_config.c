@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/08/02 11:31:52 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 10:23:17 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	validate_map(char *file, t_world *world)
 	check_map(&tmp, world, fd);
 	close(fd);
 	get_map_data(file, world, &tmp);
-	check_closed_map(world, &tmp);
+	//check_closed_map(world, &tmp);
 }
 
 /* Check config specs other than map (textures and colors) */
