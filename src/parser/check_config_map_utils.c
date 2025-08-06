@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:09:43 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/08/06 10:22:12 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/08/06 10:33:44 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	pos_found(int y, t_world *world)
 	return (0);
 }
 
-/*int	flood_fill_cub(int x, int y, t_world *world, t_tmp *tmp)
+int	flood_fill_cub(int x, int y, t_world *world, t_tmp *tmp)
 {
 	char	**map;
 
@@ -84,4 +84,4 @@ int	pos_found(int y, t_world *world)
 	flood_fill_cub(x, y - 1, world, tmp);
 	flood_fill_cub(x, y + 1, world, tmp);
 	return (0);
-}*/
+}
