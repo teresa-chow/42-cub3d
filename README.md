@@ -94,6 +94,12 @@ This work is published under the terms of [MIT License](./LICENSE).
 
 - 3DSage: [Make Your Own Raycaster](https://www.youtube.com/watch?v=gYRrGTC7GtA) [series]
 
+</br>
+
+#### Textures
+
+Drawing of my pet bird 🐦
+
 </br></br>
 
 [⬆ back to top](#cub3d---raycasting-engine)
