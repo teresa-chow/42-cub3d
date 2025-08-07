@@ -6,7 +6,7 @@
 #    By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/13 16:14:09 by tchow-so          #+#    #+#              #
-#    Updated: 2025/08/06 11:01:14 by tchow-so         ###   ########.fr        #
+#    Updated: 2025/08/07 09:33:18 by tchow-so         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ endif
 
 CC		= cc
 CFLAGS	=  -Wall -Wextra -Werror
-CFLAGS	+= -g
+CFLAGS	+= -g -O3
 
 MAKE	= make -C
 
