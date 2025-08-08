@@ -7,7 +7,7 @@ ___
 
 
 ### Table of contents
-[Usage](#usage) · [License](#license) · [References & further reading](#references--further-reading)
+[Features](#features) · [Usage](#usage) · [License](#license) · [References & further reading](#references--further-reading)
 
 </br>
 
