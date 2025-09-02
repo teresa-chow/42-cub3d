@@ -28,9 +28,11 @@ jobs:
       - name: Check leaks on invalid maps
         continue-on-error: true
         run: |
+          set +e
           PROGRAM=./cub3D
           MAP_DIRS=("assets/maps/invalid/color" "assets/maps/invalid/content" \
           "assets/maps/invalid/tex")
+          FAIL=0
           for DIR in "${MAP_DIRS[@]}"; do
               for MAP in "$DIR"/*; do
                   [ -f "$MAP" ] || continue
@@ -38,7 +40,8 @@ jobs:
                   CODE=$?
                 if [ $CODE -eq 2 ]; then
                   echo "💔 Memory leaks detected when testing $MAP"
-                  exit 1
+                  FAIL=1
                 fi
               done
           done
+          exit $FAIL
