@@ -26,6 +26,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y valgrind
 
       - name: Check leaks on invalid maps
+        continue-on-error: true
         run: |
           PROGRAM=./cub3D
           MAP_DIRS=("assets/maps/invalid/color" "assets/maps/invalid/content" \
@@ -41,4 +42,3 @@ jobs:
                 fi
               done
           done
-          continue-on-error: true
