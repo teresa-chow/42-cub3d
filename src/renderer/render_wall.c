@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 15:13:29 by tchow-so          #+#    #+#             */
-/*   Updated: 2025/08/06 17:22:47 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/09/02 12:29:34 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	draw_vertical_line(t_raycaster *rc, int x)
 	int				color;
 	t_texel_info	texel;
 
+	ft_bzero(&texel, sizeof(t_texel_info));
 	init_texel(rc, &texel);
 	texel.tex_x = map_wall_x_to_tex(rc);
 	texel.step = 1.0 * texel.texture->height / rc->line_height;

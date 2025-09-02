@@ -6,7 +6,7 @@
 /*   By: tchow-so <tchow-so@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 13:31:40 by carlaugu          #+#    #+#             */
-/*   Updated: 2025/08/06 11:02:30 by tchow-so         ###   ########.fr       */
+/*   Updated: 2025/09/02 12:23:38 by tchow-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ static int	check_identifier(char *line, char *id)
 	char	save;
 
 	i = 0;
+	start = NULL;
 	while (line[i] && ft_isspace(line[i]))
 		i++;
 	if (line[i] && !ft_isspace(line[i]))
