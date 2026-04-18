@@ -73,7 +73,7 @@ ___
 
 ### Team
 
-Carlos Teixeira [@Carlos688940](https://github.com/Carlos688940)
+Carlos Teixeira [@carlos-lvt](https://github.com/carlos-lvt)
 
 Teresa Chow (me)
 
